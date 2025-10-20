@@ -30,7 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    //className determines colour scheme, dark for dark mode, "" for normal
+    <html lang="en" className="dark"> 
       
       <body
         className={`${inter.variable} ${geistMono.variable} antialiased`}

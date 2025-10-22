@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useTheme } from '../../components/ThemeProvider';
 
 const sections = [
   {
@@ -123,7 +124,7 @@ function SubsystemCard({ data, theme, visible }: { data: typeof sections[0], the
 }
 
 export default function CarPage() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const { theme, setTheme } = useTheme();
   const [visibleCards, setVisibleCards] = useState(new Set<number>());
   const [showThemeToggle, setShowThemeToggle] = useState(true);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -160,36 +161,7 @@ export default function CarPage() {
   const text = isDark ? 'text-white' : 'text-gray-900';
 
   return (
-    <div className={`min-h-screen ${bg} ${text} transition-colors`}>
-      <header className="fixed top-0 w-full z-50 px-8 py-4 flex items-center justify-between backdrop-blur-md" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/otrLogo.PNG" alt="OTR Logo" className="h-12" />
-        <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-wider text-white">
-          <a href="#home" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Home</a>
-          <a href="#team" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Team</a>
-          <a href="#our-car" className="text-[#48B4FF]">Our Car</a>
-          <a href="#sponsors" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Sponsors</a>
-          <a href="#history" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>History</a>
-        </nav>
-        <div className="flex gap-4 text-white">
-          <a href="https://www.instagram.com/ontariotechracing/" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
-              <path d="M12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-          <a href="https://www.linkedin.com/company/ontariotechracing/" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>
-            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-          </a>
-          <a href="mailto:motorsports@ontariotechu.net" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </a>
-        </div>
-      </header>
+    <div className={`min-h-screen ${bg} ${text} transition-colors pt-20`}>
 
       <div className={`fixed top-32 right-8 z-50 flex gap-2 backdrop-blur-md rounded-full p-1 transition-opacity ${showThemeToggle ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(72,180,255,0.15)' }}>
         <button onClick={() => setTheme('dark')} className={`px-4 py-2 rounded-full ${theme === 'dark' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'}`}>Dark</button>

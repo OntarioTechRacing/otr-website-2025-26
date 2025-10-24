@@ -19,12 +19,9 @@ export default function Header({ theme }: HeaderProps) {
   };
 
   return (
-    <header className="relative top-0 w-full z-50 px-4 md:px-16 py-4 flex items-center justify-between backdrop-blur-md" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
-      {/* Logo */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/otrLogo.png" alt="OTR Logo" className="h-12" />
+    <header className="relative top-0 w-full z-50 px-4 md:px-24 py-4 flex items-center justify-between backdrop-blur-md" style={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}>
+      <img src="/otrLogo.png" alt="OTR Logo" className="h-14 hover:scale-105 transition-transform" />
       
-      {/* Desktop Navigation */}
       <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-wider text-white">
         <Link href="/" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Home</Link>
         <Link href="/team" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Team</Link>
@@ -33,7 +30,6 @@ export default function Header({ theme }: HeaderProps) {
         <Link href="/history" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>History</Link>
       </nav>
 
-      {/* Desktop Social Icons */}
       <div className="hidden md:flex gap-4 text-white">
         <a href="https://www.instagram.com/ontariotechracing/" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -53,13 +49,12 @@ export default function Header({ theme }: HeaderProps) {
         </a>
       </div>
 
-      {/* Mobile Hamburger Menu */}
       <button 
         onClick={toggleMobileMenu}
         className="md:hidden text-white p-2"
         aria-label="Toggle mobile menu"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           {isMobileMenuOpen ? (
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           ) : (
@@ -68,9 +63,8 @@ export default function Header({ theme }: HeaderProps) {
         </svg>
       </button>
 
-      {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-black/90 backdrop-blur-md border-t border-white/20 md:hidden">
+        <div className="absolute top-full left-0 w-full bg-black backdrop-blur-md border-t border-white/20 md:hidden">
           <nav className="flex flex-col py-4">
             <Link 
               href="/" 
@@ -87,8 +81,8 @@ export default function Header({ theme }: HeaderProps) {
               Team
             </Link>
             <Link 
-              href="#our-car" 
-              className="px-6 py-3 text-sm font-bold uppercase tracking-wider text-[#48B4FF] transition-colors"
+              href="/our-car" 
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}
               onClick={closeMobileMenu}
             >
               Our Car

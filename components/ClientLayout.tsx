@@ -2,6 +2,7 @@
 
 import { useTheme } from './ThemeProvider';
 import Header from './Header';
+import Footer from './Footer';
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -13,7 +14,10 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <>
       <Header theme={theme} />
+      
       {children}
+      <Footer theme={theme}></Footer>
+      
     </>
   );
 }

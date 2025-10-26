@@ -66,7 +66,7 @@ export default function TeamPage() {
       <div className={`${bg} ${theme}`}>
         {departments.map((department, index) => ( 
           <div className="flex justify-center">
-          <h2 key={index} className={`${department.id} text-2xl font-bold underline ${isDark ? 'text-white' : 'text-gray-900'}`}>{department.team}</h2>
+          <h2 key={index} className={`${department.id} text-2xl font-bold underline ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${department.team} Team`}</h2>
           </div>
           ))}
       </div>

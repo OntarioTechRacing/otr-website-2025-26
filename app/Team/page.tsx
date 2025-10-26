@@ -65,8 +65,8 @@ export default function TeamPage() {
       <img src="/home-crew.png" className="w-full"/>
       <div className={`${bg} ${theme}`}>
         {departments.map((department, index) => ( 
-          <div className="flex justify-center">
-          <h2 key={index} className={`${department.id} text-2xl font-bold underline ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${department.team} Team`}</h2>
+          <div key={index} className="flex justify-center">
+          <h2 className={`${department.id} text-2xl font-bold underline ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${department.team} Team`}</h2>
           </div>
           ))}
       </div>

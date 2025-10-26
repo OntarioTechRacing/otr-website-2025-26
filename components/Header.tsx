@@ -24,7 +24,7 @@ export default function Header({ theme }: HeaderProps) {
       
       <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-wider text-white">
         <Link href="/" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Home</Link>
-        <Link href="/team" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Team</Link>
+        <Link href="/Team" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Team</Link>
         <Link href="/our-car" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Our Car</Link>
         <Link href="/sponsors" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Sponsors</Link>
         <Link href="/history" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>History</Link>

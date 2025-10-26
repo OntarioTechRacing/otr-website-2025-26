@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 import ClientLayout from "../components/ClientLayout";
@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
+
 export const metadata: Metadata = {
   title: "OTU Formula SAE Racing",
   description: "Ontario Tech University Formula SAE Electric Racing Team",
@@ -25,7 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    //className determines colour scheme, dark for dark mode, "" for normal
+    <html lang="en" className="dark"> 
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >

@@ -1,16 +1,76 @@
+'use client';
+
 import Image from "next/image";
 import CarouselComponent from "@/components/Carousel";
+import { useTheme } from '../../components/ThemeProvider';
 
-export default function Home() {
+
+const departments = [
+  {
+    id: "business-team",
+    team: "Business"
+  }, 
+  {
+    id: "analysis-team",
+    team: "Analysis"
+  }, 
+  {
+    id: "composites-team",
+    team: "Composites"
+  },
+  {
+    id: "drivetrain-and-braking-team",
+    team: "Drivetrain & Braking"
+  },
+  {
+    id: "embedded-systems-team",
+    team: "Embedded Systems"
+  },
+  {
+    id: "hardware-and-electronics-team",
+    team: "Hardware & Electronics"
+  },
+  {
+    id: "hv-systems-team",
+    team: "HV Systems"
+  },
+  {
+    id: "manufacturing-team",
+    team: "Manufacturing"
+  },
+  {
+    id: "software-team",
+    team: "Software"
+  },
+  {
+    id: "suspension-team",
+    team: "Suspension"
+  },
+  {
+    id: "vehicle-dynamics-team",
+    team: "Vehicle Dynamics"
+  }
+];
+
+export default function TeamPage() {
+  const {theme, setTheme} = useTheme();
+
+
+  const isDark = theme === 'dark';
+  const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-white';
+  const text = isDark ? 'text-white' : 'text-gray-900';
+
   return (
-    //use h-[200vh] to test header hiding
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <CarouselComponent />
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        
-      </footer>
-    </div>
+    <>
+      <img src="/home-crew.png" className="w-full"/>
+      <div className={`${bg} ${theme}`}>
+        {departments.map((department, index) => ( 
+          <div className="flex justify-center">
+          <h2 key={index} className={`${department.id} text-2xl font-bold underline ${isDark ? 'text-white' : 'text-gray-900'}`}>{department.team}</h2>
+          </div>
+          ))}
+      </div>
+    </>
+
   );
 }

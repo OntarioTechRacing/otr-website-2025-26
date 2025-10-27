@@ -1,0 +1,112 @@
+[
+    {
+        "team": "business",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "analysis",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "composites",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "drivetrain-and-braking",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "embedded-systems",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "hardware-and-electronics",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "hv-systems",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "manufacturing",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "software",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "suspension",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    },
+    {
+        "team": "vehicle-dynamics",
+        "team-members": [ 
+            {
+                "name" : "",
+                "linkedin-link" : "",
+                "image-name" : ""
+            }
+        ]
+    }
+]

@@ -3,6 +3,10 @@
 import Image from "next/image";
 import CarouselComponent from "@/components/Carousel";
 import { useTheme } from '../../components/ThemeProvider';
+import { Headshot } from "./headshots";
+import { useEffect, useState } from "react";
+
+
 
 
 const departments = [
@@ -53,12 +57,31 @@ const departments = [
 ];
 
 export default function TeamPage() {
+
+  const [data, setData] = useState<Headshot[]>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/team-headshots.json')
+      .then((res) => res.json())
+      .then((data: Headshot[]) => {
+        setData(data);
+        setLoading(false);
+        console.log(data);
+      });
+  }, []);
+
+
+
   const {theme, setTheme} = useTheme();
 
 
   const isDark = theme === 'dark';
   const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-white';
   const text = isDark ? 'text-white' : 'text-gray-900';
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!data.length) return <p>No data found.</p>;
 
   return (
     <>

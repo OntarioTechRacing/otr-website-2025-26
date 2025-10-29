@@ -1,0 +1,112 @@
+[
+  {
+    "team": "business",
+    "team-members": [
+      {
+        "name": "Ava Mitchell",
+        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
+        "image-name": "ava.jpg"
+      }
+    ]
+  },
+  {
+    "team": "analysis",
+    "team-members": [
+      {
+        "name": "Liam Chen",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": "liam.jpg"
+      }
+    ]
+  },
+  {
+    "team": "composites",
+    "team-members": [
+      {
+        "name": "Sofia Patel",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": "sofia.jpg"
+      }
+    ]
+  },
+  {
+    "team": "drivetrain-and-braking",
+    "team-members": [
+      {
+        "name": "Ethan Wright",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": "ethan.jpg"
+      }
+    ]
+  },
+  {
+    "team": "embedded-systems",
+    "team-members": [
+      {
+        "name": "Noah Smith",
+        "linkedin-link": "https://linkedin.com/in/noah-smith",
+        "image-name": "noah.jpg"
+      }
+    ]
+  },
+  {
+    "team": "hardware-and-electronics",
+    "team-members": [
+      {
+        "name": "Isabella Lee",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": "isabella.jpg"
+      }
+    ]
+  },
+  {
+    "team": "hv-systems",
+    "team-members": [
+      {
+        "name": "James Brown",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": "james.jpg"
+      }
+    ]
+  },
+  {
+    "team": "manufacturing",
+    "team-members": [
+      {
+        "name": "Olivia Davis",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": "olivia.jpg"
+      }
+    ]
+  },
+  {
+    "team": "software",
+    "team-members": [
+      {
+        "name": "Benjamin Wilson",
+        "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
+        "image-name": "ben.jpg"
+      }
+    ]
+  },
+  {
+    "team": "suspension",
+    "team-members": [
+      {
+        "name": "Charlotte Nguyen",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": "charlotte.jpg"
+      }
+    ]
+  },
+  {
+    "team": "vehicle-dynamics",
+    "team-members": [
+      {
+        "name": "Daniel Garcia",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": "daniel.jpg"
+      }
+    ]
+  }
+]

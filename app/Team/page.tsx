@@ -3,8 +3,9 @@
 import Image from "next/image";
 import CarouselComponent from "@/components/Carousel";
 import { useTheme } from '../../components/ThemeProvider';
-import { Headshot } from "./headshots";
+import type { Headshot } from "./headshots";
 import { useEffect, useState } from "react";
+import "./card.css";
 
 
 
@@ -58,13 +59,13 @@ const departments = [
 
 export default function TeamPage() {
 
-  const [data, setData] = useState<Headshot[]>([]);
+  const [data, setData] = useState<Headshot>([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/team-headshots.json')
       .then((res) => res.json())
-      .then((data: Headshot[]) => {
+      .then((data: Headshot) => {
         setData(data);
         setLoading(false);
         console.log(data);
@@ -85,11 +86,24 @@ export default function TeamPage() {
 
   return (
     <>
+    <div className={`${bg} ${theme}`}>
       <img src="/home-crew.png" className="w-full"/>
-      <div className={`${bg} ${theme}`}>
-        {departments.map((department, index) => ( 
-          <div key={index} className="flex justify-center">
-          <h2 className={`${department.id} text-2xl font-bold underline ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${department.team} Team`}</h2>
+        {data.map((teamObj, index) => ( 
+          <div key={index} className="flex flex-col items-center">
+            <h2 className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>
+            {teamObj["team-members"].map((member, index) => (
+              <div key={index} className="flex flex-col items-center card-container">
+                <div className="card">
+                  <div className="card-front flex flex-col items-center">
+                    <p>{member["name"]}</p>
+                    <p>{member["image-name"]}</p>
+                  </div>
+                  <div className="card-back flex flex-col items-center">
+                    <a href={member["linkedin-link"]} className="underline">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
           ))}
       </div>

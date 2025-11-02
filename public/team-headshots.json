@@ -1,6 +1,6 @@
 [
   {
-    "team": "business",
+    "team": "Business",
     "team-members": [
       {
         "name": "Ava Mitchell",
@@ -10,7 +10,7 @@
     ]
   },
   {
-    "team": "analysis",
+    "team": "Analysis",
     "team-members": [
       {
         "name": "Liam Chen",
@@ -20,7 +20,7 @@
     ]
   },
   {
-    "team": "composites",
+    "team": "Composites",
     "team-members": [
       {
         "name": "Sofia Patel",
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "team": "drivetrain-and-braking",
+    "team": "Drivetrain and Braking",
     "team-members": [
       {
         "name": "Ethan Wright",
@@ -40,7 +40,7 @@
     ]
   },
   {
-    "team": "embedded-systems",
+    "team": "Embedded Systems",
     "team-members": [
       {
         "name": "Noah Smith",
@@ -50,7 +50,7 @@
     ]
   },
   {
-    "team": "hardware-and-electronics",
+    "team": "Hardware and Electronics",
     "team-members": [
       {
         "name": "Isabella Lee",
@@ -60,7 +60,7 @@
     ]
   },
   {
-    "team": "hv-systems",
+    "team": "HV Systems",
     "team-members": [
       {
         "name": "James Brown",
@@ -70,7 +70,7 @@
     ]
   },
   {
-    "team": "manufacturing",
+    "team": "Manufacturing",
     "team-members": [
       {
         "name": "Olivia Davis",
@@ -80,7 +80,7 @@
     ]
   },
   {
-    "team": "software",
+    "team": "Software",
     "team-members": [
       {
         "name": "Benjamin Wilson",
@@ -90,7 +90,7 @@
     ]
   },
   {
-    "team": "suspension",
+    "team": "Suspension",
     "team-members": [
       {
         "name": "Charlotte Nguyen",
@@ -100,7 +100,7 @@
     ]
   },
   {
-    "team": "vehicle-dynamics",
+    "team": "Vehicle Dynamics",
     "team-members": [
       {
         "name": "Daniel Garcia",

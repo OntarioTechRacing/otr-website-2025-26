@@ -96,7 +96,7 @@ export default function TeamPage() {
                 <div className="card">
                   <div className="card-front flex flex-col items-center">
                     <p>{member["name"]}</p>
-                    <p>{member["image-name"]}</p>
+                    <img src={member["image-name"]} alt={member.name}/>
                   </div>
                   <div className="card-back flex flex-col items-center">
                     <a href={member["linkedin-link"]} className="underline">LinkedIn</a>

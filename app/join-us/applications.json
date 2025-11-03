@@ -1,16 +1,16 @@
 {
 
     "applications": [
-        {"name": "Buisness", "link": "https://linktr.ee/ontariotechracing"},
-        { "name": "Analysis", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Composites", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Vehicle Dynamics", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "HV Systems", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Drivetrain & Braking", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Hardware & Electronics", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Manufacturing", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Software", "link": "https://linktr.ee/ontariotechracing" },
-        { "name": "Suspension", "link": "https://linktr.ee/ontariotechracing" }
+        {"name": "Buisness", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png"},
+        { "name": "Analysis", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Composites", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Vehicle Dynamics", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "HV Systems", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Drivetrain & Braking", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Hardware & Electronics", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Manufacturing", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Software", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" },
+        { "name": "Suspension", "link": "https://linktr.ee/ontariotechracing", "image": "/join-us/placeholder.png" }
     ]
 
 }

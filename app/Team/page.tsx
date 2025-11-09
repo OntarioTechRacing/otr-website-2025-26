@@ -6,6 +6,7 @@ import { useTheme } from '../../components/ThemeProvider';
 import type { Headshot } from "./headshots";
 import { useEffect, useState } from "react";
 import "./card.css";
+import { FaLinkedin } from 'react-icons/fa';
 
 
 
@@ -87,23 +88,29 @@ export default function TeamPage() {
   return (
     <>
     <div className={`${bg} ${theme}`}>
-      <img src="/home-crew.png" className="w-full"/>
-        {data.map((teamObj, index) => ( 
+      <img src="/home-crew.png" className="w-full mt-[-100]"/>
+        {data.map((teamObj, index) => (
           <div key={index} className="flex flex-col items-center">
             <h2 className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>
+            <div className="flex flex-row flex-wrap gap-6 justify-center">
             {teamObj["team-members"].map((member, index) => (
-              <div key={index} className="flex flex-col items-center card-container">
+              <div key={index} className="flex flex-col items-start card-container">
                 <div className="card">
-                  <div className="card-front flex flex-col items-center">
-                    <p>{member["name"]}</p>
+                  <div className="card-front flex flex-col items-center justify-center bg-linear-to-tl from-black to-neutral-800">
                     <img src={member["image-name"]} alt={member.name}/>
+                    <p className="font-bold text-lg">{member["name"]}</p>
+                    <p>{member["role"]}</p>
                   </div>
-                  <div className="card-back flex flex-col items-center">
-                    <a href={member["linkedin-link"]} className="underline">LinkedIn</a>
+                  <div className="card-back flex flex-col items-center justify-center">
+                    <a href={member["linkedin-link"]} className="underline">
+                      <FaLinkedin className="linkedin-icon" color="white" />
+                    </a>
+                    <p>{member["name"]}</p>
                   </div>
                 </div>
               </div>
             ))}
+            </div>
           </div>
           ))}
       </div>

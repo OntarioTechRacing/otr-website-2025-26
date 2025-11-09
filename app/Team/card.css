@@ -1,8 +1,9 @@
 .card-container {
     position: relative;
-    width: 150px;
-    height: 200px;
-    border-radius: 10px;
+    width: 200px;
+    height: 250px;
+    border-radius: 15px;
+    margin: 12px;
 }
 
 .card {
@@ -23,10 +24,9 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: gray;
     color: #333;
 
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .card-back {
@@ -34,9 +34,19 @@
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-    background: gray;
+    background: rgb(0, 119, 181);
     color: #333;
     transform: rotateY(180deg);
 
-    border-radius: 10px;
+    border-radius: 15px;
+}
+
+.linkedin-icon {
+    width: 43.75px;
+    height: 50px;
+    transition: transform 0.2s;
+}
+
+.linkedin-icon:hover {
+    transform: scale(1.1);
 }

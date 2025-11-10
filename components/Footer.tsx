@@ -12,7 +12,7 @@ export default function Footer ({theme}: Footerprops) {
 
     return <>
 
-    <div className="p-5">
+    <div className="p-5 bg-black">
     <div className="hidden md:flex gap-4 text-white justify-center">
         <a href="https://www.instagram.com/ontariotechracing/" target="_blank" rel="noopener noreferrer" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>
           <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

@@ -39,7 +39,7 @@ export default function joinUs() {
 
             </div>
 
-            <div className="hidden md:block text-center mt-25 text-3xl">
+            <div className="hidden md:block text-center mt-10 text-3xl">
                     <div
                         key={bottomText} 
                         className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">

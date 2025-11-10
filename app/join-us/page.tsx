@@ -33,13 +33,13 @@ export default function joinUs() {
 
             
             <div className="flex justify-center">
-                <div className="grid grid-cols-5 gap-5 mt-5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
                     {list}
                 </div>
 
             </div>
 
-            <div className="text-center mt-25 text-3xl">
+            <div className="hidden md:block text-center mt-25 text-3xl">
                     <div
                         key={bottomText} 
                         className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">

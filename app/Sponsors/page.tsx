@@ -2,8 +2,8 @@ import SponsorCard from "@/components/SponsorCard";
 
 export default function Sponsors() {
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4">
-      <div className="max-w-6xl text-center">
+    <div className="flex flex-col items-center justify-center py-8 px-4 min-h-screen bg-[rgb(34,34,34)]">
+            <div className="max-w-6xl text-center">
         <p className="text-orange-500 text-lg font-bold mb-2 tracking-wide">Ontario Tech Racing</p>
         <h1 className="text-white text-6xl font-bold mb-4">Sponsors & Donors</h1>
         <div className="w-56 h-1 bg-orange-500 mb-8 mx-auto"></div>
@@ -53,6 +53,12 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#FFD700]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
+            <SponsorCard logo="/sponsor_logos/batemo_Logo_gold.png" name="Abbott" tier="gold" />
+            <SponsorCard logo="/sponsor_logos/cadence_Logo_gold.png" name="Abbott" tier="gold" />
+            <SponsorCard logo="/sponsor_logos/lemo_Logo_gold.png" name="Abbott" tier="gold" />
+            <SponsorCard logo="/sponsor_logos/Michiganwhite_Logo_gold.png" name="Abbott" tier="gold" />
+            <SponsorCard logo="/sponsor_logos/esab_Logo_gold.png" name="Abbott" tier="gold" />
+            <SponsorCard logo="/sponsor_logos/Mach2_Logo_gold.png" name="Abbott" tier="gold" />
             </div>
           </div>
 
@@ -64,6 +70,12 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#C0C0C0]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
+            <SponsorCard logo="/sponsor_logos/vi-grade_Logo_silver.png" name="Abbott" tier="silver" />
+            <SponsorCard logo="/sponsor_logos/Sunstone_Logo_silver.png" name="Abbott" tier="silver" />
+            <SponsorCard logo="/sponsor_logos/Genehas_Logo_silver.png" name="Abbott" tier="silver" />
+            <SponsorCard logo="/sponsor_logos/tasking_Logo_silver.png" name="Abbott" tier="silver" />
+            <SponsorCard logo="/sponsor_logos/swagelok_Logo_silver.png" name="Abbott" tier="silver" />
+            <SponsorCard logo="/sponsor_logos/tailscale_Logo_silver.png" name="Abbott" tier="silver" />
             </div>
           </div>
 
@@ -75,7 +87,17 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#CD7F32]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              {/* Example: <SponsorCard logo="/sponsors/example-logo.png" name="Company Name" tier="bronze" /> */}
+            <SponsorCard logo="/sponsor_logos/mtb_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/kvaser_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/rapidHarness_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/fiberglass_Unlimited_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/PCB_Libraries_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.svg" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/dana_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/steer_group_Logo_bronze.png" name="Abbott" tier="bronze" />
             </div>
           </div>
 
@@ -87,6 +109,8 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-gray-400"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
+            <SponsorCard logo="/sponsor_logos/united401_Logo_general.png" name="Abbott" tier="general" />
+            <SponsorCard logo="/sponsor_logos/digikey_Logo_general.png" name="Abbott" tier="general" />
             </div>
           </div>
         </div>

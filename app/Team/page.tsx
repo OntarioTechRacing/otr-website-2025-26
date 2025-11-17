@@ -6,6 +6,8 @@ import { useTheme } from '../../components/ThemeProvider';
 import type { Headshot } from "./headshots";
 import { useEffect, useState } from "react";
 import "./card.css";
+import { FaLinkedin } from 'react-icons/fa';
+import { start } from "repl";
 
 
 
@@ -61,6 +63,7 @@ export default function TeamPage() {
 
   const [data, setData] = useState<Headshot>([]);
   const [isLoading, setLoading] = useState(true);
+  const [department, setDepartment] = useState(0);
 
   useEffect(() => {
     fetch('/team-headshots.json')
@@ -75,7 +78,8 @@ export default function TeamPage() {
 
 
   const {theme, setTheme} = useTheme();
-
+  const teams = data.map(team => team.team);
+  console.log(teams);
 
   const isDark = theme === 'dark';
   const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-white';
@@ -87,23 +91,53 @@ export default function TeamPage() {
   return (
     <>
     <div className={`${bg} ${theme}`}>
-      <img src="/home-crew.png" className="w-full"/>
-        {data.map((teamObj, index) => ( 
+      <img src="/home-crew.png" className="w-full mt-[-100]"/>
+      <button onClick={() => {
+        setDepartment(prev => (prev - 1 + teams.length) % teams.length)
+      }}>Previous</button>
+        <h3
+          onClick={() => {
+            const id = teams[department];
+            const departmentID = document.getElementById(id);
+
+            if (departmentID) {
+              departmentID.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          }}
+          style={{ cursor: "pointer" }}
+        >
+          {teams[department]}
+        </h3>
+      <button onClick={() => {
+        setDepartment(prev => (prev + 1) % teams.length)
+      }}>Next</button>
+        {data.map((teamObj, index) => (
           <div key={index} className="flex flex-col items-center">
-            <h2 className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>
+            <h2 id={teamObj.team} className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>
+            <div className="flex flex-row flex-wrap gap-6 justify-center">
             {teamObj["team-members"].map((member, index) => (
-              <div key={index} className="flex flex-col items-center card-container">
+              <div key={index} className="flex flex-col items-start card-container">
                 <div className="card">
-                  <div className="card-front flex flex-col items-center">
-                    <p>{member["name"]}</p>
-                    <img src={member["image-name"]} alt={member.name}/>
+                  <div className="card-front flex flex-col items-center justify-center bg-linear-to-tl from-black to-neutral-800">
+                    <div className="w-24 h-24 rounded-full border-4 border-orange-500 overflow-hidden">
+                      <img src={member["image-name"]} alt={member.name} className="w-full h-full object-cover"/>
+                    </div>
+                    <p className="font-bold text-lg">{member["name"]}</p>
+                    <p>{member["role"]}</p>
                   </div>
-                  <div className="card-back flex flex-col items-center">
-                    <a href={member["linkedin-link"]} className="underline">LinkedIn</a>
+                  <div className="card-back flex flex-col items-center justify-center">
+                    <a href={member["linkedin-link"]} className="underline">
+                      <FaLinkedin className="linkedin-icon" color="white" />
+                    </a>
+                    <p>{member["name"]}</p>
                   </div>
                 </div>
               </div>
             ))}
+            </div>
           </div>
           ))}
       </div>

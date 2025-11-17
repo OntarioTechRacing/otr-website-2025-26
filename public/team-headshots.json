@@ -4,8 +4,39 @@
     "team-members": [
       {
         "name": "Ava Mitchell",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/ava-mitchell",
         "image-name": "ava.jpg"
+      },
+      {
+        "name": "Mitchell Ava",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": "mitchell.jpg"
+      },
+      {
+        "name": "Ava Mitchell",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
+        "image-name": "ava.jpg"
+      },
+      {
+        "name": "Mitchell Ava",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": "mitchell.jpg"
+      },
+      {
+        "name": "Ava Mitchell",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
+        "image-name": "ava.jpg"
+      },
+      {
+        "name": "Mitchell Ava",
+        "role": "Member",
+        "linkedin-link": "httpslinkedin.com/in/mitchell-ava",
+        "image-name": "mitchell.jpg"
       }
     ]
   },
@@ -14,6 +45,7 @@
     "team-members": [
       {
         "name": "Liam Chen",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/liam-chen",
         "image-name": "liam.jpg"
       }
@@ -24,6 +56,7 @@
     "team-members": [
       {
         "name": "Sofia Patel",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
         "image-name": "sofia.jpg"
       }
@@ -34,6 +67,7 @@
     "team-members": [
       {
         "name": "Ethan Wright",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/ethan-wright",
         "image-name": "ethan.jpg"
       }
@@ -44,6 +78,7 @@
     "team-members": [
       {
         "name": "Noah Smith",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/noah-smith",
         "image-name": "noah.jpg"
       }
@@ -54,6 +89,7 @@
     "team-members": [
       {
         "name": "Isabella Lee",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
         "image-name": "isabella.jpg"
       }
@@ -64,6 +100,7 @@
     "team-members": [
       {
         "name": "James Brown",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/james-brown",
         "image-name": "james.jpg"
       }
@@ -74,6 +111,7 @@
     "team-members": [
       {
         "name": "Olivia Davis",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/olivia-davis",
         "image-name": "olivia.jpg"
       }
@@ -84,6 +122,7 @@
     "team-members": [
       {
         "name": "Benjamin Wilson",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
         "image-name": "ben.jpg"
       }
@@ -94,6 +133,7 @@
     "team-members": [
       {
         "name": "Charlotte Nguyen",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
         "image-name": "charlotte.jpg"
       }
@@ -104,6 +144,7 @@
     "team-members": [
       {
         "name": "Daniel Garcia",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/daniel-garcia",
         "image-name": "daniel.jpg"
       }

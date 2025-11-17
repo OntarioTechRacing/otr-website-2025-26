@@ -7,6 +7,7 @@ import type { Headshot } from "./headshots";
 import { useEffect, useState } from "react";
 import "./card.css";
 import { FaLinkedin } from 'react-icons/fa';
+import { start } from "repl";
 
 
 
@@ -62,6 +63,7 @@ export default function TeamPage() {
 
   const [data, setData] = useState<Headshot>([]);
   const [isLoading, setLoading] = useState(true);
+  const [department, setDepartment] = useState(0);
 
   useEffect(() => {
     fetch('/team-headshots.json')
@@ -76,7 +78,8 @@ export default function TeamPage() {
 
 
   const {theme, setTheme} = useTheme();
-
+  const teams = data.map(team => team.team);
+  console.log(teams);
 
   const isDark = theme === 'dark';
   const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-white';
@@ -89,9 +92,31 @@ export default function TeamPage() {
     <>
     <div className={`${bg} ${theme}`}>
       <img src="/home-crew.png" className="w-full mt-[-100]"/>
+      <button onClick={() => {
+        setDepartment(prev => (prev - 1 + teams.length) % teams.length)
+      }}>Previous</button>
+        <h3
+          onClick={() => {
+            const id = teams[department];
+            const departmentID = document.getElementById(id);
+
+            if (departmentID) {
+              departmentID.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          }}
+          style={{ cursor: "pointer" }}
+        >
+          {teams[department]}
+        </h3>
+      <button onClick={() => {
+        setDepartment(prev => (prev + 1) % teams.length)
+      }}>Next</button>
         {data.map((teamObj, index) => (
           <div key={index} className="flex flex-col items-center">
-            <h2 className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>
+            <h2 id={teamObj.team} className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>
             <div className="flex flex-row flex-wrap gap-6 justify-center">
             {teamObj["team-members"].map((member, index) => (
               <div key={index} className="flex flex-col items-start card-container">

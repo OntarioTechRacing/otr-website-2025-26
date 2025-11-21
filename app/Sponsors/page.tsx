@@ -27,8 +27,8 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#0078ca]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <SponsorCard logo="/sponsor_logos/otu-logo.png" name="Ontario Tech Racing" tier="diamond" />
-              <SponsorCard logo="/sponsor_logos/ACE_logo.png" name="Abbott" tier="diamond" />
+              <SponsorCard logo="/sponsor_logos/otu-logo.png" name="Ontario Tech Racing" tier="diamond" url="https://ontariotechu.ca/" />
+              <SponsorCard logo="/sponsor_logos/ACE_logo.png" name="Abbott" tier="diamond" url="https://ontariotechu.ca/about/campus-buildings/north-oshawa/ace.php" />
             </div>
           </div>
 
@@ -40,8 +40,8 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#E5E4E2]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-            <SponsorCard logo="/sponsor_logos/multimatic_Logo.png" name="Emerson" tier="platinum" />
-            <SponsorCard logo="/sponsor_logos/source_pmm.png" name="Canada" tier="platinum" />
+            <SponsorCard logo="/sponsor_logos/multimatic_Logo.png" name="Emerson" tier="platinum" url="https://www.multimatic.com/" />
+            <SponsorCard logo="/sponsor_logos/source_pmm.png" name="Canada" tier="platinum" url="https://www.sourcepmm.com/" />
             </div>
           </div>
 
@@ -53,12 +53,12 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#FFD700]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-            <SponsorCard logo="/sponsor_logos/batemo_Logo_gold.png" name="Abbott" tier="gold" />
-            <SponsorCard logo="/sponsor_logos/cadence_Logo_gold.png" name="Abbott" tier="gold" />
-            <SponsorCard logo="/sponsor_logos/lemo_Logo_gold.png" name="Abbott" tier="gold" />
-            <SponsorCard logo="/sponsor_logos/Michiganwhite_Logo_gold.png" name="Abbott" tier="gold" />
-            <SponsorCard logo="/sponsor_logos/esab_Logo_gold.png" name="Abbott" tier="gold" />
-            <SponsorCard logo="/sponsor_logos/Mach2_Logo_gold.png" name="Abbott" tier="gold" />
+            <SponsorCard logo="/sponsor_logos/batemo_Logo_gold.png" name="Abbott" tier="gold" url="https://www.batemo.com/" />
+            <SponsorCard logo="/sponsor_logos/cadence_Logo_gold.png" name="Abbott" tier="gold" url="https://www.cadence.com/en_US/home.html" />
+            <SponsorCard logo="/sponsor_logos/lemo_Logo_gold.png" name="Abbott" tier="gold" url="https://www.lemo.com/en" />
+            <SponsorCard logo="/sponsor_logos/Michiganwhite_Logo_gold.png" name="Abbott" tier="gold" url="https://www.michsci.com/" />
+            <SponsorCard logo="/sponsor_logos/esab_Logo_gold.png" name="Abbott" tier="gold" url="https://esab.com/ca/nam_en/" />
+            <SponsorCard logo="/sponsor_logos/Mach2_Logo_gold.png" name="Abbott" tier="gold" url="https://www.mach2waterjet.ca/" />
             </div>
           </div>
 
@@ -70,12 +70,12 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#C0C0C0]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-            <SponsorCard logo="/sponsor_logos/vi-grade_Logo_silver.png" name="Abbott" tier="silver" />
-            <SponsorCard logo="/sponsor_logos/Sunstone_Logo_silver.png" name="Abbott" tier="silver" />
-            <SponsorCard logo="/sponsor_logos/Genehas_Logo_silver.png" name="Abbott" tier="silver" />
-            <SponsorCard logo="/sponsor_logos/tasking_Logo_silver.png" name="Abbott" tier="silver" />
-            <SponsorCard logo="/sponsor_logos/swagelok_Logo_silver.png" name="Abbott" tier="silver" />
-            <SponsorCard logo="/sponsor_logos/tailscale_Logo_silver.png" name="Abbott" tier="silver" />
+            <SponsorCard logo="/sponsor_logos/vi-grade_Logo_silver.png" name="Abbott" tier="silver" url="https://www.vi-grade.com/" />
+            <SponsorCard logo="/sponsor_logos/Sunstone_Logo_silver.png" name="Abbott" tier="silver" url="https://www.sunstonewelders.com/" />
+            <SponsorCard logo="/sponsor_logos/Genehas_Logo_silver.png" name="Abbott" tier="silver" url="https://www.ghaasfoundation.org/" />
+            <SponsorCard logo="/sponsor_logos/tasking_Logo_silver.png" name="Abbott" tier="silver" url="https://www.tasking.com/" />
+            <SponsorCard logo="/sponsor_logos/swagelok_Logo_silver.png" name="Abbott" tier="silver" url="https://www.swagelok.com/en" />
+            <SponsorCard logo="/sponsor_logos/tailscale_Logo_silver.png" name="Abbott" tier="silver" url="https://tailscale.com/" />
             </div>
           </div>
 
@@ -87,17 +87,17 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-[#CD7F32]"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-            <SponsorCard logo="/sponsor_logos/mtb_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/kvaser_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/rapidHarness_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/fiberglass_Unlimited_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/PCB_Libraries_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.svg" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/dana_Logo_bronze.png" name="Abbott" tier="bronze" />
-            <SponsorCard logo="/sponsor_logos/steer_group_Logo_bronze.png" name="Abbott" tier="bronze" />
+            <SponsorCard logo="/sponsor_logos/mtb_Logo_bronze.png" name="Abbott" tier="bronze" url="https://mtbtransitsolutions.com/" />
+            <SponsorCard logo="/sponsor_logos/kvaser_Logo_bronze.png" name="Abbott" tier="bronze" url="https://kvaser.com/" />
+            <SponsorCard logo="/sponsor_logos/rapidHarness_Logo_bronze.png" name="Abbott" tier="bronze" url="https://rapidharness.com/" />
+            <SponsorCard logo="/sponsor_logos/fiberglass_Unlimited_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.fiberglassunlimited.ca/" />
+            <SponsorCard logo="/sponsor_logos/PCB_Libraries_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.pcblibraries.com/" />
+            <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.svg" name="Abbott" tier="bronze" url="https://www.bender.de/en/" />
+            <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.marpledata.com/" />
+            <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Abbott" tier="bronze" url="https://guayaki.com/" />
+            <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Abbott" tier="bronze" url="https://altair.com/" />
+            <SponsorCard logo="/sponsor_logos/dana_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.danatm4.com/" />
+            <SponsorCard logo="/sponsor_logos/steer_group_Logo_bronze.png" name="Abbott" tier="bronze" url="https://engineering.ontariotechu.ca/steer/index.php" />
             </div>
           </div>
 
@@ -109,8 +109,8 @@ export default function Sponsors() {
               <div className="h-[0.8px] w-10 bg-gray-400"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-            <SponsorCard logo="/sponsor_logos/united401_Logo_general.png" name="Abbott" tier="general" />
-            <SponsorCard logo="/sponsor_logos/digikey_Logo_general.png" name="Abbott" tier="general" />
+            <SponsorCard logo="/sponsor_logos/united401_Logo_general.png" name="Abbott" tier="general" url="https://www.ualocal401.ca/" />
+            <SponsorCard logo="/sponsor_logos/digikey_Logo_general.png" name="Abbott" tier="general" url="https://www.digikey.ca/" />
             </div>
           </div>
         </div>

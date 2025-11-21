@@ -49,17 +49,95 @@ const sections = [
 ];
 
 function CarImage({ theme }: { theme: 'dark' | 'light' }) {
+  const [currentFrame, setCurrentFrame] = useState(0);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(false);
   const [scroll, setScroll] = useState(0);
+  const frameRef = useRef<number>(0);
+  const animationFrameRef = useRef<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  useEffect(() => {
-    const handleScroll = () => setScroll(window.pageYOffset);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
+  const totalFrames = 151;
   const isDark = theme === 'dark';
   const arrowColor = isDark ? '#E75E2B' : '#48B4FF';
   const fillColor = isDark ? 'black' : 'white';
+  
+  // Handle scroll - update frame based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!autoPlay && containerRef.current) {
+        const scrollY = window.pageYOffset;
+        setScroll(scrollY);
+        
+        // Map scroll position to frame number - even slower
+        const scrollProgress = scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        const frame = Math.floor(scrollProgress * totalFrames * 0.15) % totalFrames; // 0.15 makes it much slower
+        setCurrentFrame(frame);
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initialize
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [autoPlay, totalFrames]);
+  
+  // Auto-play animation when button is clicked
+  useEffect(() => {
+    if (autoPlay && !isHovering) {
+      const animate = () => {
+        frameRef.current += 0.08; // Even slower speed (was 0.15)
+        const nextFrame = Math.floor(frameRef.current) % totalFrames;
+        setCurrentFrame(nextFrame);
+        
+        // No rotation during autoplay to keep it stable
+        setRotation({ x: 0, y: 0 });
+        
+        animationFrameRef.current = requestAnimationFrame(animate);
+      };
+      animationFrameRef.current = requestAnimationFrame(animate);
+    } else {
+      // Reset rotation when not auto-playing
+      setRotation({ x: 0, y: 0 });
+    }
+
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [autoPlay, isHovering, totalFrames]);
+
+  // Mouse tracking - control frame based on mouse position
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (autoPlay) return; // Don't interfere when auto-playing
+    
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = (e.clientX - rect.left) / rect.width;
+    
+    // Map mouse position to frame
+    const frame = Math.floor(mouseX * totalFrames);
+    setCurrentFrame(frame);
+    
+    // NO rotation on hover to prevent movement
+    setRotation({ x: 0, y: 0 });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setRotation({ x: 0, y: 0 });
+  };
+  
+  // Format frame number with leading zeros (frame00000.png)
+  const getFramePath = (frameNum: number) => {
+    const paddedNum = String(frameNum).padStart(5, '0');
+    return `/parallax/frame${paddedNum}.png`;
+  };
   
   return (
     <div className="relative w-full">
@@ -69,10 +147,87 @@ function CarImage({ theme }: { theme: 'dark' | 'light' }) {
         </svg>
       </button>
       
-      <div className={`relative overflow-hidden rounded-2xl border-2 ${isDark ? 'bg-gray-900 border-gray-800' : 'bg-gray-100 border-gray-300'}`} style={{ aspectRatio: '16/9' }}>
-        <div className="absolute inset-0 flex items-center justify-center" style={{ transform: `translateY(${scroll * 0.4}px)` }}>
-          <span className="text-gray-500">Parallax of car</span>
+      <div 
+        ref={containerRef}
+        className={`relative overflow-hidden rounded-2xl border-2 ${isDark ? 'bg-gray-900 border-gray-800' : 'bg-gray-100 border-gray-300'}`} 
+        style={{ aspectRatio: '16/9', perspective: '1000px' }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div 
+          className="absolute inset-0 flex items-center justify-center"
+          style={{
+            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          <img 
+            src={getFramePath(currentFrame)} 
+            alt={`F2025 Racing Car - Frame ${currentFrame}`}
+            className="w-full h-full"
+            style={{ 
+              filter: isDark ? 'brightness(0.9)' : 'brightness(1)',
+              objectFit: 'cover',
+              objectPosition: 'center'
+            }}
+          />
         </div>
+        
+        {/* Shine effect */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,${isDark ? '0.03' : '0.05'}) 0%, transparent 60%)`,
+          }}
+        />
+      </div>
+
+      {/* Centered Play/Stop button below the car */}
+      <div className="flex justify-center mt-6">
+        <button
+          onClick={() => setAutoPlay(!autoPlay)}
+          className={`px-8 py-3 rounded-full text-sm font-medium border-2 flex items-center gap-2 transition-all duration-300 ease-in-out ${
+            autoPlay 
+              ? isDark 
+                ? 'bg-orange-500 text-white border-orange-500' 
+                : 'bg-blue-500 text-white border-blue-500'
+              : isDark
+                ? 'bg-black border-orange-500 hover:bg-orange-500'
+                : 'bg-white border-blue-500 hover:bg-blue-500'
+          }`}
+          style={
+            autoPlay 
+              ? isDark 
+                ? { backgroundColor: '#E75E2B', borderColor: '#E75E2B' }
+                : { backgroundColor: '#48B4FF', borderColor: '#48B4FF' }
+              : isDark 
+                ? { borderColor: '#E75E2B', color: '#E75E2B' }
+                : { borderColor: '#48B4FF', color: '#48B4FF' }
+          }
+          onMouseEnter={(e) => {
+            if (!autoPlay) {
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.backgroundColor = isDark ? '#E75E2B' : '#48B4FF';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (!autoPlay) {
+              e.currentTarget.style.color = isDark ? '#E75E2B' : '#48B4FF';
+              e.currentTarget.style.backgroundColor = isDark ? 'black' : 'white';
+            }
+          }}
+        >
+          {autoPlay ? (
+            <>
+              Stop Play
+            </>
+          ) : (
+            <>
+              Play <span className="text-base ml-1">▶</span>
+            </>
+          )}
+        </button>
       </div>
       
       <button className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-8 z-20 hover:opacity-70" aria-label="Next">
@@ -149,9 +304,12 @@ export default function CarPage() {
   useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
-        setShowThemeToggle(window.scrollY < heroRef.current.offsetHeight);
+        // Only show when scroll is less than 80% of hero height
+        const heroHeight = heroRef.current.offsetHeight;
+        setShowThemeToggle(window.scrollY < heroHeight * 0.8);
       }
     };
+    handleScroll(); // Run on mount
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -163,9 +321,9 @@ export default function CarPage() {
   return (
     <div className={`min-h-screen ${bg} ${text} transition-colors pt-20`}>
 
-      <div className={`fixed top-32 right-8 z-50 flex gap-2 backdrop-blur-md rounded-full p-1 transition-opacity ${showThemeToggle ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(72,180,255,0.15)' }}>
-        <button onClick={() => setTheme('dark')} className={`px-4 py-2 rounded-full ${theme === 'dark' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'}`}>Dark</button>
-        <button onClick={() => setTheme('light')} className={`px-4 py-2 rounded-full ${theme === 'light' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`}>Light</button>
+      <div className={`fixed top-32 right-8 z-50 flex gap-2 backdrop-blur-md rounded-full p-1 transition-opacity duration-300 ${showThemeToggle ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(72,180,255,0.15)' }}>
+        <button onClick={() => setTheme('dark')} className={`px-4 py-2 rounded-full transition-all ${theme === 'dark' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'}`}>Dark</button>
+        <button onClick={() => setTheme('light')} className={`px-4 py-2 rounded-full transition-all ${theme === 'light' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`}>Light</button>
       </div>
 
       <section ref={heroRef} className="relative h-screen flex items-center justify-center">

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import StatsCard from "@/components/StatsCard";
+import { useEffect } from "react";
 
 export default function Home() {
   const scrollToContent = () => {
@@ -9,6 +10,18 @@ export default function Home() {
       behavior: 'smooth' 
     });
   };
+
+  // Load TikTok embed script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.tiktok.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <>
@@ -54,6 +67,40 @@ export default function Home() {
 
         <div>
           <img src="/home-crew.png" alt="Ontario Tech Racing Team" className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl" />
+        </div>
+      </div>
+
+      {/* TikTok Video Section */}
+      <div className="bg-gradient-to-br from-[rgb(18,18,20)] via-[rgb(28,28,30)] to-[rgb(34,34,34)] py-20 px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-16">
+          {/* Left side - Text */}
+          <div className="flex-1">
+            <h2 className="text-white text-5xl font-bold mb-3">Social Media</h2>
+            <div className="w-16 h-1 bg-orange-500 mb-4"></div>
+            <p className="text-gray-300 text-base leading-relaxed">Check out our Instagram and TikTok.</p>
+          </div>
+
+          {/* Right side - TikTok Video */}
+          <div className="rounded-2xl border-4 border-orange-500 overflow-hidden shadow-2xl" style={{ width: '340px', height: '600px', position: 'relative' }}>
+            <div style={{ position: 'absolute', top: '-50px', left: '0', right: '0', height: '750px', overflow: 'hidden' }}>
+              <blockquote 
+                className="tiktok-embed" 
+                cite="https://www.tiktok.com/@ontariotechracing/video/7460693239494921478" 
+                data-video-id="7460693239494921478"
+                style={{ maxWidth: '605px', minWidth: '325px', margin: '0' }}
+              >
+                <section>
+                  <a 
+                    target="_blank" 
+                    title="@ontariotechracing" 
+                    href="https://www.tiktok.com/@ontariotechracing?refer=embed"
+                  >
+                    @ontariotechracing
+                  </a>
+                </section>
+              </blockquote>
+            </div>
+          </div>
         </div>
       </div>
     </>

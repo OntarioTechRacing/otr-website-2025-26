@@ -34,10 +34,12 @@ export default function ApplicationCardForTeams({ name, href, imageSrc, onHover,
         className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-100"
       />
 
-      <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors" />
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-colors" />
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <p className="text-white text-lg font-semibold drop-shadow-md text-center">
+        <p 
+        className="text-white text-lg font-semibold drop-shadow-md text-center"
+        style={{ textShadow: "0 8px 16px rgba(0,0,0,0.8)" }}>
           {name}
         </p>
       </div>

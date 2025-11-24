@@ -132,10 +132,12 @@ export default function TeamPage() {
           className="min-h-screen bg-cover bg-center bg-fixed"
           style={{ backgroundImage: "url('/home-crew.png')" }}
         >
+          <div className="pt-10 bg-black/50 min-h-screen">
           <div className="flex justify-center items-center min-h-screen">
-            <div className="mt-[-50] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+            <div className="mt-[-150] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
               {list}
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -7,13 +7,13 @@ export default function joinUs() {
 
     let defaultText = "At Ontario Tech Racing, students have the opportunity to gain valuable EV motorsport experiences with hands-on work in the mechanical, electrical, or business realms. Apply today!"
 
-    const [bottomText, setBottomText] = useState(defaultText)
+    const [Text, setText] = useState(defaultText)
 
     const list = applications.applications.map((dept) => (
         <ApplicationCard name={dept.name} href={dept.link} imageSrc={dept.image} key={dept.name} onHover={() => {
-            setBottomText(dept.description)
+            setText(dept.description)
         }} onLeave={() => {
-            setBottomText(defaultText)
+            setText(defaultText)
         }}></ApplicationCard>
     ));
 
@@ -30,22 +30,28 @@ export default function joinUs() {
                 <hr className="w-[50%] mx-auto border-t-2 mt-2"></hr>
             </div>
 
+            <div className="hidden md:block text-center mt-5 text-3xl">
+
+                <div key={Text}>
+                    <div 
+                        className="animate-[fadeInUp_300ms_ease-out]">
+                        {Text}
+                    </div>
+                </div>
+
+
+            </div>
+
 
             
             <div className="flex justify-center">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5 mb-5">
                     {list}
                 </div>
 
             </div>
 
-            <div className="hidden md:block text-center mt-25 text-3xl">
-                    <div
-                        key={bottomText} 
-                        className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">
-                        {bottomText}
-                    </div>
-            </div>
+         
 
 
         </div>

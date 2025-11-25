@@ -10,9 +10,10 @@ export default function joinUs() {
     let defaultText = "At Ontario Tech Racing, students have the opportunity to gain valuable EV motorsport experiences with hands-on work in the mechanical, electrical, or business realms. Apply today!"
 
     const [Text, setText] = useState(defaultText)
+    const prefix = process.env.NODE_ENV === 'production' ? '/otr-website-2025-26' : '';
 
     const list = applications.applications.map((dept) => (
-        <ApplicationCard name={dept.name} href={dept.link} imageSrc={dept.image} key={dept.name} onHover={() => {
+        <ApplicationCard name={dept.name} href={dept.link} imageSrc={`${prefix}${dept.image}`} key={dept.name} onHover={() => {
             setText(dept.description)
         }} onLeave={() => {
             setText(defaultText)
@@ -23,7 +24,7 @@ export default function joinUs() {
     return <>
 
         <div className="min-h-screen bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/join-us/backgroundPic.png')" }}>
+            style={{ backgroundImage: `url('${prefix}/join-us/backgroundPic.png')` }}>
 
             <div className="pt-10 bg-black/50 min-h-screen">
 

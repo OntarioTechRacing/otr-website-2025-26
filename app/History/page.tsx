@@ -9,11 +9,13 @@ interface TimelineItem {
   specs: string[];
 }
 
+const prefix = process.env.NODE_ENV === 'production' ? '/otr-website-2025-26' : '';
+
 const timelineData: TimelineItem[] = [
   {
     year: "2024",
     title: "OTR 24",
-    image: "/history/OTR-24.jpg",
+    image: `${prefix}/history/OTR-24.jpg`,
     specs: [
       "Motor - Emrax 208 HV",
       "Steel Tube Space Frame",
@@ -26,7 +28,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2022",
     title: "OTR 22' - \"Zippy\"",
-    image: "/history/OTR-22.png",
+    image: `${prefix}/history/OTR-22.png`,
     specs: [
       "Placed 31st out of 100+ teams",
       "Steel Tube Space Frame",
@@ -39,7 +41,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2020",
     title: "OTR 20' - \"Gappy\"",
-    image: "/history/OTR-20.jpg",
+    image: `${prefix}/history/OTR-20.jpg`,
     specs: [
       "Improved chassis, modified suspension system",
       "Battery has a single pack with 4 modules, containing 396 Li-Ion 21700 cells",
@@ -52,7 +54,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2019",
     title: "UOIT 19' - \"Eileen\"",
-    image: "/history/UOIT-19.jpg",
+    image: `${prefix}/history/UOIT-19.jpg`,
     specs: [
       "First finished and running electric vehicle",
       "Battery has a single pack with 4 modules, containing 396 Li-Ion 21700 cells",
@@ -63,7 +65,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2018",
     title: "UOIT 18' - Prototype",
-    image: "/history/UOIT-18.jpg",
+    image: `${prefix}/history/UOIT-18.jpg`,
     specs: [
       "Transition from a traditional combustion engine to an electric powertrain.",
       "Jump toward sustainable energy solutions.",
@@ -73,7 +75,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2013",
     title: "F13",
-    image: "/history/F2013.png",
+    image: `${prefix}/history/F2013.png`,
     specs: [
       "Competitive Lap Times",
       "Lost power due to a part falling out",
@@ -84,7 +86,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2011",
     title: "F11",
-    image: "/history/F2011.png",
+    image: `${prefix}/history/F2011.png`,
     specs: [
       "Single Cylinder Kawasaki KFX450R",
       "10\" Wheels",
@@ -96,7 +98,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2010",
     title: "F2010",
-    image: "/history/F2010.jpg",
+    image: `${prefix}/history/F2010.jpg`,
     specs: [
       "Carbon Fiber/Aluminum",
       "Steel Tube Rear Frame Section",
@@ -108,7 +110,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2008",
     title: "F2008",
-    image: "/history/F2008.jpg",
+    image: `${prefix}/history/F2008.jpg`,
     specs: [
       "Similar to 2007",
       "Much lighter",
@@ -119,7 +121,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2007",
     title: "F2007",
-    image: "/history/F2007.jpg",
+    image: `${prefix}/history/F2007.jpg`,
     specs: [
       "Carbon Fiber/Aluminum",
       "Rookie of the Year Winner",
@@ -156,9 +158,8 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
   return (
     <div
       ref={itemRef}
-      className={`relative flex items-center gap-8 transition-all duration-700 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`relative flex items-center gap-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
       {/* Left Side - Image */}
@@ -170,7 +171,7 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
             alt={item.title}
             className="relative w-full max-w-md rounded-lg border-4 border-blue-500 shadow-2xl"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = "/history/history_pic.png";
+              (e.target as HTMLImageElement).src = `${prefix}/history/history_pic.png`;
             }}
           />
         </div>
@@ -183,9 +184,9 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
 
       {/* Right Side - Info Card */}
       <div className="w-1/2 pl-12">
-        <div className="bg-white rounded-2xl p-6 shadow-2xl max-w-md">
-          <h3 className="text-blue-500 text-3xl font-bold mb-3">{item.title}</h3>
-          <ul className="space-y-1 text-gray-800 list-disc list-inside">
+        <div className="bg-[rgb(34,34,34)] rounded-2xl p-6 shadow-2xl max-w-md border-4 border-orange-500">
+          <h3 className="text-orange-500 text-3xl font-bold mb-3">{item.title}</h3>
+          <ul className="space-y-1 text-gray-300 list-disc list-inside">
             {item.specs.map((spec, i) => (
               <li key={i} className="text-sm leading-relaxed">{spec}</li>
             ))}
@@ -209,7 +210,7 @@ export default function History() {
               Our Journey: A Glimpse Into The Past
             </h1>
             <div className="w-32 h-1 bg-orange-500"></div>
-            
+
             <div className="space-y-4 text-gray-300 text-base leading-relaxed">
               <p>
                 Welcome to the history page of Ontario Tech Racing, where we take pride in showcasing our rich legacy of innovation, teamwork, and engineering excellence. Over the years, our team has pushed the boundaries of what's possible, designing and building high-performance cars that reflect our dedication to the craft and our passion for racing.
@@ -222,9 +223,9 @@ export default function History() {
 
           {/* Right Column - Image */}
           <div className="flex justify-center lg:justify-end">
-            <img 
-              src="/history/history_pic.png" 
-              alt="Ontario Tech Racing Team History" 
+            <img
+              src={`${prefix}/history/history_pic.png`}
+              alt="Ontario Tech Racing Team History"
               className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl"
             />
           </div>
@@ -239,11 +240,11 @@ export default function History() {
       {/* Timeline Section */}
       <div className="px-8 pb-20">
         <h2 className="text-white text-6xl font-bold text-center mb-16">Timeline</h2>
-        
+
         <div className="max-w-7xl mx-auto relative">
           {/* Vertical Timeline Line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-blue-500 -translate-x-1/2"></div>
-          
+
           {/* Timeline Items */}
           <div className="space-y-32">
             {timelineData.map((item, index) => (

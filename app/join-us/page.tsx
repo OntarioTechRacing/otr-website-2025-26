@@ -3,6 +3,8 @@ import ApplicationCard from "@/components/ApplicationCard";
 import applications from "./applications.json";
 import { useState } from "react";
 
+import ContactForm from "@/components/ContactForm";
+
 export default function joinUs() {
 
     let defaultText = "At Ontario Tech Racing, students have the opportunity to gain valuable EV motorsport experiences with hands-on work in the mechanical, electrical, or business realms. Apply today!"
@@ -17,50 +19,42 @@ export default function joinUs() {
         }}></ApplicationCard>
     ));
 
-    
+
     return <>
 
-    <div className="min-h-screen bg-cover bg-center bg-fixed"
-         style={{backgroundImage: "url('/join-us/backgroundPic.png')"}}>
+        <div className="min-h-screen bg-cover bg-center bg-fixed"
+            style={{ backgroundImage: "url('/join-us/backgroundPic.png')" }}>
 
-        <div className="pt-10 bg-black/50 min-h-screen">
+            <div className="pt-10 bg-black/50 min-h-screen">
 
-            <div className="mt-5">
-                <h2 className="text-2xl font-bold flex justify-center">Apply to a Department</h2>
-                <hr className="w-[50%] mx-auto border-t-2 mt-2"></hr>
-            </div>
+                <div className="mt-5">
+                    <h2 className="text-2xl font-bold flex justify-center">Apply to a Department</h2>
+                    <hr className="w-[50%] mx-auto border-t-2 mt-2"></hr>
+                </div>
 
-            <div className="hidden md:block text-center mt-5 text-3xl">
+                <div className="flex justify-center">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
+                        {list}
+                    </div>
+                </div>
 
-                <div key={Text}>
-                    <div 
-                        className="animate-[fadeInUp_300ms_ease-out]">
+                <div className="hidden md:block text-center mt-10 text-3xl mb-16">
+                    <div
+                        key={Text}
+                        className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">
                         {Text}
                     </div>
                 </div>
 
+                <ContactForm />
 
             </div>
-
-
-            
-            <div className="flex justify-center">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5 mb-5">
-                    {list}
-                </div>
-
-            </div>
-
-         
 
 
         </div>
 
-        
-    </div>
 
-        
-        </>
+    </>
 
 
 }

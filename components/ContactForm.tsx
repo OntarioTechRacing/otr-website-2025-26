@@ -4,24 +4,46 @@ import { useState } from "react";
 
 export default function ContactForm() {
     const [formData, setFormData] = useState({
-        name: "",
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
-        subject: "",
         message: "",
     });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here (e.g., send to API)
-        console.log("Form submitted:", formData);
-        alert("Thank you for your message! We will get back to you soon.");
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send message');
+            }
+
+            setSubmitStatus('success');
+            setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -35,23 +57,52 @@ export default function ContactForm() {
                     </p>
                 </div>
 
+                {submitStatus === 'success' && (
+                    <div className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-300 text-center">
+                        Thank you for your message! We'll get back to you soon.
+                    </div>
+                )}
+
+                {submitStatus === 'error' && (
+                    <div className="mb-6 p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-300 text-center">
+                        Something went wrong. Please try again later.
+                    </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <label htmlFor="name" className="text-gray-300 text-sm font-medium ml-1">
-                                Name
+                            <label htmlFor="firstName" className="text-gray-300 text-sm font-medium ml-1">
+                                First Name
                             </label>
                             <input
                                 type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
+                                id="firstName"
+                                name="firstName"
+                                value={formData.firstName}
                                 onChange={handleChange}
                                 required
                                 className="w-full bg-[rgb(18,18,20)] border border-[rgb(44,44,46)] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                                placeholder="Your Name"
+                                placeholder="John"
                             />
                         </div>
+                        <div className="space-y-2">
+                            <label htmlFor="lastName" className="text-gray-300 text-sm font-medium ml-1">
+                                Last Name <span className="text-gray-500 font-normal">(Optional)</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={formData.lastName}
+                                onChange={handleChange}
+                                className="w-full bg-[rgb(18,18,20)] border border-[rgb(44,44,46)] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+                                placeholder="Doe"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-gray-300 text-sm font-medium ml-1">
                                 Email
@@ -67,37 +118,20 @@ export default function ContactForm() {
                                 placeholder="your@email.com"
                             />
                         </div>
-                    </div>
-
-                    <div className="space-y-2">
-                        <label htmlFor="phone" className="text-gray-300 text-sm font-medium ml-1">
-                            Phone Number <span className="text-gray-500 font-normal">(Optional)</span>
-                        </label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            className="w-full bg-[rgb(18,18,20)] border border-[rgb(44,44,46)] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                            placeholder="(123) 456-7890"
-                        />
-                    </div>
-
-                    <div className="space-y-2">
-                        <label htmlFor="subject" className="text-gray-300 text-sm font-medium ml-1">
-                            Subject
-                        </label>
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            value={formData.subject}
-                            onChange={handleChange}
-                            required
-                            className="w-full bg-[rgb(18,18,20)] border border-[rgb(44,44,46)] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
-                            placeholder="What is this regarding?"
-                        />
+                        <div className="space-y-2">
+                            <label htmlFor="phone" className="text-gray-300 text-sm font-medium ml-1">
+                                Phone Number <span className="text-gray-500 font-normal">(Optional)</span>
+                            </label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                className="w-full bg-[rgb(18,18,20)] border border-[rgb(44,44,46)] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-colors"
+                                placeholder="(123) 456-7890"
+                            />
+                        </div>
                     </div>
 
                     <div className="space-y-2">
@@ -119,9 +153,10 @@ export default function ContactForm() {
                     <div className="flex justify-center pt-4">
                         <button
                             type="submit"
-                            className="bg-orange-500 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg hover:shadow-orange-500/25"
+                            disabled={isSubmitting}
+                            className="bg-orange-500 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all transform hover:scale-105 shadow-lg hover:shadow-orange-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                         >
-                            Send Message
+                            {isSubmitting ? 'Sending...' : 'Send Message'}
                         </button>
                     </div>
                 </form>

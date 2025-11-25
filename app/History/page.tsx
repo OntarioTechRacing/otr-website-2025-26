@@ -9,13 +9,11 @@ interface TimelineItem {
   specs: string[];
 }
 
-const prefix = process.env.NODE_ENV === 'production' ? '/otr-website-2025-26' : '';
-
 const timelineData: TimelineItem[] = [
   {
     year: "2024",
     title: "OTR 24",
-    image: `${prefix}/history/OTR-24.jpg`,
+    image: "/history/OTR-24.jpg",
     specs: [
       "Motor - Emrax 208 HV",
       "Steel Tube Space Frame",
@@ -28,7 +26,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2022",
     title: "OTR 22' - \"Zippy\"",
-    image: `${prefix}/history/OTR-22.png`,
+    image: "/history/OTR-22.png",
     specs: [
       "Placed 31st out of 100+ teams",
       "Steel Tube Space Frame",
@@ -41,7 +39,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2020",
     title: "OTR 20' - \"Gappy\"",
-    image: `${prefix}/history/OTR-20.jpg`,
+    image: "/history/OTR-20.jpg",
     specs: [
       "Improved chassis, modified suspension system",
       "Battery has a single pack with 4 modules, containing 396 Li-Ion 21700 cells",
@@ -54,7 +52,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2019",
     title: "UOIT 19' - \"Eileen\"",
-    image: `${prefix}/history/UOIT-19.jpg`,
+    image: "/history/UOIT-19.jpg",
     specs: [
       "First finished and running electric vehicle",
       "Battery has a single pack with 4 modules, containing 396 Li-Ion 21700 cells",
@@ -65,7 +63,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2018",
     title: "UOIT 18' - Prototype",
-    image: `${prefix}/history/UOIT-18.jpg`,
+    image: "/history/UOIT-18.jpg",
     specs: [
       "Transition from a traditional combustion engine to an electric powertrain.",
       "Jump toward sustainable energy solutions.",
@@ -75,7 +73,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2013",
     title: "F13",
-    image: `${prefix}/history/F2013.png`,
+    image: "/history/F2013.png",
     specs: [
       "Competitive Lap Times",
       "Lost power due to a part falling out",
@@ -86,7 +84,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2011",
     title: "F11",
-    image: `${prefix}/history/F2011.png`,
+    image: "/history/F2011.png",
     specs: [
       "Single Cylinder Kawasaki KFX450R",
       "10\" Wheels",
@@ -98,7 +96,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2010",
     title: "F2010",
-    image: `${prefix}/history/F2010.jpg`,
+    image: "/history/F2010.jpg",
     specs: [
       "Carbon Fiber/Aluminum",
       "Steel Tube Rear Frame Section",
@@ -110,7 +108,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2008",
     title: "F2008",
-    image: `${prefix}/history/F2008.jpg`,
+    image: "/history/F2008.jpg",
     specs: [
       "Similar to 2007",
       "Much lighter",
@@ -121,7 +119,7 @@ const timelineData: TimelineItem[] = [
   {
     year: "2007",
     title: "F2007",
-    image: `${prefix}/history/F2007.jpg`,
+    image: "/history/F2007.jpg",
     specs: [
       "Carbon Fiber/Aluminum",
       "Rookie of the Year Winner",
@@ -171,7 +169,7 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
             alt={item.title}
             className="relative w-full max-w-md rounded-lg border-4 border-blue-500 shadow-2xl"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = `${prefix}/history/history_pic.png`;
+              (e.target as HTMLImageElement).src = "/history/history_pic.png";
             }}
           />
         </div>
@@ -224,7 +222,7 @@ export default function History() {
           {/* Right Column - Image */}
           <div className="flex justify-center lg:justify-end">
             <img
-              src={`${prefix}/history/history_pic.png`}
+              src="/history/history_pic.png"
               alt="Ontario Tech Racing Team History"
               className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl"
             />

@@ -27,13 +27,13 @@ export default function Home() {
     };
   }, []);
 
-  const prefix = process.env.NODE_ENV === 'production' ? '/otr-website-2025-26' : '';
+
 
   return (
     <>
       {/* Hero Video */}
       <div className="relative">
-        <video src={`${prefix}/otrVideo.mp4`} autoPlay loop muted playsInline className="w-full" />
+        <video src="/otrVideo.mp4" autoPlay loop muted playsInline className="w-full" />
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[rgb(34,34,34)] via-[rgb(34,34,34)]/70 to-transparent pointer-events-none" />
         <button
           onClick={scrollToContent}
@@ -73,7 +73,7 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <img src={`${prefix}/home-crew.png`} alt="Ontario Tech Racing Team" className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl" />
+          <img src="/home-crew.png" alt="Ontario Tech Racing Team" className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl" />
         </div>
       </div>
 

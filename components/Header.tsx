@@ -2,12 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 interface HeaderProps {
   theme: 'dark' | 'light';
 }
 
 export default function Header({ theme }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
   const isDark = theme === 'dark';
 
   const toggleMobileMenu = () => {
@@ -23,13 +26,60 @@ export default function Header({ theme }: HeaderProps) {
       <img src="/otrLogo.png" alt="OTR Logo" className="h-14 hover:scale-105 transition-transform" />
       
       <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-wider text-white">
-        <Link href="/" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Home</Link>
-        <Link href="/Team" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Team</Link>
-        <Link href="/our-car" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Our Car</Link>
-        <Link href="/join-us" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Join Us</Link>
-        <Link href="/sponsors" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>Sponsors</Link>
-        <Link href="/history" className={`transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}>History</Link>
-        
+        <Link 
+          href="/" 
+          className={`relative pb-1 transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} 
+            after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+            after:bg-orange-500 after:origin-left after:transition-transform after:duration-300 
+            ${pathname === '/' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+        >
+          Home
+        </Link>
+        <Link 
+          href="/team" 
+          className={`relative pb-1 transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} 
+            after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+            after:bg-orange-500 after:origin-left after:transition-transform after:duration-300 
+            ${pathname === '/team' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+        >
+          Team
+        </Link>
+        <Link 
+          href="/our-car" 
+          className={`relative pb-1 transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} 
+            after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+            after:bg-orange-500 after:origin-left after:transition-transform after:duration-300 
+            ${pathname === '/our-car' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+        >
+          Our Car
+        </Link>
+        <Link 
+          href="/join-us" 
+          className={`relative pb-1 transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} 
+            after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+            after:bg-orange-500 after:origin-left after:transition-transform after:duration-300 
+            ${pathname === '/join-us' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+        >
+          Join Us
+        </Link>
+        <Link 
+          href="/sponsors" 
+          className={`relative pb-1 transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} 
+            after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+            after:bg-orange-500 after:origin-left after:transition-transform after:duration-300 
+            ${pathname === '/sponsors' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+        >
+          Sponsors
+        </Link>
+        <Link 
+          href="/history" 
+          className={`relative pb-1 transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} 
+            after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 
+            after:bg-orange-500 after:origin-left after:transition-transform after:duration-300 
+            ${pathname === '/history' ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'}`}
+        >
+          History
+        </Link>
       </nav>
 
       <div className="hidden md:flex gap-4 text-white">
@@ -70,35 +120,42 @@ export default function Header({ theme }: HeaderProps) {
           <nav className="flex flex-col py-4">
             <Link 
               href="/" 
-              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} ${pathname === '/' ? 'text-orange-500 border-l-4 border-orange-500' : ''}`}
               onClick={closeMobileMenu}
             >
               Home
             </Link>
             <Link 
               href="/team" 
-              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} ${pathname === '/team' ? 'text-orange-500 border-l-4 border-orange-500' : ''}`}
               onClick={closeMobileMenu}
             >
               Team
             </Link>
             <Link 
               href="/our-car" 
-              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} ${pathname === '/our-car' ? 'text-orange-500 border-l-4 border-orange-500' : ''}`}
               onClick={closeMobileMenu}
             >
               Our Car
             </Link>
             <Link 
+              href="/join-us" 
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} ${pathname === '/join-us' ? 'text-orange-500 border-l-4 border-orange-500' : ''}`}
+              onClick={closeMobileMenu}
+            >
+              Join Us
+            </Link>
+            <Link 
               href="/sponsors" 
-              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} ${pathname === '/sponsors' ? 'text-orange-500 border-l-4 border-orange-500' : ''}`}
               onClick={closeMobileMenu}
             >
               Sponsors
             </Link>
             <Link 
               href="/history" 
-              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'}`}
+              className={`px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-colors ${isDark ? 'hover:text-[#E75E2B]' : 'hover:text-[#48B4FF]'} ${pathname === '/history' ? 'text-orange-500 border-l-4 border-orange-500' : ''}`}
               onClick={closeMobileMenu}
             >
               History

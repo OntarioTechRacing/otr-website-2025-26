@@ -131,34 +131,23 @@ const timelineData: TimelineItem[] = [
 function TimelineItemComponent({ item, index }: { item: TimelineItem; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
-
+ 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
 
-    if (itemRef.current) {
-      observer.observe(itemRef.current);
-    }
-
-    return () => {
-      if (itemRef.current) {
-        observer.unobserve(itemRef.current);
-      }
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
       ref={itemRef}
-      className={`relative flex items-center gap-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      style={{ transitionDelay: `${index * 150}ms` }}
+      className={`relative flex items-center gap-8 transition-all duration-1000 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+      style={{ transitionDelay: `${index * 200}ms` }}
     >
       {/* Left Side - Image */}
       <div className="w-1/2 flex justify-end pr-12">
@@ -182,9 +171,9 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
 
       {/* Right Side - Info Card */}
       <div className="w-1/2 pl-12">
-        <div className="bg-[rgb(34,34,34)] rounded-2xl p-6 shadow-2xl max-w-md border-4 border-orange-500">
-          <h3 className="text-orange-500 text-3xl font-bold mb-3">{item.title}</h3>
-          <ul className="space-y-1 text-gray-300 list-disc list-inside">
+        <div className="bg-white rounded-2xl p-6 shadow-2xl max-w-md">
+          <h3 className="text-blue-500 text-3xl font-bold mb-3">{item.title}</h3>
+          <ul className="space-y-1 text-gray-800 list-disc list-inside">
             {item.specs.map((spec, i) => (
               <li key={i} className="text-sm leading-relaxed">{spec}</li>
             ))}
@@ -208,7 +197,7 @@ export default function History() {
               Our Journey: A Glimpse Into The Past
             </h1>
             <div className="w-32 h-1 bg-orange-500"></div>
-
+            
             <div className="space-y-4 text-gray-300 text-base leading-relaxed">
               <p>
                 Welcome to the history page of Ontario Tech Racing, where we take pride in showcasing our rich legacy of innovation, teamwork, and engineering excellence. Over the years, our team has pushed the boundaries of what's possible, designing and building high-performance cars that reflect our dedication to the craft and our passion for racing.
@@ -221,9 +210,9 @@ export default function History() {
 
           {/* Right Column - Image */}
           <div className="flex justify-center lg:justify-end">
-            <img
-              src="/history/history_pic.png"
-              alt="Ontario Tech Racing Team History"
+            <img 
+              src="/history/history_pic.png" 
+              alt="Ontario Tech Racing Team History" 
               className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl"
             />
           </div>
@@ -238,11 +227,11 @@ export default function History() {
       {/* Timeline Section */}
       <div className="px-8 pb-20">
         <h2 className="text-white text-6xl font-bold text-center mb-16">Timeline</h2>
-
+        
         <div className="max-w-7xl mx-auto relative">
           {/* Vertical Timeline Line */}
           <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-blue-500 -translate-x-1/2"></div>
-
+          
           {/* Timeline Items */}
           <div className="space-y-32">
             {timelineData.map((item, index) => (

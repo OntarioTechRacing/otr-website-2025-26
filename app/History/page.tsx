@@ -131,35 +131,23 @@ const timelineData: TimelineItem[] = [
 function TimelineItemComponent({ item, index }: { item: TimelineItem; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
-
+ 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
+    // Trigger animation after component mounts
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
 
-    if (itemRef.current) {
-      observer.observe(itemRef.current);
-    }
-
-    return () => {
-      if (itemRef.current) {
-        observer.unobserve(itemRef.current);
-      }
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div
       ref={itemRef}
-      className={`relative flex items-center gap-8 transition-all duration-700 ${
+      className={`relative flex items-center gap-8 transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
-      style={{ transitionDelay: `${index * 150}ms` }}
+      style={{ transitionDelay: `${index * 200}ms` }}
     >
       {/* Left Side - Image */}
       <div className="w-1/2 flex justify-end pr-12">

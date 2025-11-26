@@ -14,7 +14,9 @@ export default function Sponsors() {
           Want to join us at OTRacing? Email us at <a className="font-bold underline" href="mailto:motorsports@ontariotechu.net">motorsports@ontariotechu.net</a>
         </p>
         <button className="bg-orange-500 text-white px-8 py-3 hover:bg-orange-600 cursor-pointer rounded-full border-white border-2 text-lg font-semibold inline-flex items-center gap-2 transition-colors mb-8">
+          <a href="https://drive.google.com/file/d/1Ej7B_lh_5JRVSt8Y2eTKSQJjBW5vywNc/view" target="_blank" rel="noopener noreferrer">
           Become a Sponsor
+          </a>
         </button>
 
         {/* Sponsor Cards Grid */}

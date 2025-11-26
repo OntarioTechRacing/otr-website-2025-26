@@ -53,19 +53,23 @@ function NavBar() {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-                <NavigationMenuLink href="/Team">Team</NavigationMenuLink>
+                <NavigationMenuLink href="/team">Team</NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-                <NavigationMenuLink href="/OurCar">Our Car</NavigationMenuLink>
+                <NavigationMenuLink href="/our-car">Our Car</NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-                <NavigationMenuLink href="/JoinUs">Join Us</NavigationMenuLink>
+                <NavigationMenuLink href="/join-us">Join Us</NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-                <NavigationMenuLink href="/History">History</NavigationMenuLink>
+                <NavigationMenuLink href="/sponsors">Sponsors</NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+                <NavigationMenuLink href="/history">History</NavigationMenuLink>
             </NavigationMenuItem>
 
             </NavigationMenuList>

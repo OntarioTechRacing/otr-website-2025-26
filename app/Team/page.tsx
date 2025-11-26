@@ -8,11 +8,9 @@ import { useEffect, useState } from "react";
 import "./card.css";
 import { FaLinkedin } from 'react-icons/fa';
 import { start } from "repl";
-import ApplicationCardForTeams from "@/components/ApplicationCardForTeams";
-import applications from "./applications.json";
 
 
-let defaultText = "";
+
 
 const departments = [
   {
@@ -61,42 +59,7 @@ const departments = [
   }
 ];
 
-//Smooth movement in case I want to re implement
-{/* <button onClick={() => {
-        setDepartment(prev => (prev - 1 + teams.length) % teams.length)
-      }}>Previous</button>
-        <h3
-          onClick={() => {
-            const id = teams[department];
-            const departmentID = document.getElementById(id);
-
-            if (departmentID) {
-              departmentID.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-              });
-            }
-          }}
-          style={{ cursor: "pointer" }}
-        >
-          {teams[department]}
-        </h3>
-      <button onClick={() => {
-        setDepartment(prev => (prev + 1) % teams.length)
-      }}>Next</button> */}
-
-
-
 export default function TeamPage() {
-  const [bottomText, setBottomText] = useState(defaultText)
-
-  const list = applications.applications.map((dept) => (
-        <ApplicationCardForTeams name={dept.name} href={`${dept.name}`} imageSrc={dept.image} key={dept.name} onHover={() => {
-            setBottomText(dept.description)
-        }} onLeave={() => {
-            setBottomText(defaultText)
-        }}></ApplicationCardForTeams>
-    ));
 
   const [data, setData] = useState<Headshot>([]);
   const [isLoading, setLoading] = useState(true);
@@ -127,21 +90,30 @@ export default function TeamPage() {
 
   return (
     <>
-      <div>
-        <div
-          className="min-h-screen bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: "url('/home-crew.png')" }}
+    <div className={`${bg} ${theme}`}>
+      <img src="/home-crew.png" className="w-full mt-[-100]"/>
+      <button onClick={() => {
+        setDepartment(prev => (prev - 1 + teams.length) % teams.length)
+      }}>Previous</button>
+        <h3
+          onClick={() => {
+            const id = teams[department];
+            const departmentID = document.getElementById(id);
+
+            if (departmentID) {
+              departmentID.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
+          }}
+          style={{ cursor: "pointer" }}
         >
-          <div className="pt-10 bg-black/50 min-h-screen">
-          <div className="flex justify-center items-center min-h-screen">
-            <div className="mt-[-150] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-              {list}
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-      <div>
+          {teams[department]}
+        </h3>
+      <button onClick={() => {
+        setDepartment(prev => (prev + 1) % teams.length)
+      }}>Next</button>
         {data.map((teamObj, index) => (
           <div key={index} className="flex flex-col items-center">
             <h2 id={teamObj.team} className={`${teamObj.team} mt-5 mb-3 text-2xl font-bold underline block ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${teamObj.team} Team`}</h2>

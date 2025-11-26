@@ -49,7 +49,7 @@ export default function Home() {
 
 
       <div id="content-section" className="bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)] py-8 md:py-16 lg:py-24 px-4 sm:px-6 md:px-8">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-12 xl:gap-24">
+        <div className="max-w-8xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6 md:gap-8 lg:gap-12 xl:gap-24">
           <div className="flex-1 max-w-2xl w-full order-2 lg:order-1">
             <p className="text-orange-500 text-sm sm:text-base md:text-lg font-bold mb-2 md:mb-3 tracking-wide">Ontario Tech Racing</p>
             <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 md:mb-3 leading-tight">Who are we?</h1>

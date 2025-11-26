@@ -144,19 +144,19 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
   return (
     <div
       ref={itemRef}
-      className={`relative flex items-center gap-8 transition-all duration-1000 ${
+      className={`relative flex flex-col md:flex-row items-center gap-4 md:gap-8 transition-all duration-1000 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
       style={{ transitionDelay: `${index * 200}ms` }}
     >
       {/* Left Side - Image */}
-      <div className="w-1/2 flex justify-end pr-12">
+      <div className="w-full md:w-1/2 flex justify-center md:justify-end md:pr-8 lg:pr-12 order-2 md:order-1">
         <div className="relative">
-          <div className="absolute -inset-4 bg-blue-500/20 rounded-lg"></div>
+          <div className="absolute -inset-2 md:-inset-4 bg-blue-500/20 rounded-lg"></div>
           <img
             src={item.image}
             alt={item.title}
-            className="relative w-full max-w-md rounded-lg border-4 border-blue-500 shadow-2xl"
+            className="relative w-full max-w-sm md:max-w-md rounded-lg border-4 border-blue-500 shadow-2xl"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "/history/history_pic.png";
             }}
@@ -165,17 +165,23 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
       </div>
 
       {/* Center - Timeline Line & Dot */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <div className="w-6 h-6 bg-blue-500 rounded-full border-4 border-[rgb(34,34,34)] z-10"></div>
+      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 flex-col items-center">
+        <div className="w-4 h-4 md:w-6 md:h-6 bg-blue-500 rounded-full border-4 border-[rgb(34,34,34)] z-10"></div>
+      </div>
+      
+      {/* Mobile Timeline Dot */}
+      <div className="md:hidden flex items-center justify-center mb-2 order-1">
+        <div className="w-4 h-4 bg-blue-500 rounded-full border-4 border-[rgb(34,34,34)]"></div>
+        <span className="ml-4 text-white text-xl font-bold">{item.year}</span>
       </div>
 
       {/* Right Side - Info Card */}
-      <div className="w-1/2 pl-12">
-        <div className="bg-white rounded-2xl p-6 shadow-2xl max-w-md">
-          <h3 className="text-blue-500 text-3xl font-bold mb-3">{item.title}</h3>
+      <div className="w-full md:w-1/2 md:pl-8 lg:pl-12 order-3">
+        <div className="bg-white rounded-2xl p-4 md:p-6 shadow-2xl max-w-md mx-auto md:mx-0">
+          <h3 className="text-blue-500 text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">{item.title}</h3>
           <ul className="space-y-1 text-gray-800 list-disc list-inside">
             {item.specs.map((spec, i) => (
-              <li key={i} className="text-sm leading-relaxed">{spec}</li>
+              <li key={i} className="text-xs md:text-sm leading-relaxed">{spec}</li>
             ))}
           </ul>
         </div>
@@ -188,17 +194,17 @@ export default function History() {
   return (
     <div className="bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]">
       {/* Hero Section */}
-      <div className="flex items-center justify-center px-8 py-20">
-        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="flex items-center justify-center px-4 md:px-8 py-12 md:py-20">
+        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column - Text Content */}
-          <div className="space-y-6">
-            <p className="text-orange-500 text-lg font-bold tracking-wide">Ontario Tech Racing</p>
-            <h1 className="text-white text-5xl lg:text-6xl font-bold leading-tight">
+          <div className="space-y-4 md:space-y-6">
+            <p className="text-orange-500 text-base md:text-lg font-bold tracking-wide">Ontario Tech Racing</p>
+            <h1 className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
               Our Journey: A Glimpse Into The Past
             </h1>
-            <div className="w-32 h-1 bg-orange-500"></div>
+            <div className="w-24 md:w-32 h-1 bg-orange-500"></div>
             
-            <div className="space-y-4 text-gray-300 text-base leading-relaxed">
+            <div className="space-y-3 md:space-y-4 text-gray-300 text-sm md:text-base leading-relaxed">
               <p>
                 Welcome to the history page of Ontario Tech Racing, where we take pride in showcasing our rich legacy of innovation, teamwork, and engineering excellence. Over the years, our team has pushed the boundaries of what's possible, designing and building high-performance cars that reflect our dedication to the craft and our passion for racing.
               </p>
@@ -220,20 +226,20 @@ export default function History() {
       </div>
 
       {/* Separator */}
-      <div className="flex justify-center py-8">
-        <div className="w-48 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
+      <div className="flex justify-center py-6 md:py-8">
+        <div className="w-32 md:w-48 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
       </div>
 
       {/* Timeline Section */}
-      <div className="px-8 pb-20">
-        <h2 className="text-white text-6xl font-bold text-center mb-16">Timeline</h2>
+      <div className="px-4 md:px-8 pb-12 md:pb-20">
+        <h2 className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 md:mb-12 lg:mb-16">Timeline</h2>
         
         <div className="max-w-7xl mx-auto relative">
-          {/* Vertical Timeline Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-blue-500 -translate-x-1/2"></div>
+          {/* Vertical Timeline Line - Hidden on mobile */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-blue-500 -translate-x-1/2"></div>
           
           {/* Timeline Items */}
-          <div className="space-y-32">
+          <div className="space-y-16 md:space-y-24 lg:space-y-32">
             {timelineData.map((item, index) => (
               <TimelineItemComponent key={item.year} item={item} index={index} />
             ))}

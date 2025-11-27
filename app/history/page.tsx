@@ -177,9 +177,9 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
 
       {/* Right Side - Info Card */}
       <div className="w-full md:w-1/2 md:pl-8 lg:pl-12 order-3">
-        <div className="bg-white rounded-2xl p-4 md:p-6 shadow-2xl max-w-md mx-auto md:mx-0">
-          <h3 className="text-blue-500 text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">{item.title}</h3>
-          <ul className="space-y-1 text-gray-800 list-disc list-inside">
+        <div className="bg-transparent border-4 border-orange-500 rounded-2xl p-4 md:p-6 max-w-md mx-auto md:mx-0">
+          <h3 className="text-orange-500 text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">{item.title}</h3>
+          <ul className="space-y-1 text-gray-300 list-disc list-inside">
             {item.specs.map((spec, i) => (
               <li key={i} className="text-xs md:text-sm leading-relaxed">{spec}</li>
             ))}

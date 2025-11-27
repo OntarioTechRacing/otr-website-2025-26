@@ -102,7 +102,7 @@ export default function Sponsors() {
               <SponsorCard logo="/sponsor_logos/rapidHarness_Logo_bronze.png" name="Abbott" tier="bronze" url="https://rapidharness.com/" />
               <SponsorCard logo="/sponsor_logos/fiberglass_Unlimited_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.fiberglassunlimited.ca/" />
               <SponsorCard logo="/sponsor_logos/PCB_Libraries_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.pcblibraries.com/" />
-              <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.svg" name="Abbott" tier="bronze" url="https://www.bender.de/en/" />
+              <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.bender.de/en/" />
               <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.marpledata.com/" />
               <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Abbott" tier="bronze" url="https://guayaki.com/" />
               <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Abbott" tier="bronze" url="https://altair.com/" />

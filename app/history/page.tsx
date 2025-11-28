@@ -7,6 +7,7 @@ interface TimelineItem {
   title: string;
   image: string;
   specs: string[];
+  highlight?: string;
 }
 
 const timelineData: TimelineItem[] = [
@@ -14,6 +15,7 @@ const timelineData: TimelineItem[] = [
     year: "2024",
     title: "OTR 24",
     image: "/history/OTR-24.jpg",
+    highlight: "Latest Build",
     specs: [
       "Motor - Emrax 208 HV",
       "Steel Tube Space Frame",
@@ -27,6 +29,7 @@ const timelineData: TimelineItem[] = [
     year: "2022",
     title: "OTR 22' - \"Zippy\"",
     image: "/history/OTR-22.png",
+    highlight: "31st Place",
     specs: [
       "Placed 31st out of 100+ teams",
       "Steel Tube Space Frame",
@@ -53,6 +56,7 @@ const timelineData: TimelineItem[] = [
     year: "2019",
     title: "UOIT 19' - \"Eileen\"",
     image: "/history/UOIT-19.jpg",
+    highlight: "First EV",
     specs: [
       "First finished and running electric vehicle",
       "Battery has a single pack with 4 modules, containing 396 Li-Ion 21700 cells",
@@ -64,6 +68,7 @@ const timelineData: TimelineItem[] = [
     year: "2018",
     title: "UOIT 18' - Prototype",
     image: "/history/UOIT-18.jpg",
+    highlight: "EV Transition",
     specs: [
       "Transition from a traditional combustion engine to an electric powertrain.",
       "Jump toward sustainable energy solutions.",
@@ -120,6 +125,7 @@ const timelineData: TimelineItem[] = [
     year: "2007",
     title: "F2007",
     image: "/history/F2007.jpg",
+    highlight: "Rookie of Year",
     specs: [
       "Carbon Fiber/Aluminum",
       "Rookie of the Year Winner",
@@ -131,57 +137,112 @@ const timelineData: TimelineItem[] = [
 function TimelineItemComponent({ item, index }: { item: TimelineItem; index: number }) {
   const [isVisible, setIsVisible] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
+  const isEven = index % 2 === 0;
  
   useEffect(() => {
-    // Trigger animation after component mounts
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
 
-    return () => clearTimeout(timer);
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={itemRef}
-      className={`relative flex flex-col md:flex-row items-center gap-4 md:gap-8 transition-all duration-1000 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`relative transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"
       }`}
-      style={{ transitionDelay: `${index * 200}ms` }}
     >
-      {/* Left Side - Image */}
-      <div className="w-full md:w-1/2 flex justify-center md:justify-end md:pr-8 lg:pr-12 order-2 md:order-1">
-        <div className="relative">
-          <div className="absolute -inset-2 md:-inset-4 bg-blue-500/20 rounded-lg"></div>
+      {/* Desktop Layout */}
+      <div className={`hidden md:flex items-center ${isEven ? '' : 'flex-row-reverse'}`}>
+        {/* Image Side */}
+        <div className={`w-[calc(50%-40px)] ${isEven ? 'pr-6 flex justify-end' : 'pl-6 flex justify-start'}`}>
+          <div className="relative group">
+            <div className="absolute -inset-3 bg-gradient-to-br from-orange-500/20 to-transparent rounded-xl blur-sm group-hover:from-orange-500/30 transition-all duration-300"></div>
+            <img
+              src={item.image}
+              alt={item.title}
+              className="relative w-full max-w-sm lg:max-w-md rounded-xl border-2 border-orange-500/50 shadow-2xl group-hover:border-orange-500 group-hover:scale-[1.02] transition-all duration-300"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "/history/history_pic.png";
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Center Timeline */}
+        <div className="w-20 flex-shrink-0 flex justify-center z-10">
+          <div className="w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-orange-500/30 border-4 border-[rgb(28,28,30)]">
+            <span className="text-white text-xs lg:text-sm font-bold">{item.year}</span>
+          </div>
+        </div>
+
+        {/* Info Card Side */}
+        <div className={`w-[calc(50%-40px)] ${isEven ? 'pl-6' : 'pr-6'}`}>
+          <div className={`bg-gradient-to-br from-[rgb(40,40,45)] to-[rgb(30,30,35)] rounded-xl p-5 lg:p-6 shadow-xl border border-gray-700/50 hover:border-orange-500/50 transition-all duration-300 ${isEven ? '' : 'ml-auto'} max-w-sm lg:max-w-md`}>
+            {item.highlight && (
+              <span className="inline-block px-3 py-1 bg-orange-500/20 text-orange-400 text-xs font-semibold rounded-full mb-3">
+                {item.highlight}
+              </span>
+            )}
+            <h3 className="text-white text-xl lg:text-2xl font-bold mb-3">{item.title}</h3>
+            <ul className="space-y-2">
+              {item.specs.map((spec, i) => (
+                <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
+                  <span className="text-orange-500 mt-1">•</span>
+                  <span>{spec}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="md:hidden">
+        {/* Year Badge */}
+        <div className="flex justify-center mb-4">
+          <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-orange-500/30">
+            <span className="text-white text-sm font-bold">{item.year}</span>
+          </div>
+        </div>
+        
+        {/* Image */}
+        <div className="mb-4">
           <img
             src={item.image}
             alt={item.title}
-            className="relative w-full max-w-sm md:max-w-md rounded-lg border-4 border-blue-500 shadow-2xl"
+            className="w-full max-w-sm mx-auto rounded-xl border-2 border-orange-500/50 shadow-xl"
             onError={(e) => {
               (e.target as HTMLImageElement).src = "/history/history_pic.png";
             }}
           />
         </div>
-      </div>
-
-      {/* Center - Timeline Line & Dot */}
-      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 flex-col items-center">
-        <div className="w-4 h-4 md:w-6 md:h-6 bg-blue-500 rounded-full border-4 border-[rgb(34,34,34)] z-10"></div>
-      </div>
-      
-      {/* Mobile Timeline Dot */}
-      <div className="md:hidden flex items-center justify-center mb-2 order-1">
-        <div className="w-4 h-4 bg-blue-500 rounded-full border-4 border-[rgb(34,34,34)]"></div>
-        <span className="ml-4 text-white text-xl font-bold">{item.year}</span>
-      </div>
-
-      {/* Right Side - Info Card */}
-      <div className="w-full md:w-1/2 md:pl-8 lg:pl-12 order-3">
-        <div className="bg-transparent border-4 border-orange-500 rounded-2xl p-4 md:p-6 max-w-md mx-auto md:mx-0">
-          <h3 className="text-orange-500 text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3">{item.title}</h3>
-          <ul className="space-y-1 text-gray-300 list-disc list-inside">
+        
+        {/* Info Card */}
+        <div className="bg-gradient-to-br from-[rgb(40,40,45)] to-[rgb(30,30,35)] rounded-xl p-5 shadow-xl border border-gray-700/50">
+          {item.highlight && (
+            <span className="inline-block px-3 py-1 bg-orange-500/20 text-orange-400 text-xs font-semibold rounded-full mb-3">
+              {item.highlight}
+            </span>
+          )}
+          <h3 className="text-white text-xl font-bold mb-3">{item.title}</h3>
+          <ul className="space-y-2">
             {item.specs.map((spec, i) => (
-              <li key={i} className="text-xs md:text-sm leading-relaxed">{spec}</li>
+              <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
+                <span className="text-orange-500 mt-1">•</span>
+                <span>{spec}</span>
+              </li>
             ))}
           </ul>
         </div>
@@ -192,58 +253,109 @@ function TimelineItemComponent({ item, index }: { item: TimelineItem; index: num
 
 export default function History() {
   return (
-    <div className="bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]">
+    <div className="min-h-screen bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]">
       {/* Hero Section */}
-      <div className="flex items-center justify-center px-4 md:px-8 py-12 md:py-20">
-        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Left Column - Text Content */}
-          <div className="space-y-4 md:space-y-6">
-            <p className="text-orange-500 text-base md:text-lg font-bold tracking-wide">Ontario Tech Racing</p>
-            <h1 className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
-              Our Journey: A Glimpse Into The Past
-            </h1>
-            <div className="w-24 md:w-32 h-1 bg-orange-500"></div>
-            
-            <div className="space-y-3 md:space-y-4 text-gray-300 text-sm md:text-base leading-relaxed">
-              <p>
-                Welcome to the history page of Ontario Tech Racing, where we take pride in showcasing our rich legacy of innovation, teamwork, and engineering excellence. Over the years, our team has pushed the boundaries of what's possible, designing and building high-performance cars that reflect our dedication to the craft and our passion for racing.
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-16 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+            {/* Text Content */}
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="text-orange-500 text-sm md:text-base font-semibold tracking-widest uppercase">
+                  Ontario Tech Racing
+                </span>
+              </div>
+              
+              <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Our Journey Through
+                <span className="block text-orange-500">Racing History</span>
+              </h1>
+              
+              <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>
+              
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl">
+                From our first car in 2007 to today&apos;s cutting-edge electric vehicles, explore the evolution of Ontario Tech Racing. Each build represents countless hours of innovation, teamwork, and the relentless pursuit of speed.
               </p>
-              <p>
-                This page is a tribute to the past teams and the incredible cars they've brought to life. From our humble beginnings to the sophisticated machines we engineer today, each era of Ontario Tech Racing tells a story of progress, perseverance, and the relentless pursuit of speed and efficiency.
-              </p>
-            </div>
-          </div>
 
-          {/* Right Column - Image */}
-          <div className="flex justify-center lg:justify-end">
-            <img 
-              src="/history/history_pic.png" 
-              alt="Ontario Tech Racing Team History" 
-              className="w-full max-w-2xl rounded-2xl border-4 border-orange-500 shadow-2xl"
-            />
+              {/* Stats */}
+              <div className="flex flex-wrap gap-8 pt-4">
+                <div>
+                  <p className="text-orange-500 text-4xl md:text-5xl font-bold">17+</p>
+                  <p className="text-gray-400 text-sm">Years of Racing</p>
+                </div>
+                <div>
+                  <p className="text-orange-500 text-4xl md:text-5xl font-bold">10</p>
+                  <p className="text-gray-400 text-sm">Cars Built</p>
+                </div>
+                <div>
+                  <p className="text-orange-500 text-4xl md:text-5xl font-bold">4</p>
+                  <p className="text-gray-400 text-sm">Electric Vehicles</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero Image */}
+            <div className="relative">
+              <div className="absolute -inset-4 bg-gradient-to-br from-orange-500/20 to-transparent rounded-2xl blur-xl"></div>
+              <img 
+                src="/history/history_pic.png" 
+                alt="Ontario Tech Racing Team History" 
+                className="relative w-full scale-110 rounded-2xl border-2 border-orange-500/50 shadow-2xl"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Separator */}
-      <div className="flex justify-center py-6 md:py-8">
-        <div className="w-32 md:w-48 h-0.5 bg-gradient-to-r from-transparent via-orange-500 to-transparent"></div>
-      </div>
-
       {/* Timeline Section */}
-      <div className="px-4 md:px-8 pb-12 md:pb-20">
-        <h2 className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center mb-8 md:mb-12 lg:mb-16">Timeline</h2>
+      <div className="relative py-16 md:py-24">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-20 px-4">
+          <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            The Timeline
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Follow our journey from combustion engines to electric powertrains
+          </p>
+          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto mt-6 rounded-full"></div>
+        </div>
         
-        <div className="max-w-7xl mx-auto relative">
-          {/* Vertical Timeline Line - Hidden on mobile */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-blue-500 -translate-x-1/2"></div>
+        {/* Timeline Container */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative">
+          {/* Vertical Timeline Line - Desktop Only */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-orange-500/50 to-orange-500/20 -translate-x-1/2"></div>
           
           {/* Timeline Items */}
-          <div className="space-y-16 md:space-y-24 lg:space-y-32">
+          <div className="space-y-12 md:space-y-0">
             {timelineData.map((item, index) => (
-              <TimelineItemComponent key={item.year} item={item} index={index} />
+              <div key={item.year} className="md:py-12">
+                <TimelineItemComponent item={item} index={index} />
+              </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="relative py-16 md:py-24 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">
+            Want to be part of our next chapter?
+          </h3>
+          <p className="text-gray-400 mb-8">
+            Join Ontario Tech Racing and help us write the next page in our history.
+          </p>
+          <a 
+            href="/join-us" 
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 hover:scale-105"
+          >
+            <span>Join the Team</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>

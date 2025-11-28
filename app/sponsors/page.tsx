@@ -9,126 +9,163 @@ export default function Sponsors() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4 md:px-8 min-h-screen bg-[rgb(34,34,34)]">
-      <div className="max-w-6xl w-full text-center">
-        <p className="text-orange-500 text-base md:text-lg font-bold mb-2 tracking-wide">Ontario Tech Racing</p>
-        <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold mb-4 px-4">Sponsors & Donors</h1>
-        <div className="w-32 md:w-56 h-1 bg-orange-500 mb-6 md:mb-8 mx-auto"></div>
-        <p className="text-white text-sm md:text-base leading-relaxed mb-6 md:mb-8 px-4">
-          Sponsoring The Ontario Tech Racing means supporting the next generation of engineers and innovators. Your support directly contributes to real-world learning experiences, and cutting-edge automotive technology for our 70 Engineering and Business students. With your gracious support, your brand will also gain prominent exposure on our vehicle, merchandise, social media, and at high-profile events. Join us on this journey to an electric future and help drive innovation forward!
-        </p>
-        <p className="text-white text-base md:text-lg mb-6 md:mb-8 px-4">
-          Want to join us at OTRacing? Email us at <a className="font-bold underline" href="mailto:motorsports@ontariotechu.net">motorsports@ontariotechu.net</a>
-        </p>
-        <button
-          onClick={scrollToContact}
-          className="bg-orange-500 text-white px-6 md:px-8 py-2 md:py-3 hover:bg-orange-600 cursor-pointer rounded-full border-white border-2 text-base md:text-lg font-semibold inline-flex items-center gap-2 transition-colors mb-8"
-        >
-          Become a Sponsor
-        </button>
+    <div className="min-h-screen bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]">
+      {/* Hero Section */}
+      <div className="relative md:py-24 px-4 md:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-orange-500 text-sm md:text-base font-bold mb-3 tracking-widest uppercase">Ontario Tech Racing</p>
+          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            Our <span className="text-orange-500">Sponsors</span> & Donors
+          </h1>
+          <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mb-6 md:mb-8 mx-auto rounded-full"></div>
+          <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto">
+            Sponsoring Ontario Tech Racing means supporting the next generation of engineers and innovators. Your support directly contributes to real-world learning experiences and cutting-edge automotive technology for our 70 Engineering and Business students.
+          </p>
+          <p className="text-gray-400 text-sm md:text-base mb-8">
+            Want to join us? Email us at{" "}
+            <a className="text-orange-500 font-semibold hover:text-orange-400 transition-colors underline" href="mailto:motorsports@ontariotechu.net">
+              motorsports@ontariotechu.net
+            </a>
+          </p>
+          <button
+            onClick={scrollToContact}
+            className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 hover:from-orange-600 hover:to-orange-700 cursor-pointer rounded-full text-base md:text-lg font-semibold inline-flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 hover:scale-105"
+          >
+            <span>Become a Sponsor</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-        {/* Sponsor Cards Grid */}
-        <div className="mt-8 md:mt-12 space-y-12 md:space-y-16">
+      {/* Sponsor Tiers */}
+      <div className="px-4 md:px-8 pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto space-y-16 md:space-y-20">
+          
           {/* Diamond Tier */}
-          <div>
-            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#0078ca]"></div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Diamond</h2>
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#0078ca]"></div>
+          <section className="relative">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#0078ca]"></div>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl"></span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0078ca]">Diamond</h2>
+              </div>
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#0078ca]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <SponsorCard logo="/sponsor_logos/otu-logo.png" name="Ontario Tech Racing" tier="diamond" url="https://ontariotechu.ca/" />
-              <SponsorCard logo="/sponsor_logos/ACE_logo.png" name="Abbott" tier="diamond" url="https://ontariotechu.ca/about/campus-buildings/north-oshawa/ace.php" />
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+              <SponsorCard logo="/sponsor_logos/otu-logo.png" name="Ontario Tech University" tier="diamond" url="https://ontariotechu.ca/" />
+              <SponsorCard logo="/sponsor_logos/ACE_logo.png" name="ACE" tier="diamond" url="https://ontariotechu.ca/about/campus-buildings/north-oshawa/ace.php" />
             </div>
-          </div>
+          </section>
 
           {/* Platinum Tier */}
-          <div>
-            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#E5E4E2]"></div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Platinum</h2>
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#E5E4E2]"></div>
+          <section className="relative">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#E5E4E2]"></div>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl"></span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#E5E4E2]">Platinum</h2>
+              </div>
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#E5E4E2]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <SponsorCard logo="/sponsor_logos/multimatic_Logo.png" name="Emerson" tier="platinum" url="https://www.multimatic.com/" />
-              <SponsorCard logo="/sponsor_logos/source_pmm.png" name="Canada" tier="platinum" url="https://www.sourcepmm.com/" />
+            <div className="flex flex-wrap justify-center gap-6 md:gap-8">
+              <SponsorCard logo="/sponsor_logos/multimatic_Logo.png" name="Multimatic" tier="platinum" url="https://www.multimatic.com/" />
+              <SponsorCard logo="/sponsor_logos/source_pmm.png" name="Source PMM" tier="platinum" url="https://www.sourcepmm.com/" />
             </div>
-          </div>
+          </section>
 
           {/* Gold Tier */}
-          <div>
-            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#FFD700]"></div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Gold</h2>
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#FFD700]"></div>
+          <section className="relative">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#FFD700]"></div>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl"></span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#FFD700]">Gold</h2>
+              </div>
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#FFD700]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <SponsorCard logo="/sponsor_logos/batemo_Logo_gold.png" name="Abbott" tier="gold" url="https://www.batemo.com/" />
-              <SponsorCard logo="/sponsor_logos/cadence_Logo_gold.png" name="Abbott" tier="gold" url="https://www.cadence.com/en_US/home.html" />
-              <SponsorCard logo="/sponsor_logos/lemo_Logo_gold.png" name="Abbott" tier="gold" url="https://www.lemo.com/en" />
-              <SponsorCard logo="/sponsor_logos/Michiganwhite_Logo_gold.png" name="Abbott" tier="gold" url="https://www.michsci.com/" />
-              <SponsorCard logo="/sponsor_logos/esab_Logo_gold.png" name="Abbott" tier="gold" url="https://esab.com/ca/nam_en/" />
-              <SponsorCard logo="/sponsor_logos/Mach2_Logo_gold.png" name="Abbott" tier="gold" url="https://www.mach2waterjet.ca/" />
+            <div className="flex flex-wrap justify-center gap-5 md:gap-6">
+              <SponsorCard logo="/sponsor_logos/batemo_Logo_gold.png" name="Batemo" tier="gold" url="https://www.batemo.com/" />
+              <SponsorCard logo="/sponsor_logos/cadence_Logo_gold.png" name="Cadence" tier="gold" url="https://www.cadence.com/en_US/home.html" />
+              <SponsorCard logo="/sponsor_logos/lemo_Logo_gold.png" name="Lemo" tier="gold" url="https://www.lemo.com/en" />
+              <SponsorCard logo="/sponsor_logos/Michiganwhite_Logo_gold.png" name="Michigan Scientific" tier="gold" url="https://www.michsci.com/" />
+              <SponsorCard logo="/sponsor_logos/esab_Logo_gold.png" name="ESAB" tier="gold" url="https://esab.com/ca/nam_en/" />
+              <SponsorCard logo="/sponsor_logos/Mach2_Logo_gold.png" name="Mach2" tier="gold" url="https://www.mach2waterjet.ca/" />
             </div>
-          </div>
+          </section>
 
           {/* Silver Tier */}
-          <div>
-            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#C0C0C0]"></div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Silver</h2>
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#C0C0C0]"></div>
+          <section className="relative">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#C0C0C0]"></div>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl"></span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#C0C0C0]">Silver</h2>
+              </div>
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#C0C0C0]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <SponsorCard logo="/sponsor_logos/vi-grade_Logo_silver.png" name="Abbott" tier="silver" url="https://www.vi-grade.com/" />
-              <SponsorCard logo="/sponsor_logos/Sunstone_Logo_silver.png" name="Abbott" tier="silver" url="https://www.sunstonewelders.com/" />
-              <SponsorCard logo="/sponsor_logos/Genehas_Logo_silver.png" name="Abbott" tier="silver" url="https://www.ghaasfoundation.org/" />
-              <SponsorCard logo="/sponsor_logos/tasking_Logo_silver.png" name="Abbott" tier="silver" url="https://www.tasking.com/" />
-              <SponsorCard logo="/sponsor_logos/swagelok_Logo_silver.png" name="Abbott" tier="silver" url="https://www.swagelok.com/en" />
-              <SponsorCard logo="/sponsor_logos/tailscale_Logo_silver.png" name="Abbott" tier="silver" url="https://tailscale.com/" />
+            <div className="flex flex-wrap justify-center gap-5 md:gap-6">
+              <SponsorCard logo="/sponsor_logos/vi-grade_Logo_silver.png" name="VI-Grade" tier="silver" url="https://www.vi-grade.com/" />
+              <SponsorCard logo="/sponsor_logos/Sunstone_Logo_silver.png" name="Sunstone" tier="silver" url="https://www.sunstonewelders.com/" />
+              <SponsorCard logo="/sponsor_logos/Genehas_Logo_silver.png" name="Gene Haas Foundation" tier="silver" url="https://www.ghaasfoundation.org/" />
+              <SponsorCard logo="/sponsor_logos/tasking_Logo_silver.png" name="Tasking" tier="silver" url="https://www.tasking.com/" />
+              <SponsorCard logo="/sponsor_logos/swagelok_Logo_silver.png" name="Swagelok" tier="silver" url="https://www.swagelok.com/en" />
+              <SponsorCard logo="/sponsor_logos/tailscale_Logo_silver.png" name="Tailscale" tier="silver" url="https://tailscale.com/" />
             </div>
-          </div>
+          </section>
 
           {/* Bronze Tier */}
-          <div>
-            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#CD7F32]"></div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">Bronze</h2>
-              <div className="h-[0.8px] w-6 md:w-10 bg-[#CD7F32]"></div>
+          <section className="relative">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#CD7F32]"></div>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl"></span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#CD7F32]">Bronze</h2>
+              </div>
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#CD7F32]"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <SponsorCard logo="/sponsor_logos/mtb_Logo_bronze.png" name="Abbott" tier="bronze" url="https://mtbtransitsolutions.com/" />
-              <SponsorCard logo="/sponsor_logos/kvaser_Logo_bronze.png" name="Abbott" tier="bronze" url="https://kvaser.com/" />
-              <SponsorCard logo="/sponsor_logos/rapidHarness_Logo_bronze.png" name="Abbott" tier="bronze" url="https://rapidharness.com/" />
-              <SponsorCard logo="/sponsor_logos/fiberglass_Unlimited_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.fiberglassunlimited.ca/" />
-              <SponsorCard logo="/sponsor_logos/PCB_Libraries_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.pcblibraries.com/" />
-              <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.bender.de/en/" />
-              <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.marpledata.com/" />
-              <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Abbott" tier="bronze" url="https://guayaki.com/" />
-              <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Abbott" tier="bronze" url="https://altair.com/" />
-              <SponsorCard logo="/sponsor_logos/dana_Logo_bronze.png" name="Abbott" tier="bronze" url="https://www.danatm4.com/" />
-              <SponsorCard logo="/sponsor_logos/steer_group_Logo_bronze.png" name="Abbott" tier="bronze" url="https://engineering.ontariotechu.ca/steer/index.php" />
+            <div className="flex flex-wrap justify-center gap-4 md:gap-5">
+              <SponsorCard logo="/sponsor_logos/mtb_Logo_bronze.png" name="MTB" tier="bronze" url="https://mtbtransitsolutions.com/" />
+              <SponsorCard logo="/sponsor_logos/kvaser_Logo_bronze.png" name="Kvaser" tier="bronze" url="https://kvaser.com/" />
+              <SponsorCard logo="/sponsor_logos/rapidHarness_Logo_bronze.png" name="Rapid Harness" tier="bronze" url="https://rapidharness.com/" />
+              <SponsorCard logo="/sponsor_logos/fiberglass_Unlimited_Logo_bronze.png" name="Fiberglass Unlimited" tier="bronze" url="https://www.fiberglassunlimited.ca/" />
+              <SponsorCard logo="/sponsor_logos/PCB_Libraries_Logo_bronze.png" name="PCB Libraries" tier="bronze" url="https://www.pcblibraries.com/" />
+              <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.png" name="Bender" tier="bronze" url="https://www.bender.de/en/" />
+              <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Marple" tier="bronze" url="https://www.marpledata.com/" />
+              <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Guayaki" tier="bronze" url="https://guayaki.com/" />
+              <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Altair" tier="bronze" url="https://altair.com/" />
+              <SponsorCard logo="/sponsor_logos/dana_Logo_bronze.png" name="Dana TM4" tier="bronze" url="https://www.danatm4.com/" />
+              <SponsorCard logo="/sponsor_logos/steer_group_Logo_bronze.png" name="STEER Group" tier="bronze" url="https://engineering.ontariotechu.ca/steer/index.php" />
             </div>
-          </div>
+          </section>
 
           {/* General Tier */}
-          <div>
-            <div className="flex items-center justify-center gap-4 md:gap-6 mb-6 md:mb-8">
-              <div className="h-[0.8px] w-6 md:w-10 bg-gray-400"></div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">General</h2>
-              <div className="h-[0.8px] w-6 md:w-10 bg-gray-400"></div>
+          <section className="relative">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-gray-500"></div>
+              <div className="flex items-center gap-3">
+                <span className="text-3xl"></span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400">General</h2>
+              </div>
+              <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-gray-500"></div>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <SponsorCard logo="/sponsor_logos/united401_Logo_general.png" name="Abbott" tier="general" url="https://www.ualocal401.ca/" />
-              <SponsorCard logo="/sponsor_logos/digikey_Logo_general.png" name="Abbott" tier="general" url="https://www.digikey.ca/" />
+            <div className="flex flex-wrap justify-center gap-4 md:gap-5">
+              <SponsorCard logo="/sponsor_logos/united401_Logo_general.png" name="UA Local 401" tier="general" url="https://www.ualocal401.ca/" />
+              <SponsorCard logo="/sponsor_logos/digikey_Logo_general.png" name="DigiKey" tier="general" url="https://www.digikey.ca/" />
             </div>
-          </div>
-        </div>
+          </section>
 
-        <div className="mt-12 md:mt-20 w-full">
+        </div>
+      </div>
+
+      {/* Contact Form Section */}
+      <div className="px-4 md:px-8 pb-16 md:pb-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-10">
+          </div>
           <ContactForm />
         </div>
-
       </div>
     </div>
   );

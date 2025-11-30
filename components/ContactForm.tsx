@@ -47,7 +47,7 @@ export default function ContactForm() {
     };
 
     return (
-        <div id="contact-form" className="w-full max-w-4xl mx-auto px-4 py-16">
+        <div id="contact-form" className="w-full max-w-4xl mx-auto px-4 pb-12">
             <div className="bg-[rgb(28,28,30)] rounded-2xl p-8 md:p-12 shadow-2xl border border-[rgb(44,44,46)]">
                 <div className="text-center mb-10">
                     <h2 className="text-white text-4xl font-bold mb-4">Contact Us</h2>

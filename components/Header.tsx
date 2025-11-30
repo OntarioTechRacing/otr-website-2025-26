@@ -22,7 +22,7 @@ export default function Header({ theme }: HeaderProps) {
   };
 
   return (
-    <header className="relative top-0 w-full z-50 px-4 md:px-24 py-4 flex items-center justify-between backdrop-blur-md" style={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}>
+    <header className="border-b border-gray-800 relative top-0 w-full z-50 px-4 md:px-24 py-4 flex items-center justify-between backdrop-blur-md" style={{ backgroundColor: 'rgba(0, 0, 0, 1)' }}>
       <img src="/otrLogo.png" alt="OTR Logo" className="h-14 hover:scale-105 transition-transform" />
       
       <nav className="hidden md:flex gap-8 text-sm font-bold uppercase tracking-wider text-white">

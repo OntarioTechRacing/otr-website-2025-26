@@ -12,10 +12,10 @@ export default function Sponsors() {
     <div className="min-h-screen bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]">
       {/* Hero Section */}
       <div className="relative md:py-24 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center pt-8 md:pt-0">
           <p className="text-orange-500 text-sm md:text-base font-bold mb-3 tracking-widest uppercase">Ontario Tech Racing</p>
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            Our <span className="text-orange-500">Sponsors</span> & Donors
+            Our Sponsors & Donors
           </h1>
           <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mb-6 md:mb-8 mx-auto rounded-full"></div>
           <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto">
@@ -45,10 +45,9 @@ export default function Sponsors() {
           
           {/* Diamond Tier */}
           <section className="relative">
-            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
+            <div className="flex items-center justify-center gap-4 mb-8 md:mb-10 mt-6 md:mt-0">
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#0078ca]"></div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl"></span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0078ca]">Diamond</h2>
               </div>
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#0078ca]"></div>
@@ -64,7 +63,6 @@ export default function Sponsors() {
             <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#E5E4E2]"></div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl"></span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#E5E4E2]">Platinum</h2>
               </div>
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#E5E4E2]"></div>
@@ -80,7 +78,6 @@ export default function Sponsors() {
             <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#FFD700]"></div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl"></span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#FFD700]">Gold</h2>
               </div>
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#FFD700]"></div>
@@ -100,7 +97,6 @@ export default function Sponsors() {
             <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#C0C0C0]"></div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl"></span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#C0C0C0]">Silver</h2>
               </div>
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#C0C0C0]"></div>
@@ -120,7 +116,6 @@ export default function Sponsors() {
             <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-[#CD7F32]"></div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl"></span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#CD7F32]">Bronze</h2>
               </div>
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-[#CD7F32]"></div>
@@ -134,7 +129,7 @@ export default function Sponsors() {
               <SponsorCard logo="/sponsor_logos/bender_Logo_bronze.png" name="Bender" tier="bronze" url="https://www.bender.de/en/" />
               <SponsorCard logo="/sponsor_logos/marple_Logo_bronze.png" name="Marple" tier="bronze" url="https://www.marpledata.com/" />
               <SponsorCard logo="/sponsor_logos/guyaki_Logo_bronze.png" name="Guayaki" tier="bronze" url="https://guayaki.com/" />
-              <SponsorCard logo="/sponsor_logos/altair_Logo_bronze.png" name="Altair" tier="bronze" url="https://altair.com/" />
+              <SponsorCard logo="/sponsor_logos/altair_logo_bronze.png" name="Altair" tier="bronze" url="https://altair.com/" />
               <SponsorCard logo="/sponsor_logos/dana_Logo_bronze.png" name="Dana TM4" tier="bronze" url="https://www.danatm4.com/" />
               <SponsorCard logo="/sponsor_logos/steer_group_Logo_bronze.png" name="STEER Group" tier="bronze" url="https://engineering.ontariotechu.ca/steer/index.php" />
             </div>
@@ -145,7 +140,6 @@ export default function Sponsors() {
             <div className="flex items-center justify-center gap-4 mb-8 md:mb-10">
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-gray-500"></div>
               <div className="flex items-center gap-3">
-                <span className="text-3xl"></span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400">General</h2>
               </div>
               <div className="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-gray-500"></div>

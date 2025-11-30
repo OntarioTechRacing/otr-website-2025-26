@@ -175,13 +175,15 @@ export default function Home() {
 
           {/* Videos Grid */}
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6">
-            <div className="rounded-xl sm:rounded-2xl border-2 sm:border-4 border-blue-500 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px]">
+            {/* TikTok Embed */}
+            <div className="rounded-xl sm:rounded-2xl border-2 sm:border-4 border-orange-500 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px]">
               <iframe
                 src="https://www.instagram.com/p/DRLg_3yjAcD/embed"
                 width="100%"
                 height="100%"
                 className="w-full h-full"
                 style={{ border: 'none' }}
+                allowFullScreen
               />
             </div>
 

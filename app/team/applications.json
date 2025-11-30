@@ -1,0 +1,54 @@
+{
+    "applications": [
+        {
+            "name": "Business",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Analysis",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Composites",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Vehicle Dynamics",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "HV Systems",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Drivetrain and Braking",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Hardware and Electronics",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Manufacturing",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Software",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        },
+        {
+            "name": "Suspension",
+            "image": "/join-us/placeholder.png",
+            "description": ""
+        }
+    ]
+}

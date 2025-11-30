@@ -15,7 +15,7 @@
     border-radius: 10px;
 }
 
-.card-container:hover .card{
+.card-container:hover .card {
     transform: rotateY(180deg);
 }
 

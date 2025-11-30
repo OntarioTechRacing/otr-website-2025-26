@@ -7,7 +7,6 @@ import type { Headshot } from "./headshots";
 import { useEffect, useState } from "react";
 import "./card.css";
 import { FaLinkedin } from 'react-icons/fa';
-import { start } from "repl";
 
 
 

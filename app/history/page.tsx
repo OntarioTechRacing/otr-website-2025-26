@@ -269,8 +269,7 @@ export default function History() {
               </div>
               
               <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Our Journey Through
-                <span className="block text-orange-500">Racing History</span>
+                Our Journey Through Racing History
               </h1>
               
               <div className="w-20 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>

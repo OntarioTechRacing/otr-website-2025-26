@@ -144,7 +144,6 @@ export default function Footer({ theme }: FooterProps) {
               © {currentYear} Ontario Tech Racing. All rights reserved.
             </p>
             <div className="flex items-center gap-2 text-gray-500 text-sm">
-              <span>Designed by the OTR Software Team</span>
             </div>
           </div>
         </div>

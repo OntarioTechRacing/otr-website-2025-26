@@ -20,7 +20,6 @@ export default function Footer({ theme }: FooterProps) {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <img src="/otrLogo.png" alt="OTR Logo" className="h-12 w-auto" />
-              <span className="text-white text-xl font-bold">Ontario Tech Racing</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-md">
               A team of passionate engineering and business students designing, manufacturing, and racing Formula-style electric vehicles at Michigan International Speedway.

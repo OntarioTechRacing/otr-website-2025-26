@@ -1,6 +1,6 @@
 'use client';
 import ApplicationCard from "@/components/ApplicationCard";
-import applications from "./applications.json";
+import applications from "../departments.json";
 import { useState } from "react";
 
 import ContactForm from "@/components/ContactForm";
@@ -15,7 +15,7 @@ export default function joinUs() {
         <ApplicationCard name={dept.name} href={dept.link} imageSrc={dept.image} key={dept.name} onHover={() => {
             setText(dept.description)
         }} onLeave={() => {
-            setText(defaultText)
+            // Don't reset here - let the container handle it
         }}></ApplicationCard>
     ));
 
@@ -32,17 +32,22 @@ export default function joinUs() {
                     <hr className="w-[50%] mx-auto border-t-2 mt-2"></hr>
                 </div>
 
-                <div className="flex justify-center">
+                <div 
+                    className="flex flex-col items-center"
+                    onMouseLeave={() => {
+                        setText(defaultText)
+                    }}
+                >
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
                         {list}
                     </div>
-                </div>
 
-                <div className="hidden md:block text-center mt-10 text-3xl mb-16">
-                    <div
-                        key={Text}
-                        className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">
-                        {Text}
+                    <div className="hidden md:block text-center mt-10 text-3xl mb-16">
+                        <div
+                            key={Text}
+                            className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">
+                            {Text}
+                        </div>
                     </div>
                 </div>
 

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTheme } from '../../components/ThemeProvider';
 import ApplicationCardForTeams from "@/components/ApplicationCardForTeams";
 import { FaLinkedin } from 'react-icons/fa';
-import applications from "./applications.json";
+import applications from "../departments.json";
 import teamData from "./team-headshots.json";
 import type { Headshot } from "./headshots";
 import "./card.css";
@@ -18,20 +18,39 @@ export default function TeamPage() {
   // Use static data directly
   const data: Headshot = teamData as Headshot;
 
-  const list = applications.applications.map((dept) => (
-    <ApplicationCardForTeams
-      name={dept.name}
-      href={`${dept.name}`}
-      imageSrc={dept.image}
-      key={dept.name}
-      onHover={() => {
-        setBottomText(dept.description)
-      }}
-      onLeave={() => {
-        setBottomText(defaultText)
-      }}
-    />
-  ));
+  // Map department names to team names for scrolling
+  const departmentToTeamMap: { [key: string]: string } = {
+    "Business": "Business",
+    "Analysis": "Analysis",
+    "Composites": "Composites",
+    "Drivetrain & Braking": "Drivetrain and Braking",
+    "Embedded Software": "Embedded Systems",
+    "Hardware & Electronics": "Hardware and Electronics",
+    "HV Systems": "HV Systems",
+    "Manufacturing": "Manufacturing",
+    "Web Software": "Software",
+    "Suspension": "Suspension",
+    "Vehicle Dynamics": "Vehicle Dynamics"
+  };
+
+  const list = applications.applications.map((dept) => {
+    // Get the team name for scrolling, or use department name if no mapping exists
+    const teamName = departmentToTeamMap[dept.name] || dept.name;
+    return (
+      <ApplicationCardForTeams
+        name={dept.name}
+        href={teamName}
+        imageSrc={dept.image}
+        key={dept.name}
+        onHover={() => {
+          setBottomText(dept.description)
+        }}
+        onLeave={() => {
+          setBottomText(defaultText)
+        }}
+      />
+    );
+  });
 
   const { theme } = useTheme();
   const isDark = theme === 'dark';

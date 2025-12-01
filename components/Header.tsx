@@ -93,7 +93,7 @@ export default function Header() {
         {/* Theme Toggle Button */}
         <button
           onClick={toggleTheme}
-          className={`p-2 rounded-full transition-all duration-300 ${
+          className={`cursor-pointer p-2 rounded-full transition-all duration-300 ${
             isDark 
               ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400' 
               : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
@@ -139,7 +139,7 @@ export default function Header() {
         {/* Mobile Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className={`p-2 rounded-full transition-all duration-300 ${
+          className={`cursor-pointer p-2 rounded-full transition-all duration-300 ${
             isDark 
               ? 'bg-gray-800 text-yellow-400' 
               : 'bg-gray-200 text-gray-700'

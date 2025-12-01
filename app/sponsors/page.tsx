@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import SponsorCard from "@/components/SponsorCard";
 import ContactForm from "@/components/ContactForm";
 import { useTheme } from "@/components/ThemeProvider";
@@ -7,16 +8,22 @@ import { useTheme } from "@/components/ThemeProvider";
 export default function Sponsors() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const [isVisible, setIsVisible] = useState(false);
 
   const scrollToContact = () => {
     document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className={`min-h-screen ${isDark ? 'bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]' : 'bg-gradient-to-br from-gray-300 via-gray-200 to-slate-100'}`}>
       {/* Hero Section */}
       <div className="relative md:py-24 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto text-center pt-8 md:pt-0">
+        <div className={`max-w-4xl mx-auto text-center pt-8 md:pt-0 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <p className={`text-sm md:text-base font-bold mb-3 tracking-widest uppercase ${isDark ? 'text-orange-500' : 'text-[#48B4FF]'}`}>Ontario Tech Racing</p>
           <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Our Sponsors & Donors
@@ -48,7 +55,7 @@ export default function Sponsors() {
       </div>
 
       {/* Sponsor Tiers */}
-      <div className="px-4 md:px-8 pb-16 md:pb-24">
+      <div className={`px-4 md:px-8 pb-16 md:pb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="max-w-7xl mx-auto space-y-16 md:space-y-20">
           
           {/* Diamond Tier */}
@@ -162,7 +169,7 @@ export default function Sponsors() {
       </div>
 
       {/* Contact Form Section */}
-      <div className="px-4 md:px-8 pb-16 md:pb-24">
+      <div className={`px-4 md:px-8 pb-16 md:pb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="max-w-4xl mx-auto">
           <ContactForm />
         </div>

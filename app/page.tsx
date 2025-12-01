@@ -6,7 +6,9 @@ import { useTheme } from "@/components/ThemeProvider";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isSocialVisible, setIsSocialVisible] = useState(false);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const socialRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const accentColor = isDark ? 'orange' : '[#48B4FF]';
@@ -40,6 +42,23 @@ export default function Home() {
 
     if (aboutRef.current) {
       observer.observe(aboutRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsSocialVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (socialRef.current) {
+      observer.observe(socialRef.current);
     }
 
     return () => observer.disconnect();
@@ -182,14 +201,14 @@ export default function Home() {
       </div>
 
       {/* Social Media Section */}
-      <div className={`border-t py-10 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 ${
+      <div ref={socialRef} className={`border-t py-10 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 ${
         isDark 
           ? 'border-gray-800 bg-gradient-to-br from-[rgb(18,18,20)] via-[rgb(28,28,30)] to-[rgb(34,34,34)]' 
           : 'border-gray-200 bg-gradient-to-br from-gray-300 via-gray-200 to-slate-100'
       }`}>
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-6 md:mb-10 lg:mb-12">
+          <div className={`text-center mb-6 md:mb-10 lg:mb-12 transition-all duration-1000 ${isSocialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <p className={`text-sm sm:text-base md:text-lg font-bold mb-2 md:mb-3 tracking-wide ${isDark ? 'text-orange-500' : 'text-[#48B4FF]'}`}>Follow Us</p>
             <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>Social Media</h2>
             <div className={`w-12 md:w-16 h-1 mb-3 md:mb-4 mx-auto ${isDark ? 'bg-orange-500' : 'bg-[#48B4FF]'}`}></div>
@@ -199,7 +218,7 @@ export default function Home() {
           </div>
 
           {/* Videos Grid */}
-          <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6">
+          <div className={`flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 transition-all duration-1000 delay-200 ${isSocialVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16'}`}>
             <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
               <iframe
                 src="https://www.instagram.com/p/DRLg_3yjAcD/embed"

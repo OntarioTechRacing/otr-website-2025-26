@@ -278,11 +278,17 @@ function TimelineItemComponent({ item, index, isDark }: { item: TimelineItem; in
 export default function History() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+  const [isPageVisible, setIsPageVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsPageVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={`min-h-screen ${isDark ? 'bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]' : 'bg-gradient-to-br from-gray-300 via-gray-200 to-slate-100'}`}>
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className={`relative overflow-hidden transition-all duration-1000 ${isPageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className={`absolute inset-0 ${isDark ? 'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent' : 'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#48B4FF]/10 via-transparent to-transparent'}`}></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-16 md:py-24">
@@ -335,7 +341,7 @@ export default function History() {
       </div>
 
       {/* Timeline Section */}
-      <div className="relative py-16 md:py-24">
+      <div className={`relative py-16 md:py-24 transition-all duration-1000 ${isPageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-20 px-4">
           <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
@@ -368,7 +374,7 @@ export default function History() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="relative py-16 md:py-24 px-4">
+      <div className={`relative py-16 md:py-24 px-4 transition-all duration-1000 ${isPageVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         <div className="max-w-3xl mx-auto text-center">
           <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Want to be part of our next chapter?

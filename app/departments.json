@@ -1,0 +1,95 @@
+{
+    "applications": [
+        {
+            "name": "Marketing",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Marketing team builds and maintains the Ontario Tech Racing website and supporting digital systems, delivering tools and features that enhance team operations, vehicle insights, and community engagement."
+        },
+        {
+            "name": "Finance",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Finance team manages budgets, financial planning, and resource allocation to support Ontario Tech Racing's operations and growth."
+        },
+        {
+            "name": "Sponsorship",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Sponsorship team develops and maintains partnerships with sponsors, securing funding and resources essential for team success."
+        },
+        {
+            "name": "Logistics",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Logistics team coordinates events, travel, and operational planning to ensure smooth team activities and competition participation."
+        },
+        {
+            "name": "Communications",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Communications team manages public relations, social media, and team messaging to build community engagement and awareness."
+        },
+        {
+            "name": "Analysis",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Analysis team uses data-driven insights to optimize vehicle performance, track metrics, and inform engineering decisions."
+        },
+        {
+            "name": "Composites",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Composites team designs and manufactures lightweight, high-strength composite structures for the vehicle body and components."
+        },
+        {
+            "name": "Embedded Software",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Embedded Software team develops firmware and control systems for vehicle electronics, ensuring reliable and efficient operation."
+        },
+        {
+            "name": "HV Systems",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The HV Systems team designs and manages high-voltage electrical systems, ensuring safety and optimal power delivery."
+        },
+        {
+            "name": "Drivetrain & Braking",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Drivetrain & Braking team designs and optimizes powertrain components and braking systems for maximum performance and reliability."
+        },
+        {
+            "name": "Hardware & Electronics",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Hardware & Electronics team designs and integrates electronic components, PCBs, and electrical systems for vehicle control and monitoring."
+        },
+        {
+            "name": "Manufacturing",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Manufacturing team transforms designs into reality through precision machining, fabrication, and assembly of vehicle components."
+        },
+        {
+            "name": "Software",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Web Software team builds and maintains the Ontario Tech Racing website and supporting digital systems, delivering tools and features that enhance team operations, vehicle insights, and community engagement."
+        },
+        {
+            "name": "Suspension",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Suspension team designs and optimizes suspension geometry and components to maximize handling, stability, and performance."
+        },
+        {
+            "name": "Vehicle Dynamics",
+            "link": "https://linktr.ee/ontariotechracing",
+            "image": "/join-us/placeholder.png",
+            "description": "The Vehicle Dynamics team analyzes and optimizes the overall vehicle behavior, handling characteristics, and performance metrics."
+        }
+    ]
+}
+

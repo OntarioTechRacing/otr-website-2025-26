@@ -35,7 +35,7 @@ export default function TeamPage() {
 
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-white';
+  const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-gray-200';
   const text = isDark ? 'text-white' : 'text-gray-900';
 
   if (!data.length) return <p>No data found.</p>;

@@ -1,17 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { useTheme } from './ThemeProvider';
 
-interface FooterProps {
-  theme: 'dark' | 'light';
-}
-
-export default function Footer({ theme }: FooterProps) {
+export default function Footer() {
+  const { theme } = useTheme();
   const isDark = theme === 'dark';
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black border-t border-gray-800">
+    <footer className={`border-t ${isDark ? 'bg-black border-gray-800' : 'bg-gray-50 border-gray-200'}`}>
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -21,7 +19,7 @@ export default function Footer({ theme }: FooterProps) {
             <div className="flex items-center gap-3 mb-4">
               <img src="/otrLogo.png" alt="OTR Logo" className="h-12 w-auto" />
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-md">
+            <p className={`text-sm leading-relaxed mb-6 max-w-md ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               A team of passionate engineering and business students designing, manufacturing, and racing Formula-style electric vehicles at Michigan International Speedway.
             </p>
             {/* Social Links */}
@@ -30,7 +28,7 @@ export default function Footer({ theme }: FooterProps) {
                 href="https://www.instagram.com/ontariotechracing/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white transition-all duration-300"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${isDark ? 'bg-gray-800 text-gray-400 hover:bg-orange-500 hover:text-white' : 'bg-gray-100 text-gray-500 hover:bg-[#48B4FF] hover:text-white'}`}
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -42,7 +40,7 @@ export default function Footer({ theme }: FooterProps) {
                 href="https://www.linkedin.com/company/ontariotechracing/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white transition-all duration-300"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${isDark ? 'bg-gray-800 text-gray-400 hover:bg-orange-500 hover:text-white' : 'bg-gray-100 text-gray-500 hover:bg-[#48B4FF] hover:text-white'}`}
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -53,7 +51,7 @@ export default function Footer({ theme }: FooterProps) {
                 href="https://www.tiktok.com/@ontariotechracing" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white transition-all duration-300"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${isDark ? 'bg-gray-800 text-gray-400 hover:bg-orange-500 hover:text-white' : 'bg-gray-100 text-gray-500 hover:bg-[#48B4FF] hover:text-white'}`}
                 aria-label="TikTok"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -62,7 +60,7 @@ export default function Footer({ theme }: FooterProps) {
               </a>
               <a 
                 href="mailto:motorsports@ontariotechu.net" 
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white transition-all duration-300"
+                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${isDark ? 'bg-gray-800 text-gray-400 hover:bg-orange-500 hover:text-white' : 'bg-gray-100 text-gray-500 hover:bg-[#48B4FF] hover:text-white'}`}
                 aria-label="Email"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,35 +72,35 @@ export default function Footer({ theme }: FooterProps) {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Quick Links</h3>
+            <h3 className={`text-sm font-semibold uppercase tracking-wider mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <Link href="/" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/team" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <Link href="/team" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   Our Team
                 </Link>
               </li>
               <li>
-                <Link href="/our-car" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <Link href="/our-car" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   Our Car
                 </Link>
               </li>
               <li>
-                <Link href="/history" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <Link href="/history" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   History
                 </Link>
               </li>
               <li>
-                <Link href="/sponsors" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <Link href="/sponsors" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   Sponsors
                 </Link>
               </li>
               <li>
-                <Link href="/join-us" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <Link href="/join-us" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   Join Us
                 </Link>
               </li>
@@ -111,22 +109,22 @@ export default function Footer({ theme }: FooterProps) {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Contact</h3>
+            <h3 className={`text-sm font-semibold uppercase tracking-wider mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Contact</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isDark ? 'text-orange-500' : 'text-[#48B4FF]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:motorsports@ontariotechu.net" className="text-gray-400 hover:text-orange-500 transition-colors text-sm">
+                <a href="mailto:motorsports@ontariotechu.net" className={`text-sm transition-colors ${isDark ? 'text-gray-400 hover:text-orange-500' : 'text-gray-600 hover:text-[#48B4FF]'}`}>
                   motorsports@ontariotechu.net
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <svg className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-5 h-5 mt-0.5 flex-shrink-0 ${isDark ? 'text-orange-500' : 'text-[#48B4FF]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span className="text-gray-400 text-sm">
+                <span className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   ACE Building, Ontario Tech University<br />
                   Oshawa, ON
                 </span>
@@ -137,14 +135,12 @@ export default function Footer({ theme }: FooterProps) {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div className={`border-t ${isDark ? 'border-gray-800' : 'border-gray-200'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm text-center md:text-left">
+            <p className={`text-sm text-center md:text-left ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
               © {currentYear} Ontario Tech Racing. All rights reserved.
             </p>
-            <div className="flex items-center gap-2 text-gray-500 text-sm">
-            </div>
           </div>
         </div>
       </div>

@@ -2,34 +2,42 @@
 
 import SponsorCard from "@/components/SponsorCard";
 import ContactForm from "@/components/ContactForm";
+import { useTheme } from "@/components/ThemeProvider";
 
 export default function Sponsors() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   const scrollToContact = () => {
     document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]">
+    <div className={`min-h-screen ${isDark ? 'bg-gradient-to-br from-[rgb(34,34,34)] via-[rgb(28,28,30)] to-[rgb(18,18,20)]' : 'bg-gradient-to-br from-gray-300 via-gray-200 to-slate-100'}`}>
       {/* Hero Section */}
       <div className="relative md:py-24 px-4 md:px-8">
         <div className="max-w-4xl mx-auto text-center pt-8 md:pt-0">
-          <p className="text-orange-500 text-sm md:text-base font-bold mb-3 tracking-widest uppercase">Ontario Tech Racing</p>
-          <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <p className={`text-sm md:text-base font-bold mb-3 tracking-widest uppercase ${isDark ? 'text-orange-500' : 'text-[#48B4FF]'}`}>Ontario Tech Racing</p>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
             Our Sponsors & Donors
           </h1>
-          <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mb-6 md:mb-8 mx-auto rounded-full"></div>
-          <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto">
+          <div className={`w-24 md:w-32 h-1 mb-6 md:mb-8 mx-auto rounded-full ${isDark ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gradient-to-r from-[#48B4FF] to-[#3AA0E8]'}`}></div>
+          <p className={`text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
             Sponsoring Ontario Tech Racing means supporting the next generation of engineers and innovators. Your support directly contributes to real-world learning experiences and cutting-edge automotive technology for our 70 Engineering and Business students.
           </p>
-          <p className="text-gray-400 text-sm md:text-base mb-8">
+          <p className={`text-sm md:text-base mb-8 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
             Want to join us? Email us at{" "}
-            <a className="text-orange-500 font-semibold hover:text-orange-400 transition-colors underline" href="mailto:motorsports@ontariotechu.net">
+            <a className={`font-semibold transition-colors underline ${isDark ? 'text-orange-500 hover:text-orange-400' : 'text-[#48B4FF] hover:text-[#3AA0E8]'}`} href="mailto:motorsports@ontariotechu.net">
               motorsports@ontariotechu.net
             </a>
           </p>
           <button
             onClick={scrollToContact}
-            className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-3 hover:from-orange-600 hover:to-orange-700 cursor-pointer rounded-full text-base md:text-lg font-semibold inline-flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-orange-500/25 hover:scale-105"
+            className={`px-8 py-3 cursor-pointer rounded-full text-base md:text-lg font-semibold inline-flex items-center gap-2 transition-all duration-300 shadow-lg hover:scale-105 ${
+              isDark 
+                ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:from-orange-600 hover:to-orange-700 hover:shadow-orange-500/25' 
+                : 'bg-gradient-to-r from-[#48B4FF] to-[#3AA0E8] text-white hover:from-[#3AA0E8] hover:to-[#2E90D8] hover:shadow-[#48B4FF]/25'
+            }`}
           >
             <span>Become a Sponsor</span>
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,8 +164,6 @@ export default function Sponsors() {
       {/* Contact Form Section */}
       <div className="px-4 md:px-8 pb-16 md:pb-24">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-10">
-          </div>
           <ContactForm />
         </div>
       </div>

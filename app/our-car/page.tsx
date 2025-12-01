@@ -194,7 +194,7 @@ function CarImage({ theme }: { theme: 'dark' | 'light' }) {
                 : 'bg-blue-500 text-white border-blue-500'
               : isDark
                 ? 'bg-black border-orange-500 hover:bg-orange-500'
-                : 'bg-white border-blue-500 hover:bg-blue-500'
+                : 'bg-gray-50 border-blue-500 hover:bg-blue-500'
           }`}
           style={
             autoPlay 
@@ -259,7 +259,7 @@ function SubsystemCard({ data, theme, visible }: { data: typeof sections[0], the
   
   return (
     <div className={`transition-all duration-1000 ${visible ? 'opacity-100' : 'translate-y-20 opacity-0'}`}>
-      <div className={`p-6 rounded-2xl border-2 text-center ${isDark ? 'bg-black/80 border-blue-500/30' : 'bg-white'}`} style={!isDark ? { borderColor: '#48B4FF' } : undefined}>
+      <div className={`p-6 rounded-2xl border-2 text-center ${isDark ? 'bg-black/80 border-blue-500/30' : 'bg-gray-50'}`} style={!isDark ? { borderColor: '#48B4FF' } : undefined}>
         <h3 className={`text-xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>{data.title}</h3>
         
         {data.specs.length > 0 && (
@@ -279,9 +279,8 @@ function SubsystemCard({ data, theme, visible }: { data: typeof sections[0], the
 }
 
 export default function CarPage() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [visibleCards, setVisibleCards] = useState(new Set<number>());
-  const [showThemeToggle, setShowThemeToggle] = useState(true);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const heroRef = useRef<HTMLElement>(null);
 
@@ -301,33 +300,14 @@ export default function CarPage() {
     return () => observers.forEach((o) => o?.disconnect());
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current) {
-        // Only show when scroll is less than 80% of hero height
-        const heroHeight = heroRef.current.offsetHeight;
-        setShowThemeToggle(window.scrollY < heroHeight * 0.8);
-      }
-    };
-    handleScroll(); // Run on mount
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   const isDark = theme === 'dark';
-  const bg = isDark ? 'bg-black' : 'bg-white';
+  const bg = isDark ? 'bg-black' : 'bg-gray-200';
   const text = isDark ? 'text-white' : 'text-gray-900';
 
   return (
     <div className={`min-h-screen ${bg} ${text} transition-colors pt-20`}>
-
-      <div className={`fixed top-32 right-8 z-50 flex gap-2 backdrop-blur-md rounded-full p-1 transition-opacity duration-300 ${showThemeToggle ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(72,180,255,0.15)' }}>
-        <button onClick={() => setTheme('dark')} className={`px-4 py-2 rounded-full transition-all ${theme === 'dark' ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-100'}`}>Dark</button>
-        <button onClick={() => setTheme('light')} className={`px-4 py-2 rounded-full transition-all ${theme === 'light' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-600 hover:bg-gray-100'}`}>Light</button>
-      </div>
-
       <section ref={heroRef} className="relative h-screen flex items-center justify-center">
-        <div className={`absolute inset-0 ${isDark ? 'bg-black' : 'bg-white'}`} />
+        <div className={`absolute inset-0 ${isDark ? 'bg-black' : 'bg-gray-200'}`} />
         <div className="relative z-10 text-center px-6">
           <div className={`inline-block px-8 py-6 rounded-3xl border-2 max-w-3xl ${isDark ? 'border-white/30' : ''}`} style={!isDark ? { borderColor: '#48B4FF' } : undefined}>
             <h2 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Welcome to F2025</h2>

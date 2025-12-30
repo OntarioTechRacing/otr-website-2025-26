@@ -85,7 +85,8 @@ export default function TeamPage() {
                   <div className="card">
                     <div className="card-front flex flex-col items-center justify-center bg-linear-to-tl from-black to-neutral-800">
                       <div className="w-24 h-24 rounded-full border-4 border-orange-500 overflow-hidden">
-                        <img src={member["image-name"]} alt={member.name} className="w-full h-full object-cover" />
+                        {/* Un-comment this when adding image paths */}
+                        {/* <img src={member["image-name"]} alt={member.name} className="w-full h-full object-cover" /> */}
                       </div>
                       <p className="font-bold text-lg">{member["name"]}</p>
                       <p>{member["role"]}</p>

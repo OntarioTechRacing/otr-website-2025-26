@@ -361,8 +361,8 @@
         "image-name": ""
       },
       {
-        "name": "Akshathan Vijayakanthan",
-        "role": "Co-Lead",
+        "name": "Alvin Huynh",
+        "role": "Tech Lead/Advisor",
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
         "image-name": ""
       },
@@ -420,12 +420,13 @@
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
         "image-name": ""
       },
-      {
-        "name": "Alvin Huynh",
-        "role": "Tech Lead/Advisor",
+       {
+        "name": "Akshathan Vijayakanthan",
+        "role": "Member",
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
         "image-name": ""
-      }
+      },
+     
     ]
   },
   {

@@ -3,39 +3,90 @@
     "team": "Business",
     "team-members": [
       {
-        "name": "Ava Mitchell",
-        "role": "Member",
+        "name": "Andre Spence",
+        "role": "Co-Lead",
         "linkedin-link": "https://linkedin.com/in/ava-mitchell",
         "image-name": ""
       },
       {
-        "name": "Mitchell Ava",
+        "name": "Adam Bremner",
+        "role": "Co-Lead",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": ""
+      }
+    ]
+  },
+  {
+    "team": "Marketing",
+    "team-members": [
+      {
+        "name": "Esha Lodhi",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
+        "image-name": ""
+      },
+      {
+        "name": "Sachi Patel",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/mitchell-ava",
         "image-name": ""
       },
       {
-        "name": "Ava Mitchell",
-        "role": "Member",
-        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
-        "image-name": ""
-      },
-      {
-        "name": "Mitchell Ava",
+        "name": "Logan Groenevel",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/mitchell-ava",
         "image-name": ""
       },
       {
-        "name": "Ava Mitchell",
+        "name": "William Bellerby",
         "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": ""
+      },
+      {
+        "name": "Max Khoutiev",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": ""
+      }
+    ]
+  },
+  {
+    "team": "Logistics",
+    "team-members": [
+      {
+        "name": "Mann Shah",
+        "role": "Lead",
         "linkedin-link": "https://linkedin.com/in/ava-mitchell",
         "image-name": ""
       },
       {
-        "name": "Mitchell Ava",
+        "name": "Mashal Niazi",
         "role": "Member",
-        "linkedin-link": "httpslinkedin.com/in/mitchell-ava",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": ""
+      }
+    ]
+  },
+  {
+    "team": "Finance",
+    "team-members": [
+      {
+        "name": "Dave Paqutte",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
+        "image-name": ""
+      },
+      {
+        "name": "David Merza",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/mitchell-ava",
+        "image-name": ""
+      },
+      {
+        "name": "Harsh Patel",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ava-mitchell",
         "image-name": ""
       }
     ]
@@ -44,8 +95,56 @@
     "team": "Analysis",
     "team-members": [
       {
-        "name": "Liam Chen",
+        "name": "Sultan Islam",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Harsha Anugu",
         "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Charles Hu",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Akkshayan Thiruthaniesan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Chole Borgaert",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Tyler Van Ry",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Ali Saudy",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Colton Ho",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/liam-chen",
+        "image-name": ""
+      },
+      {
+        "name": "Sheng Chen",
+        "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/liam-chen",
         "image-name": ""
       }
@@ -55,8 +154,86 @@
     "team": "Composites",
     "team-members": [
       {
-        "name": "Sofia Patel",
+        "name": "ALexander Mueller",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Imaad Shaik",
         "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Malachi Sathyanarayan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Shakthe Bala",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Kavisha Maddegoda",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Alex Callahan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Riley Chionglo",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Anojan Parameswaran",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Raushan Jose",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Shitij Joshi",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Israel Ogunmola",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Anthony Klassen",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "James Lin",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/sofia-patel",
+        "image-name": ""
+      },
+      {
+        "name": "Fiona Kirby",
+        "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
         "image-name": ""
       }
@@ -66,7 +243,73 @@
     "team": "Drivetrain and Braking",
     "team-members": [
       {
-        "name": "Ethan Wright",
+        "name": "Willian Chalk",
+        "role": "Co-Lead",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Zach Girard",
+        "role": "Co-Lead",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Mahee Desai",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Shoham Desai",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Prasthath Perambalam",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Selena Gonsalves",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Baasil Khan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Max Ryan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Liam Pawluk",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Homesh Persaud",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Aritra Sarkar",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/ethan-wright",
+        "image-name": ""
+      },
+      {
+        "name": "Nahl Farhan",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/ethan-wright",
         "image-name": ""
@@ -77,7 +320,31 @@
     "team": "Embedded Systems",
     "team-members": [
       {
-        "name": "Noah Smith",
+        "name": "Jaspaartap Goomer",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/noah-smith",
+        "image-name": ""
+      },
+      {
+        "name": "Connor G",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/noah-smith",
+        "image-name": ""
+      },
+      {
+        "name": "Vishva Sritharan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/noah-smith",
+        "image-name": ""
+      },
+      {
+        "name": "Aaryan Sanil",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/noah-smith",
+        "image-name": ""
+      },
+      {
+        "name": "Josh Rhyman",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/noah-smith",
         "image-name": ""
@@ -88,19 +355,170 @@
     "team": "Hardware and Electronics",
     "team-members": [
       {
-        "name": "Isabella Lee",
+        "name": "Kaushik Raman",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Alvin Huynh",
+        "role": "Tech Lead/Advisor",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Vaiky Chivv",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "William Hsu",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Ali Tahir",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Ammar Sayeed",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Anthony Glugosh",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Bhavik Lad",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Colby Horne",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Eddie Ly",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+      {
+        "name": "Ethan Tzortzis",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/isabella-lee",
+        "image-name": ""
+      },
+       {
+        "name": "Akshathan Vijayakanthan",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
         "image-name": ""
       }
+     
     ]
   },
   {
     "team": "HV Systems",
     "team-members": [
       {
-        "name": "James Brown",
+        "name": "Timothy Down",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Sarah Lamanna",
+        "role": "Co-Lead",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "William Locke",
         "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Aidan Lembcke",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Muhammad Farooqi",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Simon Backler",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "William Tempest",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Noah Bell",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Ryan Morgan",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Saad Shameem",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Eva Eliopoulos",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Mahreen Hossain",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Kyle Cannon",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Joseph Caruana",
+        "role": "Advisor",
+        "linkedin-link": "https://linkedin.com/in/james-brown",
+        "image-name": ""
+      },
+      {
+        "name": "Ethan Richardson",
+        "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/james-brown",
         "image-name": ""
       }
@@ -110,8 +528,68 @@
     "team": "Manufacturing",
     "team-members": [
       {
-        "name": "Olivia Davis",
+        "name": "Maria Peregoudov",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Rory O'Riordon",
         "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Adam Bremner",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Tomas Macleod",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Ethan Shepperd",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Alexander Chong",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Liam Lanovaz",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Emerson Boland",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Peter Abate",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Moeez Qureshi",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/olivia-davis",
+        "image-name": ""
+      },
+      {
+        "name": "Jordan Bobnic",
+        "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/olivia-davis",
         "image-name": ""
       }
@@ -121,7 +599,31 @@
     "team": "Software",
     "team-members": [
       {
-        "name": "Benjamin Wilson",
+        "name": "Jaspaartap Goomer",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
+        "image-name": ""
+      },
+      {
+        "name": "Mohamed Tawfik Omar",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
+        "image-name": ""
+      },
+      {
+        "name": "Saif Siddiqui",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
+        "image-name": ""
+      },
+      {
+        "name": "Vincent Wong",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
+        "image-name": ""
+      },
+      {
+        "name": "Valerie Ekeigwe",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
         "image-name": ""
@@ -132,7 +634,43 @@
     "team": "Suspension",
     "team-members": [
       {
-        "name": "Charlotte Nguyen",
+        "name": "Jake Desaillier",
+        "role": "Lead",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": ""
+      },
+      {
+        "name": "Pranav Vaidya",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": ""
+      },
+      {
+        "name": "Angelo Thanthrimudali",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": ""
+      },
+      {
+        "name": "Bjorn Viebrock",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": ""
+      },
+      {
+        "name": "Jessica Sorichetti",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": ""
+      },
+      {
+        "name": "Karl Lendvai",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
+        "image-name": ""
+      },
+      {
+        "name": "Karina Ceresoli",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
         "image-name": ""
@@ -143,7 +681,49 @@
     "team": "Vehicle Dynamics",
     "team-members": [
       {
-        "name": "Daniel Garcia",
+        "name": "Yousif Almaghribi",
+        "role": "Co-Lead",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Adriaan Van Berkel",
+        "role": "Co-Lead",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Ethan Mander",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Ryan Koo",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Gavin Moore",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Shiro Brattain",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Connel Lobo",
+        "role": "Member",
+        "linkedin-link": "https://linkedin.com/in/daniel-garcia",
+        "image-name": ""
+      },
+      {
+        "name": "Isaac P-D",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/daniel-garcia",
         "image-name": ""

@@ -69,7 +69,7 @@ export default function Home() {
       {/* Hero Section with Video */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <video 
-          src="/otrVideo.mp4" 
+          src="/otrHomePage.mp4" 
           autoPlay 
           loop 
           muted 
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
           <img src="/otrLogo.png" alt="Ontario Tech Racing Logo" className="w-lg h-auto mx-auto mb-10 animate-[fadeIn_1s_ease-out_200ms_both]" />
           <p className="text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 animate-[fadeIn_1s_ease-out_400ms_both]">
-            Engineering excellence at full throttle. Designing, building, and racing electric vehicles.
+            Engineering excellence at full charge. Designing, building, and racing electric vehicles.
           </p>
         </div>
         
@@ -154,10 +154,10 @@ export default function Home() {
               </h2>
               <div className={`w-16 h-1 rounded-full mb-6 ${isDark ? 'bg-gradient-to-r from-orange-500 to-orange-600' : 'bg-gradient-to-r from-[#48B4FF] to-[#3AA0E8]'}`}></div>
               <p className={`text-sm sm:text-base md:text-lg leading-relaxed mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
-                We are a team of <span className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>71 passionate engineering and business students</span> who design, manufacture, and market a Formula-style electric race car while staying within a strict budget.
+                We are a team of <span className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>80+ passionate engineering and business students</span> who design, manufacture, and market a Formula-style electric race car while staying within a strict budget.
               </p>
               <p className={`text-sm sm:text-base leading-relaxed mb-10 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                Every year at the Michigan International Speedway, the team competes in Formula SAE with other universities across America, showcasing innovation in vehicle design, build quality, and team operations. With ten technical and three business departments, our students gain incredible hands-on experiences as a fully functioning motorsports team.
+                Every year, the team competes in Formula SAE with other universities across America, showcasing innovation in vehicle design, build quality, and team operations. With ten technical and three business departments, our students gain incredible hands-on experiences as a fully functioning motorsports team.
               </p>
 
               {/* Stats Grid */}
@@ -191,7 +191,7 @@ export default function Home() {
                     ? 'bg-gradient-to-br from-[rgb(42,42,42)] to-[rgb(32,32,34)] border-gray-700/50 hover:border-orange-500/50' 
                     : 'bg-gradient-to-br from-gray-50 to-slate-50 border-gray-200 hover:border-[#48B4FF]/50'
                 }`}>
-                  <p className={`text-3xl md:text-4xl font-black transition-colors ${isDark ? 'text-white group-hover:text-orange-500' : 'text-gray-900 group-hover:text-[#48B4FF]'}`}>71</p>
+                  <p className={`text-3xl md:text-4xl font-black transition-colors ${isDark ? 'text-white group-hover:text-orange-500' : 'text-gray-900 group-hover:text-[#48B4FF]'}`}>80+</p>
                   <p className={`text-xs md:text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Team Members</p>
                 </div>
               </div>
@@ -230,6 +230,8 @@ export default function Home() {
               />
             </div>
 
+
+
             <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
               <video 
                 src="/home/OTR_tiktok2.mp4" 
@@ -242,14 +244,16 @@ export default function Home() {
                 style={{ backgroundColor: 'black' }}
               />
             </div>
-
-            <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-blue-500' : 'border-[#48B4FF]'}`}>
-              <iframe
-                src="https://www.instagram.com/p/DDyVUTUxYeW/embed"
-                width="100%"
-                height="100%"
+            <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
+              <iframe 
+                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7059545883209568256?collapsed=1" 
+                width="100%" 
+                height="100%" 
+                frameBorder="0" 
+                allowFullScreen={true} 
                 className="w-full h-full"
                 style={{ border: 'none' }}
+                title="Embedded post"
               />
             </div>
           </div>

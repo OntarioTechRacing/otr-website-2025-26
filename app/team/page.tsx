@@ -8,6 +8,7 @@ import applications from "../departments.json";
 import teamData from "./team-headshots.json";
 import type { Headshot } from "./headshots";
 import "./card.css";
+import Image from "next/image";
 
 let defaultText = "";
 
@@ -84,12 +85,18 @@ export default function TeamPage() {
                 <div key={index} className="flex flex-col items-start card-container">
                   <div className="card">
                     <div className="card-front flex flex-col items-center justify-center bg-linear-to-tl from-black to-neutral-800">
-                      <div className="w-24 h-24 rounded-full border-4 border-orange-500 overflow-hidden">
-                        {/* Un-comment this when adding image paths */}
-                        {/* <img src={member["image-name"]} alt={member.name} className="w-full h-full object-cover" /> */}
+                      <div className="w-30 h-30 rounded-full border-4 border-orange-500 overflow-hidden relative">
+                        <Image
+                          src={member["image-name"] || undefined}
+                          alt={member.name}
+                          fill
+                          sizes="200px"
+                          className="w-full h-full object-cover"
+                          priority={false}
+                        />
                       </div>
-                      <p className="font-bold text-lg">{member["name"]}</p>
-                      <p>{member["role"]}</p>
+                      <p className="text-white font-bold text-lg text-center">{member["name"]}</p>
+                      <p className="text-white">{member["role"]}</p>
                     </div>
                     <div className="card-back flex flex-col items-center justify-center">
                       <a href={member["linkedin-link"]} className="underline">

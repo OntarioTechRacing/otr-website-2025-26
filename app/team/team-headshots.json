@@ -6,7 +6,7 @@
         "name": "Andre Spence",
         "role": "Co-Lead",
         "linkedin-link": "https://linkedin.com/in/ava-mitchell",
-        "image-name": ""
+        "image-name": "/team_headshots/Andre_Spence.JPG"
       },
       {
         "name": "Adam Bremner",
@@ -23,13 +23,13 @@
         "name": "Esha Lodhi",
         "role": "Lead",
         "linkedin-link": "https://linkedin.com/in/ava-mitchell",
-        "image-name": ""
+        "image-name": "/team_headshots/Esha_Lodhi.jpg"
       },
       {
         "name": "Sachi Patel",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/mitchell-ava",
-        "image-name": ""
+        "image-name": "/team_headshots/Sachi_Patel.jpg"
       },
       {
         "name": "Logan Groenevel",
@@ -58,13 +58,13 @@
         "name": "Mann Shah",
         "role": "Lead",
         "linkedin-link": "https://linkedin.com/in/ava-mitchell",
-        "image-name": ""
+        "image-name": "/team_headshots/Mann_Shah.jpg"
       },
       {
         "name": "Mashal Niazi",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/mitchell-ava",
-        "image-name": ""
+        "image-name": "/team_headshots/Mashal_Niazi.jpg"
       }
     ]
   },
@@ -110,7 +110,7 @@
         "name": "Charles Hu",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/liam-chen",
-        "image-name": ""
+        "image-name": "/team_headshots/Charles_Hu.jpg"
       },
       {
         "name": "Akkshayan Thiruthaniesan",
@@ -163,79 +163,79 @@
         "name": "Imaad Shaik",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "Malachi Sathyanarayan",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": "/team_headshots/Malachi_Sathyanarayan.jpg"
       },
       {
         "name": "Shakthe Bala",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": "/team_headshots/Shakthe_Bala.jpg"
       },
       {
         "name": "Kavisha Maddegoda",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "Alex Callahan",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "Riley Chionglo",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": "/team_headshots/Riley_Chionglo.jpg"
       },
       {
         "name": "Anojan Parameswaran",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": "/team_headshots/Anojan_Parameswaran.jpg"
       },
       {
         "name": "Raushan Jose",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": "/team_headshots/Raushan_Jose.jpg"
       },
       {
         "name": "Shitij Joshi",
         "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "Israel Ogunmola",
         "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "Anthony Klassen",
         "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "James Lin",
         "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       },
       {
         "name": "Fiona Kirby",
         "role": "Advisor",
         "linkedin-link": "https://linkedin.com/in/sofia-patel",
-        "image-name": "/team_headshots/"
+        "image-name": ""
       }
     ]
   },
@@ -323,7 +323,7 @@
         "name": "Jaspaartap Goomer",
         "role": "Lead",
         "linkedin-link": "https://linkedin.com/in/noah-smith",
-        "image-name": ""
+        "image-name": "/team_headshots/Jaspaartap_Goomer.JPG"
       },
       {
         "name": "Connor G",
@@ -370,7 +370,7 @@
         "name": "Vaiky Chivv",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
-        "image-name": ""
+        "image-name": "/team_headshots/Vaiky_Chivv.jpg"
       },
       {
         "name": "William Hsu",
@@ -382,7 +382,7 @@
         "name": "Ali Tahir",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/isabella-lee",
-        "image-name": ""
+        "image-name": "/team_headshots/Ali_Tahir.jpg"
       },
       {
         "name": "Ammar Sayeed",
@@ -585,7 +585,7 @@
         "name": "Moeez Qureshi",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/olivia-davis",
-        "image-name": ""
+        "image-name": "/team_headshots/Moeez_Qureshi.jpg"
       },
       {
         "name": "Jordan Bobnic",
@@ -602,19 +602,19 @@
         "name": "Jaspaartap Goomer",
         "role": "Lead",
         "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
-        "image-name": ""
+        "image-name": "/team_headshots/Jaspaartap_Goomer.JPG"
       },
       {
         "name": "Mohamed Tawfik Omar",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
-        "image-name": ""
+        "image-name": "/team_Headshots/Mohamed_Tawfik_Omar.jpg"
       },
       {
         "name": "Saif Siddiqui",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/benjamin-wilson",
-        "image-name": ""
+        "image-name": "/team_headshots/Saif_Siddiqui.jpg"
       },
       {
         "name": "Vincent Wong",
@@ -637,31 +637,31 @@
         "name": "Jake Desaillier",
         "role": "Lead",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
-        "image-name": ""
+        "image-name": "/team_headshots/Jake_Desaillier.jpg"
       },
       {
         "name": "Pranav Vaidya",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
-        "image-name": ""
+        "image-name": "/team_headshots/Pranav_Vaidya.jpg"
       },
       {
         "name": "Angelo Thanthrimudali",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
-        "image-name": ""
+        "image-name": "/team_headshots/Angelo_Thanthrimudali.jpg"
       },
       {
         "name": "Bjorn Viebrock",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
-        "image-name": ""
+        "image-name": "/team_headshots/Bjorn_Viebrock.jpg"
       },
       {
         "name": "Jessica Sorichetti",
         "role": "Member",
         "linkedin-link": "https://linkedin.com/in/charlotte-nguyen",
-        "image-name": ""
+        "image-name": "/team_headshots/Jessica_Sorichetti.jpg"
       },
       {
         "name": "Karl Lendvai",

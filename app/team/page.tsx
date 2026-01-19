@@ -85,17 +85,26 @@ export default function TeamPage() {
                 <div key={index} className="flex flex-col items-start card-container">
                   <div className="card">
                     <div className="card-front flex flex-col items-center justify-center bg-linear-to-tl from-black to-neutral-800">
-                      <div className="w-30 h-30 rounded-full border-4 border-orange-500 overflow-hidden relative">
-                        <Image
-                          src={member["image-name"] || undefined}
-                          alt={member.name}
-                          fill
-                          sizes="200px"
-                          className="w-full h-full object-cover"
-                          priority={false}
-                        />
+                      <div className="w-30 h-30 rounded-full border-4 border-orange-500 overflow-hidden relative flex items-center justify-center bg-black">
+                        
+                        {member["image-name"] ? (
+                          <Image
+                            src={member["image-name"]}
+                            alt={member.name}
+                            fill
+                            sizes="200px"
+                            className="w-full h-full object-cover"
+                            priority={false}
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-black rounded-full" />
+                        )}
+
                       </div>
-                      <p className="text-white font-bold text-lg text-center">{member["name"]}</p>
+
+                      <p className="text-white font-bold text-lg text-center mx-5">
+                        {member["name"]}
+                      </p>
                       <p className="text-white">{member["role"]}</p>
                     </div>
                     <div className="card-back flex flex-col items-center justify-center">

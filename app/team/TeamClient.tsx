@@ -102,7 +102,6 @@ export default function TeamPage({ members }: { members: Member[] }) {
 
   return (
     <>
-    <div className="p-6 space-y-10">
       
         <div
           className="min-h-screen bg-cover bg-center bg-fixed"
@@ -116,7 +115,6 @@ export default function TeamPage({ members }: { members: Member[] }) {
             </div>
           </div>
         </div>
-      </div>
       <div className={`${bg} ${theme}`}>
         {Departments.map((dept) => {
           const deptMembers = grouped[dept] ?? [];
@@ -124,48 +122,48 @@ export default function TeamPage({ members }: { members: Member[] }) {
 
           return (
             <section key={dept} className="flex flex-col items-center">
-            <h3 id={dept} className={`${dept} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my-2 md:my-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${dept} Team`}</h3>
-            <div className="flex flex-row flex-wrap gap-6 justify-center">
-            {deptMembers.map((m, index) => (
-              <div key={index} className="flex flex-col items-start card-container"> 
-                <div className="card">
-                  <div className="card-front flex flex-col items-center justify-center bg-linear-to-tl from-black to-neutral-800">
-                    <div className={`w-30 h-30 rounded-full border-4 border-${isDark ? 'orange-500' : '[#48B4FF]'} overflow-hidden relative flex items-center justify-center bg-black`}>
-                      
-                      {m.Headshot ? 
-                      (
-                        <Image
-                          src={`${m.Headshot}?width=200&height=200&resize=cover`}
-                          alt={m.Name}
-                          fill
-                          sizes="200px"
-                          className="w-full h-full object-cover"
-                          priority={false}
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-black rounded-full" />
-                      )}
+              <h3 id={dept} className={`${dept} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my-2 md:my-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${dept} Team`}</h3>
+              <div className="flex flex-row flex-wrap gap-6 justify-center">
+                {deptMembers.map((m, index) => (
+                  <div key={index} className="flex flex-col items-start card-container"> 
+                    <div className="card">
+                      <div className={`card-front flex flex-col items-center justify-center ${isDark ? "bg-linear-to-tl from-black to-neutral-800" : "bg-linear-to-tl from-neutral-300 to-white"}`}>
+                        <div className={`w-30 h-30 rounded-full border-4 border-${isDark ? 'orange-500' : '[#48B4FF]'} overflow-hidden relative flex items-center justify-center bg-black`}>
+                          
+                          {m.Headshot ? 
+                          (
+                            <Image
+                              src={`${m.Headshot}?width=200&height=200&resize=cover`}
+                              alt={m.Name}
+                              fill
+                              sizes="200px"
+                              className="w-full h-full object-cover"
+                              priority={false}
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-black rounded-full" />
+                          )}
 
+                        </div>
+
+                        <p className={`${isDark ? "text-white" : "text-black"} font-bold text-lg text-center mx-5`}>
+                          {m.Name}
+                        </p>
+                        <p className="text-white">{m.Role}</p>
+                      </div>
+                      <div className="card-back flex flex-col items-center justify-center">
+                        <a href={m.LinkedIn} className="underline">
+                          <FaLinkedin className="linkedin-icon" color="white" />
+                        </a>
+                        <p>{m.Name}</p>
+                      </div>
                     </div>
-
-                    <p className="text-white font-bold text-lg text-center mx-5">
-                      {m.Name}
-                    </p>
-                    <p className="text-white">{m.Role}</p>
-                  </div>
-                  <div className="card-back flex flex-col items-center justify-center">
-                    <a href={m.LinkedIn} className="underline">
-                      <FaLinkedin className="linkedin-icon" color="white" />
-                    </a>
-                    <p>{m.Name}</p>
-                  </div>
-                </div>
-              </div> 
-              ))}
+                  </div> 
+                ))}
               </div>
-              </section>
-                );
-              })}
+            </section>
+          );
+        })}
 
 {/* Original Rendering (Pre SupaBase) */}
         {/* {data.map((teamObj, index) => (

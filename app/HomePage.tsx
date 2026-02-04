@@ -11,6 +11,7 @@ type EmbedLinks = {
 };
 
 export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
+    const socialLinks = embedLinks[0];
   const [isVisible, setIsVisible] = useState(false);
   const [isSocialVisible, setIsSocialVisible] = useState(false);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -227,7 +228,7 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
           <div className={`flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 transition-all duration-1000 delay-200 ${isSocialVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16'}`}>
             <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
               <iframe
-                src={embedLinks[0].InstagramPost}
+                src={socialLinks.InstagramPost}
                 width="100%"
                 height="100%"
                 className="w-full h-full"
@@ -252,7 +253,7 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
             </div>
             <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
               <iframe 
-                src={embedLinks[0].LinkedInPost}
+                src={socialLinks.LinkedInPost}
                 width="100%" 
                 height="100%" 
                 frameBorder="0" 

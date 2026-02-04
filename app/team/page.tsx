@@ -19,9 +19,6 @@ export default async function Page() {
     return <TeamPage members={data ?? []} />;
   } catch (e) {
     console.error("Supabase fetch threw:", e);
-    return <div>Failed: fetch threw (check terminal)</div>;
+    return <div>Failed: fetch threw</div>;
   }
-
-  // Pass whatever your UI needs. Keep it simple for now.
-  return <TeamPage members={data ?? []}/>;
 }

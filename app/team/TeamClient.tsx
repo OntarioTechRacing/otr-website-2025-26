@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useTheme } from '../../components/ThemeProvider';
 import { FaLinkedin } from 'react-icons/fa';
+import { addMember } from "../actions";
 // import { createClient } from "@/lib/supabase/client";
 import { Suspense } from "react";
 import type { Headshot } from "./headshots";
@@ -50,6 +51,7 @@ export default function TeamPage({ members }: { members: Member[] }) {
   const [department, setDepartment] = useState(0);
   // Use static data directly
   const data: Headshot = teamData as Headshot;
+  const [open, setOpen] = useState(false);
 
   // Map department names to team names for scrolling
   const departmentToTeamMap: { [key: string]: string } = {
@@ -97,12 +99,16 @@ export default function TeamPage({ members }: { members: Member[] }) {
   const bg = isDark ? 'bg-[rgb(34,34,34)]' : 'bg-gray-200';
   const text = isDark ? 'text-white' : 'text-gray-900';
   const accentColor = isDark ? 'orange' : '[#48B4FF]';
+  const inputStyleDark =
+    "w-full px-4 py-2 rounded-md bg-neutral-800 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-orange-500";
+  const inputStyleLight =
+    "w-full px-4 py-2 rounded-md bg-neutral-200 border border-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500";
+
 
   if (!data.length) return <p>No data found.</p>;
 
   return (
     <>
-      
         <div
           className="min-h-screen bg-cover bg-center bg-fixed"
           style={{ backgroundImage: "url('/home-crew.png')" }}
@@ -115,7 +121,69 @@ export default function TeamPage({ members }: { members: Member[] }) {
             </div>
           </div>
         </div>
+        
       <div className={`${bg} ${theme}`}>
+        {/* Used to insert member */}
+    <div className="insert-member flex flex-col items-center p-10">
+    {/* <form action={addMember}>
+      <input type="text" name="memberName" placeholder="Name" required />
+      <input type="text" name="memberDepartment" placeholder="Department" required />
+      <input type="file" name="memberHeadshot" accept="image/*" required />
+      <input type="text" name="memberRole" />
+      <input type="text" name="memberLinkedIn" />
+      <button type="submit">Add Member</button>
+    </form> */}
+      <button
+        onClick={() => setOpen(true)}
+        className={`px-5 py-2 ${isDark ? "bg-orange-500 text-white hover:bg-orange-600" : "bg-[#48B4FF] text-black hover:bg-blue-600"} font-semibold rounded-lg transition shadow hover:scale-110`}
+      >
+        Add Member
+      </button>
+
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div
+            onClick={() => setOpen(false)}
+            className="absolute inset-0 bg-black/40 backdrop-blur-md"
+          />
+          <div className={`relative w-[90%] max-w-md p-8 ${isDark ? "bg-neutral-900 text-white" : "bg-neutral-200 text-black"} rounded-2xl shadow-2xl border border-neutral-700`}>
+            <h2 className="text-2xl font-bold mb-6 text-center">
+              Add New Member
+            </h2>
+            <form action={addMember} className="space-y-4">
+              <input name="memberName" placeholder="Name" required className={isDark ? inputStyleDark : inputStyleLight} />
+              <input name="memberDepartment" placeholder="Department" required className={isDark ? inputStyleDark : inputStyleLight} />
+              <input
+                type="file"
+                name="memberHeadshot"
+                required
+                accept="image/*"
+                className={`w-full text-sm file:mr-3 file:py-2 file:px-4 file:rounded-md file:border-0 ${isDark ? "file:bg-orange-500 file:text-white hover:file:bg-orange-600" : "file:bg-blue-500 file:text-black hover:file:bg-blue-600"}`}
+              />
+              <input name="memberRole" placeholder="Role" className={isDark ? inputStyleDark : inputStyleLight} />
+              <input name="memberLinkedIn" placeholder="LinkedIn URL" className={isDark ? inputStyleDark : inputStyleLight} />
+              <div className="flex justify-between pt-4">
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className={`px-4 py-2 ${isDark ? "bg-neutral-700 hover:bg-neutral-600" : "bg-neutral-200 hover:bg-neutral-100"} rounded-md  transition`}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className={`px-5 py-2 ${isDark ? "bg-orange-500 hover:bg-orange-600" : "bg-blue-500 hover:bg-blue-600"} rounded-md font-semibold transition`}
+                >
+                  Save
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+    </div>
+      
         {Departments.map((dept) => {
           const deptMembers = grouped[dept] ?? [];
           if (deptMembers.length === 0) return null;

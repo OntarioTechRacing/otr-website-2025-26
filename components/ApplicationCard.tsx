@@ -15,7 +15,7 @@ export default function ApplicationCard({ name, href, imageSrc, onHover, onLeave
     <a 
       href={href} 
       target="_blank" 
-      className="relative w-40 h-40 rounded-full overflow-hidden shadow-md group"
+      className="relative block w-40 h-40 rounded-full overflow-hidden shadow-md group"
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >

@@ -8,6 +8,7 @@ import ContactForm from "@/components/ContactForm";
 import { useTheme } from "@/components/ThemeProvider";
 import { Pencil, Plus, Trash2, X, Save } from "lucide-react";
 import { updateSponsor, addSponsor, deleteSponsor } from "@/app/actions/sponsors";
+import SponsorLogoPicker from "@/components/SponsorLogoPicker";
 import type { Sponsor } from "./page";
 
 const tierConfig: Record<string, { color: string; textColor: string }> = {
@@ -30,27 +31,31 @@ interface EditModalProps {
   nextOrder?: number;
 }
 
+const emptyForm = {
+  name: "",
+  logo: "",
+  url: "",
+  tier: "bronze" as SponsorTier,
+};
+
 function EditModal({ sponsor, isOpen, onClose, onSave, isNew, nextOrder }: EditModalProps) {
-  const [formData, setFormData] = useState({
-    name: sponsor?.name || "",
-    logo: sponsor?.logo || "",
-    url: sponsor?.url || "",
-    tier: (sponsor?.tier ?? "bronze") as SponsorTier,
-  });
+  const [formData, setFormData] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
 
+  // Reset form whenever the modal opens: empty for Add, filled for Edit
   useEffect(() => {
+    if (!isOpen) return;
     if (sponsor) {
       setFormData({
         name: sponsor.name,
         logo: sponsor.logo,
         url: sponsor.url || "",
-        tier: (sponsor.tier) as SponsorTier,
+        tier: sponsor.tier as SponsorTier,
       });
     } else {
-      setFormData({ name: "", logo: "", url: "", tier: "bronze" });
+      setFormData({ ...emptyForm });
     }
-  }, [sponsor]);
+  }, [isOpen, sponsor]);
 
   useEffect(() => {
     if (isOpen) {
@@ -99,10 +104,10 @@ function EditModal({ sponsor, isOpen, onClose, onSave, isNew, nextOrder }: EditM
             <label className={labelClass}>Name</label>
             <input type="text" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} className={inputClass} required />
           </div>
-          <div>
-            <label className={labelClass}>Logo Path</label>
-            <input type="text" value={formData.logo} onChange={(e) => setFormData({ ...formData, logo: e.target.value })} placeholder="/sponsor_logos/example.png" className={inputClass} required />
-          </div>
+          <SponsorLogoPicker
+            value={formData.logo}
+            onChange={(url) => setFormData({ ...formData, logo: url })}
+          />
           <div>
             <label className={labelClass}>Website URL (optional)</label>
             <input type="url" value={formData.url} onChange={(e) => setFormData({ ...formData, url: e.target.value })} placeholder="https://example.com" className={inputClass} />

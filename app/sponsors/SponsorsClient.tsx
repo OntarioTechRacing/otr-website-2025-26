@@ -1,5 +1,7 @@
 "use client";
 
+
+type SponsorTier = 'diamond' | 'platinum' | 'gold' | 'silver' | 'bronze' | 'general';
 import { useState, useEffect } from "react";
 import SponsorCard from "@/components/SponsorCard";
 import ContactForm from "@/components/ContactForm";
@@ -33,7 +35,7 @@ function EditModal({ sponsor, isOpen, onClose, onSave, isNew, nextOrder }: EditM
     name: sponsor?.name || "",
     logo: sponsor?.logo || "",
     url: sponsor?.url || "",
-    tier: sponsor?.tier || "bronze",
+    tier: (sponsor?.tier ?? "bronze") as SponsorTier,
   });
   const [saving, setSaving] = useState(false);
 
@@ -43,7 +45,7 @@ function EditModal({ sponsor, isOpen, onClose, onSave, isNew, nextOrder }: EditM
         name: sponsor.name,
         logo: sponsor.logo,
         url: sponsor.url || "",
-        tier: sponsor.tier,
+        tier: (sponsor.tier) as SponsorTier,
       });
     } else {
       setFormData({ name: "", logo: "", url: "", tier: "bronze" });
@@ -107,7 +109,7 @@ function EditModal({ sponsor, isOpen, onClose, onSave, isNew, nextOrder }: EditM
           </div>
           <div>
             <label className={labelClass}>Tier</label>
-            <select value={formData.tier} onChange={(e) => setFormData({ ...formData, tier: e.target.value })} className={inputClass + " cursor-pointer"}>
+            <select value={formData.tier} onChange={(e) => setFormData({ ...formData, tier: e.target.value as SponsorTier})} className={inputClass + " cursor-pointer"}>
               {tierOrder.map((tier) => (
                 <option key={tier} value={tier} className="bg-gray-900 text-white">
                   {tier.charAt(0).toUpperCase() + tier.slice(1)}
@@ -266,7 +268,7 @@ export default function SponsorsClient({ sponsors, isAdmin }: { sponsors: Sponso
                         <SponsorCard
                           logo={sponsor.logo}
                           name={sponsor.name}
-                          tier={sponsor.tier.toLowerCase()}
+                          tier={sponsor.tier.toLowerCase() as SponsorTier}
                           url={sponsor.url || undefined}
                         />
                         {isAdmin && (

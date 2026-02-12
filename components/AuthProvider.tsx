@@ -2,14 +2,12 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { isAdminEmail } from '@/lib/auth';
 import type { User } from '@supabase/supabase-js';
 
 type AuthContextType = {
   user: User | null;
-  isAdmin: boolean;
   loading: boolean;
-  signInWithOtp: (email: string) => Promise<{ error: Error | null }>;
+  signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 };
 
@@ -36,12 +34,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, [supabase]);
 
-  const isAdmin = !!user?.email && isAdminEmail(user.email);
-
-  const signInWithOtp = async (email: string) => {
-    const { error } = await supabase.auth.signInWithOtp({
+  const signIn = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({
       email,
-      options: { emailRedirectTo: `${typeof window !== 'undefined' ? window.location.origin : ''}/auth/callback` },
+      password,
     });
     return { error: error as Error | null };
   };
@@ -54,9 +50,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     <AuthContext.Provider
       value={{
         user,
-        isAdmin,
         loading,
-        signInWithOtp,
+        signIn,
         signOut,
       }}
     >

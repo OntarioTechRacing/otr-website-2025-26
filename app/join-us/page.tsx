@@ -1,65 +1,38 @@
-'use client';
-import ApplicationCard from "@/components/ApplicationCard";
-import applications from "../departments.json";
-import { useState } from "react";
+import { createClient } from "@/lib/supabase/server";
+import JoinUsClient from "./JoinUsClient";
 
-import ContactForm from "@/components/ContactForm";
+export interface Department {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  link: string | null;
+  order: number;
+}
 
-export default function joinUs() {
+async function getDepartments(): Promise<Department[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("Departments")
+    .select("*")
+    .order("order", { ascending: true });
 
-    let defaultText = "At Ontario Tech Racing, students have the opportunity to gain valuable EV motorsport experiences with hands-on work in the mechanical, electrical, or business realms. Apply today!"
+  if (error) {
+    console.error("Error fetching departments:", error);
+    return [];
+  }
 
-    const [Text, setText] = useState(defaultText)
+  return data || [];
+}
 
-    const list = applications.applications.map((dept) => (
-        <ApplicationCard name={dept.name} href={dept.link} imageSrc={dept.image} key={dept.name} onHover={() => {
-            setText(dept.description)
-        }} onLeave={() => {
-            // Don't reset here - let the container handle it
-        }}></ApplicationCard>
-    ));
+async function getUser() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  return user;
+}
 
-
-    return <>
-
-        <div className="min-h-screen bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/join-us/backgroundPic.png')" }}>
-
-            <div className="pt-10 bg-black/50 min-h-screen">
-
-                <div className="mt-5">
-                    <h2 className="text-2xl font-bold flex justify-center">Apply to a Department</h2>
-                    <hr className="w-[50%] mx-auto border-t-2 mt-2"></hr>
-                </div>
-
-                <div 
-                    className="flex flex-col items-center"
-                    onMouseLeave={() => {
-                        setText(defaultText)
-                    }}
-                >
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
-                        {list}
-                    </div>
-
-                    <div className="hidden md:block text-center mt-10 text-3xl mb-16">
-                        <div
-                            key={Text}
-                            className="opacity-0 translate-y-2 animate-[fadeInUp_300ms_ease-out_forwards]">
-                            {Text}
-                        </div>
-                    </div>
-                </div>
-
-                <ContactForm />
-
-            </div>
-
-
-        </div>
-
-
-    </>
-
-
+export default async function JoinUs() {
+  const [departments, user] = await Promise.all([getDepartments(), getUser()]);
+  const isAdmin = !!user;
+  return <JoinUsClient departments={departments} isAdmin={isAdmin} />;
 }

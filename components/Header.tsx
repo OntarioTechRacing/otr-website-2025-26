@@ -12,7 +12,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
-  const { user, isAdmin, loading, signOut } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const isDark = theme === 'dark';
 
   const toggleMobileMenu = () => {
@@ -140,7 +140,7 @@ export default function Header() {
         {/* Admin login / logout - small, far right */}
         {!loading && (
           <span className={`flex items-center pl-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-            {isAdmin && user ? (
+            {user ? (
               <span className="flex items-center gap-1.5">
                 <span className="text-[10px] truncate max-w-[80px]" title={user.email ?? ''}>
                   {user.email}
@@ -246,7 +246,7 @@ export default function Header() {
               History
             </Link>
             {!loading && (
-              isAdmin && user ? (
+              user ? (
                 <div className="px-6 py-3 flex flex-col gap-2">
                   <span className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{user.email}</span>
                   <Button variant="ghost" size="sm" onClick={() => { signOut(); closeMobileMenu(); }} className="justify-start text-xs">

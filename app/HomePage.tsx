@@ -2,16 +2,27 @@
 
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { useTheme } from "@/components/ThemeProvider";
-
+import { Pencil, X, Save } from "lucide-react";
+import { updateHomePageSocialLinks } from "@/app/actions/homePage";
+import { shareLinkToEmbedLink } from "@/lib/socialEmbedUtils";
 
 type EmbedLinks = {
-    InstagramPost: string | undefined,
-    LinkedInPost: string | undefined
+  id?: number;
+  InstagramPost?: string | null;
+  LinkedInPost?: string | null;
 };
 
-export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
-    const socialLinks = embedLinks[0];
+export default function Home({ embedLinks, isAdmin = false }: { embedLinks: EmbedLinks[]; isAdmin?: boolean }) {
+  const router = useRouter();
+  const socialLinks = embedLinks[0];
+  const [editOpen, setEditOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [formData, setFormData] = useState({
+    InstagramPost: socialLinks?.InstagramPost ?? "",
+    LinkedInPost: socialLinks?.LinkedInPost ?? "",
+  });
   const [isVisible, setIsVisible] = useState(false);
   const [isSocialVisible, setIsSocialVisible] = useState(false);
   const aboutRef = useRef<HTMLDivElement>(null);
@@ -70,6 +81,42 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (editOpen && socialLinks) {
+      setFormData({
+        InstagramPost: socialLinks.InstagramPost ?? "",
+        LinkedInPost: socialLinks.LinkedInPost ?? "",
+      });
+    }
+  }, [editOpen, socialLinks]);
+
+  const handleSaveSocialLinks = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (socialLinks?.id == null) return;
+    setSaving(true);
+    const instagramEmbed = formData.InstagramPost
+      ? shareLinkToEmbedLink("instagram", formData.InstagramPost)
+      : null;
+    const linkedInEmbed = formData.LinkedInPost
+      ? shareLinkToEmbedLink("linkedin", formData.LinkedInPost)
+      : null;
+    const result = await updateHomePageSocialLinks(socialLinks.id, {
+      InstagramPost: instagramEmbed,
+      LinkedInPost: linkedInEmbed,
+    });
+    setSaving(false);
+    if (result?.error) {
+      alert(result.error);
+      return;
+    }
+    setEditOpen(false);
+    router.refresh();
+    window.location.reload();
+  };
+
+  const inputClass = "w-full px-4 py-2.5 bg-white/5 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500/50 transition-colors";
+  const labelClass = "block text-sm font-medium text-white/70 mb-1.5";
 
   return (
     <>
@@ -217,7 +264,18 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
           {/* Header */}
           <div className={`text-center mb-6 md:mb-10 lg:mb-12 transition-all duration-1000 ${isSocialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <p className={`text-sm sm:text-base md:text-lg font-bold mb-2 md:mb-3 tracking-wide ${isDark ? 'text-orange-500' : 'text-[#48B4FF]'}`}>Follow Us</p>
-            <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>Social Media</h2>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <h2 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>Social Media</h2>
+              {isAdmin && socialLinks?.id != null && (
+                <button
+                  type="button"
+                  onClick={() => setEditOpen(true)}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors cursor-pointer ${isDark ? 'bg-orange-500/20 hover:bg-orange-500/30 text-orange-400' : 'bg-[#48B4FF]/20 hover:bg-[#48B4FF]/30 text-[#48B4FF]'}`}
+                >
+                  <Pencil className="w-4 h-4" /> Edit links
+                </button>
+              )}
+            </div>
             <div className={`w-12 md:w-16 h-1 mb-3 md:mb-4 mx-auto ${isDark ? 'bg-orange-500' : 'bg-[#48B4FF]'}`}></div>
             <p className={`text-xs sm:text-sm md:text-base leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
               Stay up to date with Ontario Tech Racing! Follow us on Instagram and TikTok to see behind-the-scenes content, race day updates, and the latest from our team.
@@ -228,7 +286,7 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
           <div className={`flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-5 md:gap-6 transition-all duration-1000 delay-200 ${isSocialVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-16'}`}>
             <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
               <iframe
-                src={socialLinks.InstagramPost}
+                src={socialLinks?.InstagramPost ?? ""}
                 width="100%"
                 height="100%"
                 className="w-full h-full"
@@ -253,7 +311,7 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
             </div>
             <div className={`rounded-xl sm:rounded-2xl border-2 sm:border-4 overflow-hidden shadow-2xl w-full sm:w-[300px] md:w-[340px] h-[400px] sm:h-[500px] md:h-[600px] ${isDark ? 'border-orange-500' : 'border-[#48B4FF]'}`}>
               <iframe 
-                src={socialLinks.LinkedInPost}
+                src={socialLinks?.LinkedInPost ?? ""}
                 width="100%" 
                 height="100%" 
                 frameBorder="0" 
@@ -266,6 +324,52 @@ export default function Home({ embedLinks } : {embedLinks : EmbedLinks[]}) {
           </div>
         </div>
       </div>
+
+      {/* Edit social links modal (admin only) */}
+      {editOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+          <div className="bg-gray-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-6 w-full max-w-lg">
+            <div className="flex justify-between items-center mb-5">
+              <h2 className="text-xl font-semibold text-white">Edit social embed links</h2>
+              <button type="button" onClick={() => setEditOpen(false)} className="p-2 -m-2 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer" aria-label="Close">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <form onSubmit={handleSaveSocialLinks} className="space-y-4">
+              <p className="text-sm text-white/60 mb-2">Paste the normal share link; we’ll convert it to an embed.</p>
+              <div>
+                <label className={labelClass}>Instagram post link</label>
+                <input
+                  type="url"
+                  value={formData.InstagramPost}
+                  onChange={(e) => setFormData({ ...formData, InstagramPost: e.target.value })}
+                  placeholder="https://www.instagram.com/p/... or /reel/..."
+                  className={inputClass}
+                />
+              </div>
+              <div>
+                <label className={labelClass}>LinkedIn post link</label>
+                <input
+                  type="url"
+                  value={formData.LinkedInPost}
+                  onChange={(e) => setFormData({ ...formData, LinkedInPost: e.target.value })}
+                  placeholder="https://www.linkedin.com/posts/... or Copy link to post"
+                  className={inputClass}
+                />
+              </div>
+              <div className="flex gap-3 pt-4">
+                <button type="button" onClick={() => setEditOpen(false)} className="flex-1 px-4 py-2.5 rounded-xl border border-white/20 text-white/90 hover:bg-white/10 transition-colors cursor-pointer">
+                  Cancel
+                </button>
+                <button type="submit" disabled={saving} className="flex-1 px-4 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60">
+                  <Save className="w-4 h-4" />
+                  {saving ? "Saving..." : "Save"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

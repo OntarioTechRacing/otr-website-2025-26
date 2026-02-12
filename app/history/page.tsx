@@ -17,7 +17,7 @@ async function getHistory(): Promise<HistoryItem[]> {
   const { data, error } = await supabase
     .from("History")
     .select("*")
-    .order("order", { ascending: true });
+    .order("year", { ascending: false });
 
   if (error) {
     console.error("Error fetching history:", error);

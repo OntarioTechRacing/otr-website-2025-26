@@ -2,24 +2,23 @@
 
 import { createClient } from '@/lib/supabase/server';
 
-// Bucket "Sponsors" in Supabase Dashboard → Storage.
-// Add a policy so authenticated users can upload (e.g. "Allow authenticated INSERT").
-const SPONSOR_LOGO_BUCKET = 'Sponsors';
+// Buckets: create "Sponsors" and "History" in Supabase Dashboard → Storage (public).
+// Add policies so authenticated users can SELECT and INSERT (see migration 20250212000000).
 
-export async function listSponsorLogos(): Promise<{ path: string; publicUrl: string }[] | { error: string }> {
+export async function listImagesInBucket(
+  bucket: string
+): Promise<{ path: string; publicUrl: string }[] | { error: string }> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: 'Unauthorized' };
 
   const { data: files, error } = await supabase.storage
-    .from(SPONSOR_LOGO_BUCKET)
+    .from(bucket)
     .list('', { sortBy: { column: 'name', order: 'asc' } });
 
-  if (error) {
-    return { error: error.message };
-  }
+  if (error) return { error: error.message };
 
-  const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${SPONSOR_LOGO_BUCKET}`;
+  const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucket}`;
   const items: { path: string; publicUrl: string }[] = [];
 
   for (const file of files ?? []) {
@@ -29,13 +28,15 @@ export async function listSponsorLogos(): Promise<{ path: string; publicUrl: str
         publicUrl: `${baseUrl}/${encodeURIComponent(file.name)}`,
       });
     }
-    // If it's a folder, we could recurse; for now keep flat structure
   }
 
   return items;
 }
 
-export async function uploadSponsorLogo(formData: FormData): Promise<{ publicUrl: string } | { error: string }> {
+export async function uploadToBucket(
+  bucket: string,
+  formData: FormData
+): Promise<{ publicUrl: string } | { error: string }> {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return { error: 'Unauthorized' };
@@ -43,17 +44,31 @@ export async function uploadSponsorLogo(formData: FormData): Promise<{ publicUrl
   const file = formData.get('file') as File | null;
   if (!file || !file.size) return { error: 'No file provided' };
 
-  const ext = file.name.split('.').pop()?.toLowerCase() || 'png';
   const safeName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
-  const path = safeName;
 
   const { error } = await supabase.storage
-    .from(SPONSOR_LOGO_BUCKET)
-    .upload(path, file, { upsert: true, contentType: file.type });
+    .from(bucket)
+    .upload(safeName, file, { upsert: true, contentType: file.type });
 
   if (error) return { error: error.message };
 
-  const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${SPONSOR_LOGO_BUCKET}`;
-  const publicUrl = `${baseUrl}/${encodeURIComponent(path)}`;
+  const baseUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucket}`;
+  const publicUrl = `${baseUrl}/${encodeURIComponent(safeName)}`;
   return { publicUrl };
+}
+
+export async function listSponsorLogos(): Promise<{ path: string; publicUrl: string }[] | { error: string }> {
+  return listImagesInBucket('Sponsors');
+}
+
+export async function uploadSponsorLogo(formData: FormData): Promise<{ publicUrl: string } | { error: string }> {
+  return uploadToBucket('Sponsors', formData);
+}
+
+export async function listHistoryImages(): Promise<{ path: string; publicUrl: string }[] | { error: string }> {
+  return listImagesInBucket('History');
+}
+
+export async function uploadHistoryImage(formData: FormData): Promise<{ publicUrl: string } | { error: string }> {
+  return uploadToBucket('History', formData);
 }

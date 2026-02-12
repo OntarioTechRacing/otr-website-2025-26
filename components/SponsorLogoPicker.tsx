@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ImagePlus, Upload, ArrowLeft, Loader2, Search, Check } from "lucide-react";
-import { listSponsorLogos, uploadSponsorLogo } from "@/app/actions/storage";
+import { listImagesInBucket, uploadToBucket } from "@/app/actions/storage";
 
 const inputClass =
   "w-full px-4 py-2.5 bg-white/5 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500/50 transition-colors";
@@ -12,9 +12,19 @@ interface SponsorLogoPickerProps {
   value: string;
   onChange: (url: string) => void;
   disabled?: boolean;
+  /** Storage bucket name (e.g. "Sponsors" or "History") */
+  bucket?: string;
+  /** Field label (e.g. "Logo" or "Image") */
+  label?: string;
 }
 
-export default function SponsorLogoPicker({ value, onChange, disabled }: SponsorLogoPickerProps) {
+export default function SponsorLogoPicker({
+  value,
+  onChange,
+  disabled,
+  bucket = "Sponsors",
+  label = "Logo",
+}: SponsorLogoPickerProps) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [images, setImages] = useState<{ path: string; publicUrl: string }[]>([]);
@@ -38,7 +48,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
   const loadImages = async () => {
     setLoading(true);
     setError(null);
-    const result = await listSponsorLogos();
+    const result = await listImagesInBucket(bucket);
     setLoading(false);
     if ("error" in result) {
       setError(result.error);
@@ -53,7 +63,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
       loadImages();
       setSearchQuery("");
     }
-  }, [pickerOpen]);
+  }, [pickerOpen, bucket]);
 
   const handleSelect = (publicUrl: string) => {
     onChange(publicUrl);
@@ -67,7 +77,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
     setError(null);
     const formData = new FormData();
     formData.set("file", file);
-    const result = await uploadSponsorLogo(formData);
+    const result = await uploadToBucket(bucket, formData);
     setUploading(false);
     e.target.value = "";
     if ("error" in result) {
@@ -82,7 +92,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
 
   return (
     <div>
-      <label className={labelClass}>Logo</label>
+      <label className={labelClass}>{label}</label>
       <div className="flex gap-2">
         <input
           type="text"
@@ -118,7 +128,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
               <ArrowLeft className="w-5 h-5" />
               <span className="font-medium">Back</span>
             </button>
-            <h2 className="text-lg font-semibold text-white">Choose logo</h2>
+            <h2 className="text-lg font-semibold text-white">Choose {label.toLowerCase()}</h2>
           </header>
 
           {/* Toolbar: Search + Upload - fixed */}
@@ -135,7 +145,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
             </div>
             <label className="flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white cursor-pointer transition-colors shrink-0 font-medium">
               {uploading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Upload className="w-5 h-5" />}
-              {uploading ? "Uploading…" : "Upload image"}
+              {uploading ? "Uploading…" : `Upload ${label.toLowerCase()}`}
               <input
                 type="file"
                 accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml"
@@ -153,7 +163,7 @@ export default function SponsorLogoPicker({ value, onChange, disabled }: Sponsor
                 <p className="text-red-400 text-sm mb-4 p-3 rounded-xl bg-red-500/10">
                   {error}
                   {error.includes("Bucket") || error.includes("not found")
-                    ? " Ensure the 'Sponsors' bucket exists in Supabase Dashboard → Storage."
+                    ? ` Ensure the '${bucket}' bucket exists in Supabase Dashboard → Storage.`
                     : ""}
                 </p>
               )}

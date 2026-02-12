@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 import { Pencil, Plus, Trash2, X, Save } from "lucide-react";
 import { updateHistoryItem, addHistoryItem, deleteHistoryItem } from "@/app/actions/history";
+import SponsorLogoPicker from "@/components/SponsorLogoPicker";
 import type { HistoryItem } from "./page";
 
 interface EditModalProps {
@@ -105,10 +106,12 @@ function EditModal({ item, isOpen, onClose, onSave, isNew, nextOrder }: EditModa
             <label className={labelClass}>Nickname (optional)</label>
             <input type="text" value={formData.nickname} onChange={(e) => setFormData({ ...formData, nickname: e.target.value })} placeholder="Zippy" className={inputClass} />
           </div>
-          <div>
-            <label className={labelClass}>Image Path</label>
-            <input type="text" value={formData.image} onChange={(e) => setFormData({ ...formData, image: e.target.value })} placeholder="/history/OTR-24.jpg" className={inputClass} required />
-          </div>
+          <SponsorLogoPicker
+            value={formData.image}
+            onChange={(url) => setFormData({ ...formData, image: url })}
+            bucket="History"
+            label="Image"
+          />
           <div>
             <label className={labelClass}>Highlight (optional)</label>
             <input type="text" value={formData.highlight} onChange={(e) => setFormData({ ...formData, highlight: e.target.value })} placeholder="Latest Build" className={inputClass} />

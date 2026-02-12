@@ -22,7 +22,7 @@ type Member = {
   Department: string;
   Headshot: string;
   LinkedIn: string | undefined;
-  Role: string | null;
+  Role: string;
   // add other fields you use
 };
 
@@ -46,6 +46,14 @@ interface EditModalProps {
   onClose: () => void;
   onSave: (data: Partial<Member>) => Promise<void>;
   isNew?: boolean;
+};
+
+const memberRank: Record<string, number> = {
+  "Lead": 0,
+  "Co-Lead": 1,
+  "Advisor": 2,
+  "Tech Lead": 3,
+  "Member": 4,
 };
 
 function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
@@ -93,7 +101,7 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
       Department: formData.department,
       Headshot: formData.headshot,
       LinkedIn: formData.linkedin || undefined,
-      Role: formData.role || null,
+      Role: formData.role,
       // order: nextOrder || sponsor?.order || 0,
     });
     setSaving(false);
@@ -133,7 +141,7 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
             <input type="url" value={formData.linkedin} onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })} placeholder="https://example.com" className={inputClass} />
           </div>
           <div>
-            <label className={labelClass}>Role (optional)</label>
+            <label className={labelClass}>Role</label>
             <input type="url" value={formData.linkedin} onChange={(e) => setFormData({ ...formData, role: e.target.value })} placeholder="https://example.com" className={inputClass} />
           </div>
           <div className="flex gap-3 pt-4">
@@ -184,6 +192,20 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
     (acc[dept] ??= []).push(m);
     return acc;
   }, {});
+  
+  Object.keys(grouped).forEach((dept) => {
+    grouped[dept].sort((a, b) => {
+      const roleDiff =
+      (memberRank[a.Role] ?? 999) -
+      (memberRank[b.Role] ?? 999);
+
+    if (roleDiff !== 0) {
+      return roleDiff;
+    }
+
+    return a.Name.localeCompare(b.Name);
+    });
+  });
 
   const handleEdit = (member: Member) => {
       setEditingMember(member);
@@ -304,10 +326,10 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
 
                         </div>
 
-                        <p className={`${isDark ? "text-white" : "text-black"} font-bold text-lg text-center mx-5`}>
+                        <p className={`${isDark ? "text-white" : "text-black"} font-bold text-lg text-center mx-5 mt-2`}>
                           {m.Name}
                         </p>
-                        <p className="text-white">{m.Role}</p>
+                        <p className={`${isDark ? "text-white" : "text-black"} font-bold text-md text-center mx-5`}>{m.Role}</p>
                       </div>
                       <div className="card-back flex flex-col items-center justify-center">
                         <a href={m.LinkedIn} className="underline">

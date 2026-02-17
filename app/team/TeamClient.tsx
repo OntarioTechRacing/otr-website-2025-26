@@ -293,9 +293,10 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
           if (deptMembers.length === 0) return null;
 
           return (
-            <section key={dept} className="flex flex-col items-center mb-2">
-              <h3 id={dept} className={`${dept} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my-2 md:my-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${dept} Team`}</h3>
-              {isAdmin && (
+            <section key={dept} className="flex flex-col items-center">
+              <div className="flex items-center gap-3">
+                    <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold my-4`}>{dept}</h2>
+                    {isAdmin && (
                       <button
                         onClick={() => handleAdd(dept)}
                         className="p-1.5 bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 rounded-lg transition-colors cursor-pointer"
@@ -304,6 +305,7 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
                         <Plus className="w-5 h-5" />
                       </button>
                     )}
+                  </div>
               <div className="flex flex-row flex-wrap gap-6 justify-center">
                 {deptMembers.map((m, index) => (
                   <div key={index} className="flex flex-col items-center card-container relative">

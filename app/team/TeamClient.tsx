@@ -134,7 +134,7 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
           </div>
           <div>
             <label className={labelClass}>Headshot (optional)</label>
-            <input type="text" value={formData.headshot} onChange={(e) => setFormData({ ...formData, headshot: e.target.value })} placeholder="/sponsor_logos/example.png" className={inputClass} required />
+            <input type="text" value={formData.headshot} onChange={(e) => setFormData({ ...formData, headshot: e.target.value })} placeholder="/sponsor_logos/example.png" className={inputClass} />
           </div>
           <div>
             <label className={labelClass}>LinkedIn (optional)</label>
@@ -142,7 +142,7 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
           </div>
           <div>
             <label className={labelClass}>Role</label>
-            <input type="url" value={formData.linkedin} onChange={(e) => setFormData({ ...formData, role: e.target.value })} placeholder="https://example.com" className={inputClass} />
+            <input type="text" value={formData.role} onChange={(e) => setFormData({ ...formData, role: e.target.value })} placeholder="https://example.com" className={inputClass} />
           </div>
           <div className="flex gap-3 pt-4">
             <button type="button" onClick={onClose} className="flex-1 px-4 py-2.5 rounded-xl border border-white/20 text-white/90 hover:bg-white/10 transition-colors cursor-pointer">
@@ -233,7 +233,8 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
           department: selectedDepartment,
         } as Parameters<typeof addMember>[0]);
       } else if (editingMember) {
-        await updateMember(editingMember.id, data as Parameters<typeof updateMember>[1]);
+        const result = await updateMember(editingMember.id, data as Parameters<typeof updateMember>[1]);
+        console.log("Update result:", result);
       }
     };
   
@@ -293,8 +294,9 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
 
           return (
             <section key={dept} className="flex flex-col items-center">
-              <h3 id={dept} className={`${dept} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold my-2 md:my-3 leading-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>{`${dept} Team`}</h3>
-              {isAdmin && (
+              <div className="flex items-center gap-3">
+                    <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold my-4`}>{dept}</h2>
+                    {isAdmin && (
                       <button
                         onClick={() => handleAdd(dept)}
                         className="p-1.5 bg-orange-500/20 hover:bg-orange-500/30 text-orange-400 rounded-lg transition-colors cursor-pointer"
@@ -303,11 +305,12 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
                         <Plus className="w-5 h-5" />
                       </button>
                     )}
+                  </div>
               <div className="flex flex-row flex-wrap gap-6 justify-center">
                 {deptMembers.map((m, index) => (
-                  <div key={index} className="flex flex-col items-start card-container"> 
+                  <div key={index} className="flex flex-col items-center card-container relative">
                     <div className="card">
-                      <div className={`card-front flex flex-col items-center justify-center ${isDark ? "bg-linear-to-tl from-black to-neutral-800" : "bg-linear-to-tl from-neutral-300 to-white"}`}>
+                      <div className={`group card-front flex flex-col items-center justify-center ${isDark ? "bg-linear-to-tl from-black to-neutral-800" : "bg-linear-to-tl from-neutral-300 to-white"}`}>
                         <div className={`w-30 h-30 rounded-full border-4 border-${isDark ? 'orange-500' : '[#48B4FF]'} overflow-hidden relative flex items-center justify-center bg-black`}>
                           
                           {m.Headshot ? 
@@ -331,14 +334,15 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
                         </p>
                         <p className={`${isDark ? "text-white" : "text-black"} font-bold text-md text-center mx-5`}>{m.Role}</p>
                       </div>
-                      <div className="card-back flex flex-col items-center justify-center">
+                      <div className="relative card-back flex flex-col items-center justify-center">
                         <a href={m.LinkedIn} className="underline">
                           <FaLinkedin className="linkedin-icon" color="white" />
                         </a>
                         <p>{m.Name}</p>
                       </div>
-                      {isAdmin && (
-                          <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    {isAdmin && (
+                          <div className="absolute top-full mt-2 z-30 flex gap-1 opacity-100">
                             <button
                               onClick={() => handleEdit(m)}
                               className="p-1.5 bg-orange-500/80 hover:bg-orange-500 text-white rounded-lg transition-colors cursor-pointer"
@@ -347,19 +351,26 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
                             </button>
                             <button
                               onClick={() => handleDelete(m.id)}
-                              className="p-1.5 bg-red-500/80 hover:bg-red-500 text-white rounded-lg transition-colors cursor-pointer"
+                              className="p-1.5 z-20 bg-red-500/80 hover:bg-red-500 text-white rounded-lg transition-colors cursor-pointer"
                             >
                               <Trash2 className="w-3 h-3" />
                             </button>
                           </div>
                         )}
-                    </div>
                   </div> 
                 ))}
               </div>
             </section>
           );
         })}
+        {/* Edit Modal */}
+      <EditModal
+        member={editingMember}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSave}
+        isNew={isNewItem}
+      />
       </div>
     </>
   );

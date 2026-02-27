@@ -187,7 +187,7 @@ export default function JoinUsClient({ departments, isAdmin }: { departments: De
             setText(defaultText);
           }}
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 mt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-5 justify-items-center">
             {departments.map((dept) => (
               <div key={dept.id} className="relative">
                 <ApplicationCard
@@ -199,6 +199,10 @@ export default function JoinUsClient({ departments, isAdmin }: { departments: De
                   }}
                   onLeave={() => {}}
                 />
+                {/* On mobile, show description under each card since hover isn't available */}
+                <p className="mt-2 text-xs text-white text-center px-2 md:hidden">
+                  {dept.description}
+                </p>
                 {isAdmin && (
                   <div className="absolute top-0 right-0 flex gap-1 opacity-100 z-20">
                     <button

@@ -22,7 +22,16 @@ export async function listImagesInBucket(
   const items: { path: string; publicUrl: string }[] = [];
 
   for (const file of files ?? []) {
-    if (file.name && (file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg') || file.name.endsWith('.webp') || file.name.endsWith('.svg'))) {
+    if (file.name) {
+      const lower = file.name.toLowerCase();
+      const isImage =
+        lower.endsWith('.png') ||
+        lower.endsWith('.jpg') ||
+        lower.endsWith('.jpeg') ||
+        lower.endsWith('.webp') ||
+        lower.endsWith('.svg');
+      if (!isImage) continue;
+
       items.push({
         path: file.name,
         publicUrl: `${baseUrl}/${encodeURIComponent(file.name)}`,

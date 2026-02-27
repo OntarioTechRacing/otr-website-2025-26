@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import TeamPage from "./TeamClient";
 
-
 async function getUser() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -11,21 +10,37 @@ async function getUser() {
 export default async function Page() {
   const supabase = await createClient();
 
-  const { data, error } = await supabase
-    .from("public.TeamMembers")
-    .select("*")
-    .order("Name", { ascending: true })
-    .order("Department", { ascending: true });
-
   try {
-    const { data, error } = await supabase.from("TeamMembers").select("*");
-    if (error) {
-      console.error("Supabase query error object:", error);
-      return <div>Failed: {error.message}</div>;
+    const [membersResult, departmentsResult, userResult] = await Promise.all([
+      supabase.from("TeamMembers").select("*"),
+      supabase
+        .from("Departments")
+        .select("id, name, image, description")
+        .order("order", { ascending: true }),
+      supabase.auth.getUser(),
+    ]);
+
+    const { data: members, error: membersError } = membersResult;
+    const { data: departments, error: departmentsError } = departmentsResult;
+    const { data: { user } } = userResult;
+
+    if (membersError) {
+      console.error("Supabase TeamMembers error:", membersError);
+      return <div>Failed: {membersError.message}</div>;
     }
-    const user = await getUser();
+    if (departmentsError) {
+      console.error("Supabase Departments error:", departmentsError);
+      return <div>Failed: {departmentsError.message}</div>;
+    }
+
     const isAdmin = !!user;
-    return <TeamPage members={data ?? []} isAdmin={isAdmin} />;
+    return (
+      <TeamPage
+        members={members ?? []}
+        isAdmin={isAdmin}
+        departments={departments ?? []}
+      />
+    );
   } catch (e) {
     console.error("Supabase fetch threw:", e);
     return <div>Failed: fetch threw</div>;

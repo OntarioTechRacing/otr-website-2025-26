@@ -2,8 +2,6 @@
 
 import "./card.css";
 import ApplicationCardForTeams from "@/components/ApplicationCardForTeams";
-import teamData from "./team-headshots.json";
-import applications from "../departments.json";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useTheme } from '../../components/ThemeProvider';
@@ -12,7 +10,7 @@ import { addMember, updateMember, deleteMember } from "../actions/team";
 import { Pencil, Plus, Trash2, X, Save } from "lucide-react";
 // import { createClient } from "@/lib/supabase/client";
 import { Suspense } from "react";
-import type { Headshot } from "./headshots";
+import SponsorLogoPicker from "@/components/SponsorLogoPicker";
 
 let defaultText = "";
 
@@ -26,26 +24,14 @@ type Member = {
   // add other fields you use
 };
 
-const Departments = [
-  "Business",
-  "Analysis",
-  "Composites",
-  "Drivetrain and Braking",
-  "Embedded Software",
-  "Hardware and Electronics",
-  "HV Systems",
-  "Manufacturing",
-  "Software",
-  "Suspension",
-  "Vehicle Dynamics"
-]
-
 interface EditModalProps {
   member: Member | null;
   isOpen: boolean;
   onClose: () => void;
   onSave: (data: Partial<Member>) => Promise<void>;
   isNew?: boolean;
+  departmentOptions: string[];
+  initialDepartment?: string;
 };
 
 const memberRank: Record<string, number> = {
@@ -56,10 +42,10 @@ const memberRank: Record<string, number> = {
   "Member": 4,
 };
 
-function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
+function EditModal({ member, isOpen, onClose, onSave, isNew, departmentOptions, initialDepartment }: EditModalProps) {
   const [formData, setFormData] = useState({
     name: member?.Name || "",
-    department: member?.Department || "",
+    department: member?.Department || initialDepartment || departmentOptions[0] || "",
     headshot: member?.Headshot || "",
     linkedin: member?.LinkedIn || "",
     role: member?.Role || "",
@@ -76,9 +62,15 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
         role: member.Role || "",
       });
     } else {
-      setFormData({ name: "", department: "", headshot: "", linkedin: "", role: ""});
+      setFormData({
+        name: "",
+        department: initialDepartment || departmentOptions[0] || "",
+        headshot: "",
+        linkedin: "",
+        role: "",
+      });
     }
-  }, [member]);
+  }, [member, initialDepartment, departmentOptions]);
 
   useEffect(() => {
     if (isOpen) {
@@ -130,12 +122,26 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
           </div>
           <div>
             <label className={labelClass}>Department</label>
-            <input type="text" value={formData.department} onChange={(e) => setFormData({ ...formData, department: e.target.value })} placeholder="/sponsor_logos/example.png" className={inputClass} required />
+            <select
+              value={formData.department}
+              onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+              className={inputClass + " cursor-pointer"}
+              required
+            >
+              {departmentOptions.map((name) => (
+                <option key={name} value={name} className="bg-gray-900 text-white">
+                  {name}
+                </option>
+              ))}
+            </select>
           </div>
-          <div>
-            <label className={labelClass}>Headshot (optional)</label>
-            <input type="text" value={formData.headshot} onChange={(e) => setFormData({ ...formData, headshot: e.target.value })} placeholder="/sponsor_logos/example.png" className={inputClass} />
-          </div>
+          <SponsorLogoPicker
+            value={formData.headshot}
+            onChange={(url) => setFormData({ ...formData, headshot: url })}
+            bucket="MemberPhotos"
+            label="Headshot (optional)"
+            required={false}
+          />
           <div>
             <label className={labelClass}>LinkedIn (optional)</label>
             <input type="url" value={formData.linkedin} onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })} placeholder="https://example.com" className={inputClass} />
@@ -159,33 +165,36 @@ function EditModal({ member, isOpen, onClose, onSave, isNew }: EditModalProps) {
   );
 }
 
-export default function TeamPage({ members, isAdmin }: { members: Member[], isAdmin: Boolean }) {
+type TeamDepartment = {
+  id: number;
+  name: string;
+  image: string;
+  description: string;
+};
+
+export default function TeamPage({
+  members,
+  isAdmin,
+  departments,
+}: {
+  members: Member[];
+  isAdmin: Boolean;
+  departments: TeamDepartment[];
+}) {
   console.log("Members:", members);
   const [bottomText, setBottomText] = useState(defaultText);
   const [department, setDepartment] = useState(0);
-  // Use static data directly
-  const data: Headshot = teamData as Headshot;
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [editingMember, setEditingMember] = useState<Member | null>(null);
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNewItem, setIsNewItem] = useState(false);
 
-  // Map department names to team names for scrolling
-  const departmentToTeamMap: { [key: string]: string } = {
-    "Business": "Business",
-    "Analysis": "Analysis",
-    "Composites": "Composites",
-    "Drivetrain & Braking": "Drivetrain and Braking",
-    "Embedded Software": "Embedded Systems",
-    "Hardware & Electronics": "Hardware and Electronics",
-    "HV Systems": "HV Systems",
-    "Manufacturing": "Manufacturing",
-    "Software": "Software",
-    "Suspension": "Suspension",
-    "Vehicle Dynamics": "Vehicle Dynamics"
-  };
+  const [selectedDepartment, setSelectedDepartment] = useState<string>("");
+
+  const departmentOptions = Array.from(
+    new Set((departments ?? []).map((d) => d.name))
+  );
 
   const grouped = members.reduce<Record<string, Member[]>>((acc, m) => {
     const dept = m.Department ?? "Other";
@@ -239,15 +248,14 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
     };
   
 
-  const list = applications.applications.map((dept) => {
-    // Get the team name for scrolling, or use department name if no mapping exists
-    const teamName = departmentToTeamMap[dept.name] || dept.name;
+  const list = departments.map((dept) => {
+    const teamName = dept.name;
     return (
       <ApplicationCardForTeams
         name={dept.name}
         href={teamName}
         imageSrc={dept.image}
-        key={dept.name}
+        key={dept.id}
         onHover={() => {
           setBottomText(dept.description)
         }}
@@ -269,7 +277,7 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
     "w-full px-4 py-2 rounded-md bg-neutral-200 border border-neutral-100 focus:outline-none focus:ring-2 focus:ring-blue-500";
 
 
-  if (!data.length) return <p>No data found.</p>;
+  if (!departments.length) return <p>No departments found.</p>;
 
   return (
     <>
@@ -288,12 +296,12 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
         
       <div className={`${bg} ${theme}`}>
       
-        {Departments.map((dept) => {
+        {departmentOptions.map((dept) => {
           const deptMembers = grouped[dept] ?? [];
           if (deptMembers.length === 0) return null;
 
           return (
-            <section key={dept} className="flex flex-col items-center">
+            <section key={dept} id={dept} className="flex flex-col items-center">
               <div className="flex items-center gap-3">
                     <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold my-4`}>{dept}</h2>
                     {isAdmin && (
@@ -370,6 +378,8 @@ export default function TeamPage({ members, isAdmin }: { members: Member[], isAd
         onClose={() => setIsModalOpen(false)}
         onSave={handleSave}
         isNew={isNewItem}
+        departmentOptions={departmentOptions}
+        initialDepartment={isNewItem ? selectedDepartment : editingMember?.Department}
       />
       </div>
     </>

@@ -12,9 +12,11 @@ interface SponsorLogoPickerProps {
   value: string;
   onChange: (url: string) => void;
   disabled?: boolean;
-  /** Storage bucket name (e.g. "Sponsors" or "History") */
+  /** Whether the field is required in the form (defaults to true). */
+  required?: boolean;
+  /** Storage bucket name (e.g. "Sponsors", "History", "MemberPhotos") */
   bucket?: string;
-  /** Field label (e.g. "Logo" or "Image") */
+  /** Field label (e.g. "Logo", "Image", "Headshot") */
   label?: string;
 }
 
@@ -22,6 +24,7 @@ export default function SponsorLogoPicker({
   value,
   onChange,
   disabled,
+  required = true,
   bucket = "Sponsors",
   label = "Logo",
 }: SponsorLogoPickerProps) {
@@ -100,7 +103,7 @@ export default function SponsorLogoPicker({
           onChange={(e) => onChange(e.target.value)}
           placeholder="URL or choose from storage"
           className={inputClass}
-          required
+          required={required}
           disabled={disabled}
         />
         <button

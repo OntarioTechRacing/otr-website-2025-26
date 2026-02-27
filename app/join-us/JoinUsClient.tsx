@@ -6,6 +6,7 @@ import ContactForm from "@/components/ContactForm";
 import { Pencil, Plus, Trash2, X, Save } from "lucide-react";
 import { updateDepartment, addDepartment, deleteDepartment } from "@/app/actions/departments";
 import type { Department } from "./page";
+import SponsorLogoPicker from "@/components/SponsorLogoPicker";
 
 interface EditModalProps {
   department: Department | null;
@@ -24,6 +25,25 @@ function EditModal({ department, isOpen, onClose, onSave, isNew, nextOrder }: Ed
     link: department?.link || "",
   });
   const [saving, setSaving] = useState(false);
+
+  // Keep form in sync when switching between Add and Edit or changing department
+  useEffect(() => {
+    if (department) {
+      setFormData({
+        name: department.name,
+        description: department.description,
+        image: department.image,
+        link: department.link || "",
+      });
+    } else {
+      setFormData({
+        name: "",
+        description: "",
+        image: "",
+        link: "",
+      });
+    }
+  }, [department, isNew]);
 
   useEffect(() => {
     if (isOpen) {
@@ -76,10 +96,13 @@ function EditModal({ department, isOpen, onClose, onSave, isNew, nextOrder }: Ed
             <label className={labelClass}>Description</label>
             <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows={4} className={inputClass} required />
           </div>
-          <div>
-            <label className={labelClass}>Image Path</label>
-            <input type="text" value={formData.image} onChange={(e) => setFormData({ ...formData, image: e.target.value })} placeholder="/join-us/placeholder.png" className={inputClass} required />
-          </div>
+          <SponsorLogoPicker
+            value={formData.image}
+            onChange={(url) => setFormData({ ...formData, image: url })}
+            bucket="Departments"
+            label="Image"
+            required={true}
+          />
           <div>
             <label className={labelClass}>Application Link (optional)</label>
             <input type="url" value={formData.link} onChange={(e) => setFormData({ ...formData, link: e.target.value })} placeholder="https://linktr.ee/ontariotechracing" className={inputClass} />
@@ -177,7 +200,7 @@ export default function JoinUsClient({ departments, isAdmin }: { departments: De
                   onLeave={() => {}}
                 />
                 {isAdmin && (
-                  <div className="absolute top-0 right-0 flex gap-1 opacity-0 hover:opacity-100 transition-opacity z-20">
+                  <div className="absolute top-0 right-0 flex gap-1 opacity-100 z-20">
                     <button
                       onClick={(e) => {
                         e.preventDefault();

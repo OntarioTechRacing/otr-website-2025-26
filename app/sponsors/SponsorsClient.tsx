@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import SponsorCard from "@/components/SponsorCard";
 import ContactForm from "@/components/ContactForm";
 import { useTheme } from "@/components/ThemeProvider";
-import { Pencil, Plus, Trash2, X, Save } from "lucide-react";
+import { Pencil, Plus, Trash2, X, Save, FileText } from "lucide-react";
 import { updateSponsor, addSponsor, deleteSponsor } from "@/app/actions/sponsors";
 import SponsorLogoPicker from "@/components/SponsorLogoPicker";
 import type { Sponsor } from "./page";
@@ -205,12 +205,26 @@ export default function SponsorsClient({ sponsors, isAdmin }: { sponsors: Sponso
           <p className={`text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
             Sponsoring Ontario Tech Racing means supporting the next generation of engineers and innovators. Your support directly contributes to real-world learning experiences and cutting-edge automotive technology for our 70 Engineering and Business students.
           </p>
-          <p className={`text-sm md:text-base mb-8 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+          <p className={`text-sm md:text-base mb-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
             Want to join us? Email us at{" "}
             <a className={`font-semibold transition-colors underline ${isDark ? 'text-orange-500 hover:text-orange-400' : 'text-[#48B4FF] hover:text-[#3AA0E8]'}`} href="mailto:motorsports@ontariotechu.net">
               motorsports@ontariotechu.net
             </a>
           </p>
+          <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
+          <a
+            href="/sponsors/Sponsorship%20Package%202526.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium border-2 transition-all duration-300 ${
+              isDark
+                ? 'border-orange-500/60 text-orange-400 hover:bg-orange-500/10 hover:border-orange-500'
+                : 'border-[#48B4FF]/60 text-[#48B4FF] hover:bg-[#48B4FF]/10 hover:border-[#48B4FF]'
+            }`}
+          >
+            <FileText className="w-4 h-4" />
+            Download Sponsorship Package (PDF)
+          </a>
           <button
             onClick={scrollToContact}
             className={`px-8 py-3 cursor-pointer rounded-full text-base md:text-lg font-semibold inline-flex items-center gap-2 transition-all duration-300 shadow-lg hover:scale-105 ${
@@ -224,6 +238,7 @@ export default function SponsorsClient({ sponsors, isAdmin }: { sponsors: Sponso
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </button>
+          </div>
         </div>
       </div>
 

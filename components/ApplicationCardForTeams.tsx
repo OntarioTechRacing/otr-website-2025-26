@@ -27,12 +27,19 @@ export default function ApplicationCardForTeams({ name, href, imageSrc, onHover,
           }}
           style={{ cursor: "pointer" }}
     >
-      <Image
-        src={imageSrc}
-        alt={name}
-        fill
-        className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-100"
-      />
+      <div className="absolute inset-0">
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={name}
+            fill
+            className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-100"
+            sizes="10rem"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-300 rounded-full" aria-hidden />
+        )}
+      </div>
 
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-colors" />
 

@@ -47,11 +47,20 @@ export async function addMember(data: {
     return { error: 'Unauthorized' };
   }
 
+  const payload = {
+    Name: data.Name,
+    Department: data.Department,
+    Headshot: data.Headshot ?? null,
+    LinkedIn: data.LinkedIn ?? null,
+    Role: data.Role ?? null,
+  };
+
   const { error } = await supabase
     .from('TeamMembers')
-    .insert(data);
+    .insert(payload);
 
   if (error) {
+    console.error('addMember error:', error);
     return { error: error.message };
   }
 

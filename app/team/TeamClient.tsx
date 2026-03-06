@@ -8,6 +8,7 @@ import { useTheme } from '../../components/ThemeProvider';
 import { FaLinkedin } from 'react-icons/fa';
 import { addMember, updateMember, deleteMember } from "../actions/team";
 import { Pencil, Plus, Trash2, X, Save } from "lucide-react";
+import { useRouter } from "next/navigation";
 // import { createClient } from "@/lib/supabase/client";
 import { Suspense } from "react";
 import SponsorLogoPicker from "@/components/SponsorLogoPicker";
@@ -28,7 +29,7 @@ interface EditModalProps {
   member: Member | null;
   isOpen: boolean;
   onClose: () => void;
-  onSave: (data: Partial<Member>) => Promise<void>;
+  onSave: (data: Partial<Member>) => Promise<boolean | void>;
   isNew?: boolean;
   departmentOptions: string[];
   initialDepartment?: string;
@@ -88,7 +89,7 @@ function EditModal({ member, isOpen, onClose, onSave, isNew, departmentOptions, 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
-    await onSave({
+    const success = await onSave({
       Name: formData.name,
       Department: formData.department,
       Headshot: formData.headshot,
@@ -97,7 +98,7 @@ function EditModal({ member, isOpen, onClose, onSave, isNew, departmentOptions, 
       // order: nextOrder || sponsor?.order || 0,
     });
     setSaving(false);
-    onClose();
+    if (success !== false) onClose();
   };
 
   const inputClass = "w-full px-4 py-2.5 bg-white/5 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-orange-500/40 focus:border-orange-500/50 transition-colors";
@@ -192,6 +193,7 @@ export default function TeamPage({
 
   const [selectedDepartment, setSelectedDepartment] = useState<string>("");
 
+  const router = useRouter();
   const departmentOptions = Array.from(
     new Set((departments ?? []).map((d) => d.name))
   );
@@ -235,16 +237,36 @@ export default function TeamPage({
       }
     };
   
-    const handleSave = async (data: Partial<Member>) => {
+    const handleSave = async (data: Partial<Member>): Promise<boolean> => {
       if (isNewItem) {
-        await addMember({
-          ...data,
-          department: selectedDepartment,
-        } as Parameters<typeof addMember>[0]);
+        const result = await addMember({
+          Name: data.Name!,
+          Department: data.Department ?? selectedDepartment,
+          Headshot: data.Headshot ?? null,
+          LinkedIn: data.LinkedIn ?? undefined,
+          Role: data.Role ?? null,
+        });
+        if (result?.error) {
+          console.error("Add member failed:", result.error);
+          alert("Failed to add member: " + result.error);
+          return false;
+        }
+        setIsModalOpen(false);
+        router.refresh();
+        return true;
       } else if (editingMember) {
         const result = await updateMember(editingMember.id, data as Parameters<typeof updateMember>[1]);
+        if (result?.error) {
+          console.error("Update failed:", result.error);
+          alert("Failed to update: " + result.error);
+          return false;
+        }
         console.log("Update result:", result);
+        setIsModalOpen(false);
+        router.refresh();
+        return true;
       }
+      return false;
     };
   
 

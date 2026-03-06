@@ -341,22 +341,22 @@ export default function TeamPage({
                   <div key={index} className="flex flex-col items-center card-container relative">
                     <div className="card">
                       <div className={`group card-front flex flex-col items-center justify-center ${isDark ? "bg-linear-to-tl from-black to-neutral-800" : "bg-linear-to-tl from-neutral-300 to-white"}`}>
-                        <div className={`w-30 h-30 rounded-full border-4 border-${isDark ? 'orange-500' : '[#48B4FF]'} overflow-hidden relative flex items-center justify-center bg-black`}>
-                          
-                          {m.Headshot ? 
-                          (
-                            <Image
-                              src={`${m.Headshot}?width=200&height=200&resize=cover`}
-                              alt={m.Name}
-                              fill
-                              sizes="200px"
-                              className="w-full h-full object-cover"
-                              priority={false}
-                            />
+                        <div className={`w-32 h-32 rounded-full border-4 border-${isDark ? 'orange-500' : '[#48B4FF]'} overflow-hidden relative flex items-center justify-center bg-black shrink-0`}>
+                          {m.Headshot ? (
+                            <div className="absolute inset-0">
+                              <Image
+                                src={m.Headshot.replace(/([^:]\/)\/+/g, '$1')}
+                                alt={m.Name}
+                                fill
+                                sizes="128px"
+                                className="object-cover"
+                                priority={false}
+                                unoptimized={m.Headshot.startsWith('http://') || m.Headshot.startsWith('https://')}
+                              />
+                            </div>
                           ) : (
                             <div className="w-full h-full bg-black rounded-full" />
                           )}
-
                         </div>
 
                         <p className={`${isDark ? "text-white" : "text-black"} font-bold text-lg text-center mx-5 mt-2`}>

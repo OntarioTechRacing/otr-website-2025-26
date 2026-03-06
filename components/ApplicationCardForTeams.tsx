@@ -10,7 +10,14 @@ interface ApplicationProps {
   onLeave?: () => void;
 }
 
+function normalizeSupabaseUrl(url: string): string {
+  return url.replace(/([^:]\/)\/+/g, '$1');
+}
+
 export default function ApplicationCardForTeams({ name, href, imageSrc, onHover, onLeave}: ApplicationProps) {
+  const src = imageSrc ? normalizeSupabaseUrl(imageSrc) : '';
+  const isRemote = src.startsWith('http://') || src.startsWith('https://');
+
   return (
     <h3 
       className="relative inline-block w-40 h-40 rounded-full overflow-hidden shadow-md group bg-white"
@@ -28,13 +35,14 @@ export default function ApplicationCardForTeams({ name, href, imageSrc, onHover,
           style={{ cursor: "pointer" }}
     >
       <div className="absolute inset-0">
-        {imageSrc ? (
+        {src ? (
           <Image
-            src={imageSrc}
+            src={src}
             alt={name}
             fill
-            className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-100"
             sizes="10rem"
+            unoptimized={isRemote}
+            className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-100"
           />
         ) : (
           <div className="w-full h-full bg-gray-300 rounded-full" aria-hidden />

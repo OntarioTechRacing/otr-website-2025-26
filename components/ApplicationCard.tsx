@@ -10,7 +10,14 @@ interface ApplicationProps {
   onLeave?: () => void;
 }
 
+function normalizeSupabaseUrl(url: string): string {
+  return url.replace(/([^:]\/)\/+/g, '$1');
+}
+
 export default function ApplicationCard({ name, href, imageSrc, onHover, onLeave}: ApplicationProps) {
+  const src = imageSrc ? normalizeSupabaseUrl(imageSrc) : '';
+  const isRemote = src.startsWith('http://') || src.startsWith('https://');
+
   return (
     <a 
       href={href} 
@@ -19,13 +26,16 @@ export default function ApplicationCard({ name, href, imageSrc, onHover, onLeave
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
     >
-   
-      <Image
-        src={imageSrc}
-        alt={name}
-        fill
-        className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-80"
-      />
+      <div className="absolute inset-0">
+        <Image
+          src={src || '/join-us/placeholder.png'}
+          alt={name}
+          fill
+          sizes="10rem"
+          unoptimized={isRemote}
+          className="object-cover rounded-full transition-opacity duration-300 group-hover:opacity-80"
+        />
+      </div>
 
         <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors"></div>
 
